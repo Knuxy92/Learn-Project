@@ -1,0 +1,6 @@
+[mcp_servers.filesystem]
+command = "node"
+args = [
+  "C:\\Users\\Knuxy92\\Desktop\\MCP\\servers\\src\\filesystem\\dist\\index.js",
+  "C:\\Users\\Knuxy92\\Desktop\\Learn Project"
+]
