@@ -17,7 +17,8 @@ db.exec(`
 
 // TODO 1:
 const resetTasksTable = (): void => {
-  assert.fail("Write resetTasksTable()");
+  db.prepare("DELETE FROM tasks").run()
+  db.prepare("DELETE FROM sqlite_sequence WHERE name = ?").run("tasks");
 };
 
 const server = app.listen(3002);
@@ -32,29 +33,62 @@ after(async () => {
 });
 
 test("GET /tasks should return 200 and an array", async () => {
-  // TODO:
   resetTasksTable();
+  const response = await fetch("http://localhost:3002/tasks")
+  const getTasks = await response.json();
 
-  assert.fail("Write GET /tasks test");
+  assert.strictEqual(response.status, 200); 
+  assert.strictEqual(Array.isArray(getTasks), true)
 });
 
 test("GET /tasks/999 should return 404", async () => {
-  // TODO:
   resetTasksTable();
-
-  assert.fail("Write GET /tasks/:id not found test");
+  const response = await fetch("http://localhost:3002/tasks/999")
+  
+  assert.strictEqual(response.status, 404); 
 });
 
 test("POST /tasks with invalid body should return 400", async () => {
-  // TODO:
   resetTasksTable();
+  const response1 = await fetch("http://localhost:3002/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: "Testing Api",
+      done: false,
+    }),
+  });
+  const data = await response1.json(); 
+  
+  const response2 = await fetch("http://localhost:3002/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      done: false,
+    }),
+  });
 
-  assert.fail("Write POST /tasks invalid body test");
+  assert.strictEqual(response1.status, 201); 
+  assert.strictEqual(data?.id, 1); 
+  assert.strictEqual(data?.title, "Testing Api");
+  assert.strictEqual(data?.done, false); 
+
+  assert.strictEqual(response2.status, 400); 
 });
 
-test("DELETE /tasks/999 should return 404", async () => {
-  // TODO:
-  resetTasksTable();
 
-  assert.fail("Write DELETE /tasks/:id not found test");
+test("DELETE /tasks/999 should return 404", async () => {
+  resetTasksTable();
+  const response = await fetch("http://localhost:3002/tasks/999", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  assert.strictEqual(response.status, 404)
 });

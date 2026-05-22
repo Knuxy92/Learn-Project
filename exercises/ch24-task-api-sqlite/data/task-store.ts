@@ -1,100 +1,99 @@
-import { Task, RawTask } from "../types/task";
 import { DatabaseSync } from "node:sqlite";
 import path from "node:path";
+import { type DbTaskRow, type Task } from "../types/task";
 
 const dbPath = path.join(__dirname, "../../ch24-storage/tasks.db");
 const db = new DatabaseSync(dbPath);
 
 db.exec(/* SQL */ `
-    CREATE TABLE IF NOT EXISTS tasks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        done INTEGER NOT NULL
-    )
+  CREATE TABLE IF NOT EXISTS tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    done INTEGER NOT NULL DEFAULT 0
+  )
 `);
 
-const readTasks = async (): Promise<Task[]> => {
-  const raws = db.prepare(/* SQL */ `SELECT id, title, done FROM tasks`).all() as unknown as RawTask[];
-
-  return raws.map((raw) => {
-    return {
-      id: raw.id,
-      title: raw.title,
-      done: raw.done === 1,
-    };
-  }) as Task[];
+const mapTaskRow = (row: DbTaskRow): Task => {
+  return {
+    id: row.id,
+    title: row.title,
+    done: row.done === 1,
+  };
 };
 
-const writeTasks = async (tasks: Task[]): Promise<void> => {
-  const stmt = db.prepare(`INSERT INTO tasks (title, done) VALUES (?, ?)`);
+const readTasks = async (): Promise<Task[]> => {
+  const rows = db.prepare(/* SQL */ `
+    SELECT id, title, done
+    FROM tasks
+    ORDER BY id DESC
+  `).all() as DbTaskRow[];
 
-  for (const task of tasks) {
-    stmt.run(task.title, task.done ? 1 : 0);
-  }
+  return rows.map(mapTaskRow);
 };
 
 const findTaskById = async (id: number): Promise<Task | undefined> => {
-  const raw = db.prepare("SELECT * FROM tasks WHERE id = ?").get(id) as unknown as RawTask;
-  if (raw === undefined) return undefined
-  return {
-    ...raw,
-    done: raw.done === 1
-  } as Task;
+  const row = db.prepare(/* SQL */ `
+    SELECT id, title, done
+    FROM tasks
+    WHERE id = ?
+  `).get(id) as DbTaskRow | undefined;
+
+  if (!row) {
+    return undefined;
+  }
+
+  return mapTaskRow(row);
 };
 
 const createTask = async (title: string): Promise<Task> => {
-  const result = db
-    .prepare(`INSERT INTO tasks (title, done) VALUES (?, ?)`)
-    .run(title, 0);
+  const result = db.prepare(/* SQL */ `
+    INSERT INTO tasks (title, done)
+    VALUES (?, ?)
+  `).run(title, 0);
 
   return {
     id: Number(result.lastInsertRowid),
     title,
     done: false,
-  } as Task;
+  };
 };
-
 
 const updateTask = async (
   id: number,
   updates: { title?: string; done?: boolean },
 ): Promise<Task | undefined> => {
-  const task = db.prepare(`SELECT * FROM tasks WHERE id = ?`).get(id) as unknown as RawTask
-  if (task === undefined) return undefined
-  if (updates.title !== undefined) {
-    db.prepare("UPDATE tasks SET title = ? WHERE id = ?").run(
-      updates.title,
-      id,
-    );
-  };
+  const existingTask = await findTaskById(id);
 
-  if (updates.done !== undefined) {
-    db.prepare("UPDATE tasks SET done = ? WHERE id = ?").run(
-      updates.done ? 1 : 0,
-      id,
-    );
-  };
-  
-  const raw = db.prepare("SELECT * FROM tasks WHERE id = ?").get(id) as unknown as RawTask;
+  if (!existingTask) {
+    return undefined;
+  }
 
-  if (raw === undefined) return undefined;
-  return {
-    ...raw,
-    done: raw.done === 1
-  } as Task;
+  const nextTitle = updates.title ?? existingTask.title;
+  const nextDone = updates.done ?? existingTask.done;
+
+  db.prepare(/* SQL */ `
+    UPDATE tasks
+    SET title = ?, done = ?
+    WHERE id = ?
+  `).run(nextTitle, nextDone ? 1 : 0, id);
+
+  return findTaskById(id);
 };
 
 const deleteTask = async (id: number): Promise<boolean> => {
-  const info = db.prepare("DELETE FROM tasks WHERE id = ?").run(id) ;
-  return info.changes > 0;
+  const result = db.prepare(/* SQL */ `
+    DELETE FROM tasks
+    WHERE id = ?
+  `).run(id);
+
+  return result.changes > 0;
 };
 
 export {
   readTasks,
-  writeTasks,
   findTaskById,
   createTask,
   updateTask,
   deleteTask,
-  type Task
+  Task,
 };

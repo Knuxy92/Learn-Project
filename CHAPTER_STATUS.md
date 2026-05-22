@@ -2,9 +2,9 @@
 
 ## Active Chapter
 
-- Chapter: `Test Bridge 04 - API Status Tests`
+- Chapter: `Ch25 - Query Layer and DB Refactor`
 - Status: `active`
-- Main goal: practice API status and response checks before returning to the main SQL/backend line
+- Main goal: split SQLite setup and query logic into clearer data-layer files
 
 ## Ch1 Checklist
 
@@ -440,7 +440,7 @@
 - [x] Test Bridge 01 - Assert basics
 - [x] Test Bridge 02 - SQLite result tests
 - [x] Test Bridge 03 - Storage function tests
-- [ ] Test Bridge 04 - API status tests
+- [x] Test Bridge 04 - API status tests
 
 ## Test Bridge 01 Checklist
 
@@ -495,9 +495,16 @@
 - [x] Create bridge lesson
 - [x] Create example
 - [x] Create guided exercise
-- [ ] Student completes exercise
-- [ ] Review exercise
-- [ ] Bridge summary
+- [x] Student completes exercise
+- [x] Review exercise
+- [x] Bridge summary
+
+## Test Bridge 04 Summary
+
+- API tests verify route behavior, status codes, and response bodies through real HTTP requests.
+- `after()` is the safe place to close the test server so the process does not hang.
+- Even HTTP-level tests still need controlled database state to stay predictable.
+- `400` and `404` are different failures and should be tested separately.
 
 ## Ch23 Checklist
 
@@ -522,19 +529,33 @@
 - [x] Create guided exercise
 - [x] Student completes exercise
 - [x] Review exercise
-- [ ] SQL revision after bridge
+- [x] SQL revision after bridge
+- [x] Chapter summary
+
+## Ch24 Summary
+
+- SQLite can replace JSON storage without changing the outer API contract.
+- Database rows often need mapping before they match app-level types.
+- `lastInsertRowid` and `changes` are useful for create/delete flows.
+- The route layer should keep focusing on request/response behavior while storage handles persistence.
+
+## Ch25 Checklist
+
+- [x] Create chapter lesson
+- [x] Create examples
+- [x] Create guided exercise
+- [ ] Student completes exercise
+- [ ] Review exercise
 - [ ] Chapter summary
 
 ## Current Exercise
 
-- File: `exercises/test-bridge-04-api-status-tests.test.ts`
+- File: `exercises/ch25-task-api-query-layer/`
 - Task:
-  - reset the SQLite tasks table before each test
-  - open the app on a test port and close it after the run
-  - test `GET /tasks` for `200` and array body
-  - test `GET /tasks/999` or `DELETE /tasks/999` for `404`
-  - test invalid `POST /tasks` for `400`
-  - run the file with `node --test`
+  - split DB setup into `data/db.ts`
+  - move task SQL into `data/task-queries.ts`
+  - keep route behavior the same while refactoring internals
+  - reduce the role of `data/task-store.ts` or remove it
 
 ## Review Rules
 

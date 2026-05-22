@@ -4,10 +4,10 @@ type Task = {
   done: boolean;
 };
 
-interface RawTask {
+type DbTaskRow = {
   id: number;
   title: string;
-  done: number; 
-}
+  done: number;
+};
 
-export { Task, RawTask }
+export { type Task, type DbTaskRow };
