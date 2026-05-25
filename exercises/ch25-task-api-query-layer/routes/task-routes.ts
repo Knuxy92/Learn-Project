@@ -5,7 +5,7 @@ import {
   createTask,
   updateTask,
   deleteTask,
-} from "../data/task-store";
+} from "../data/task-queries";
 import {
   validateCreateTask,
   validateUpdateTask,
@@ -22,9 +22,8 @@ taskRouter.get("/:id", async (req, res) => {
   const taskId = Number(req.params.id);
   const task = await findTaskById(taskId);
 
-  if (task === undefined) {
+  if (task === undefined)
     return res.status(404).json({ message: "Task not found" });
-  }
 
   return res.json(task);
 });
@@ -40,9 +39,8 @@ taskRouter.put("/:id", validateUpdateTask, async (req, res) => {
   const taskId = Number(req.params.id);
   const updatedTask = await updateTask(taskId, req.body);
 
-  if (updatedTask === undefined) {
+  if (updatedTask === undefined)
     return res.status(404).json({ message: "Task not found" });
-  }
 
   return res.json(updatedTask);
 });
@@ -51,9 +49,8 @@ taskRouter.delete("/:id", async (req, res) => {
   const taskId = Number(req.params.id);
   const deletedTask = await deleteTask(taskId);
 
-  if (deletedTask === false) {
+  if (deletedTask === false)
     return res.status(404).json({ message: "Task not found" });
-  }
 
   return res.json({ message: "Task deleted" });
 });

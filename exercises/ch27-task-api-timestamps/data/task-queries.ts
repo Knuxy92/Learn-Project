@@ -1,33 +1,19 @@
-import { DatabaseSync } from "node:sqlite";
-import path from "node:path";
+import { db } from "./db";
 import { type DbTaskRow, type Task } from "../types/task";
-
-// Ch25 starter:
-// This file still mixes DB setup and query logic together.
-// Your job is to split it into `db.ts` and `task-queries.ts`.
-
-const dbPath = path.join(__dirname, "../../ch25-storage/tasks.db");
-const db = new DatabaseSync(dbPath);
-
-db.exec(/* SQL */ `
-  CREATE TABLE IF NOT EXISTS tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    done INTEGER NOT NULL DEFAULT 0
-  )
-`);
 
 const mapTaskRow = (row: DbTaskRow): Task => {
   return {
     id: row.id,
     title: row.title,
     done: row.done === 1,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
   };
 };
 
 const readTasks = async (): Promise<Task[]> => {
-  const rows = db.prepare(/* SQL */ `
-    SELECT id, title, done
+  const rows = db.prepare(`
+    SELECT id, title, done, updated_at, created_at
     FROM tasks
     ORDER BY id DESC
   `).all() as DbTaskRow[];
@@ -36,8 +22,8 @@ const readTasks = async (): Promise<Task[]> => {
 };
 
 const findTaskById = async (id: number): Promise<Task | undefined> => {
-  const row = db.prepare(/* SQL */ `
-    SELECT id, title, done
+  const row = db.prepare(`
+    SELECT id, title, done, updated_at, created_at
     FROM tasks
     WHERE id = ?
   `).get(id) as DbTaskRow | undefined;
@@ -50,16 +36,18 @@ const findTaskById = async (id: number): Promise<Task | undefined> => {
 };
 
 const createTask = async (title: string): Promise<Task> => {
-  const result = db.prepare(/* SQL */ `
+  const result = db.prepare(`
     INSERT INTO tasks (title, done)
     VALUES (?, ?)
   `).run(title, 0);
 
-  return {
-    id: Number(result.lastInsertRowid),
-    title,
-    done: false,
-  };
+  const createdTask = await findTaskById(Number(result.lastInsertRowid));
+
+  if (!createdTask) {
+    throw new Error("Created task could not be read back");
+  }
+
+  return createdTask;
 };
 
 const updateTask = async (
@@ -75,9 +63,9 @@ const updateTask = async (
   const nextTitle = updates.title ?? existingTask.title;
   const nextDone = updates.done ?? existingTask.done;
 
-  db.prepare(/* SQL */ `
+  db.prepare(`
     UPDATE tasks
-    SET title = ?, done = ?
+    SET title = ?, done = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).run(nextTitle, nextDone ? 1 : 0, id);
 
@@ -85,7 +73,7 @@ const updateTask = async (
 };
 
 const deleteTask = async (id: number): Promise<boolean> => {
-  const result = db.prepare(/* SQL */ `
+  const result = db.prepare(`
     DELETE FROM tasks
     WHERE id = ?
   `).run(id);
@@ -99,5 +87,4 @@ export {
   createTask,
   updateTask,
   deleteTask,
-  type Task,
 };

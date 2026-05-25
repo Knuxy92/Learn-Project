@@ -2,9 +2,9 @@
 
 ## Active Chapter
 
-- Chapter: `Ch25 - Query Layer and DB Refactor`
+- Chapter: `Ch27 - Timestamps and Richer Schema`
 - Status: `active`
-- Main goal: split SQLite setup and query logic into clearer data-layer files
+- Main goal: expand the SQLite task schema with timestamp fields and map them cleanly
 
 ## Ch1 Checklist
 
@@ -544,18 +544,50 @@
 - [x] Create chapter lesson
 - [x] Create examples
 - [x] Create guided exercise
+- [x] Student completes exercise
+- [x] Review exercise
+- [x] Chapter summary
+
+## Ch25 Summary
+
+- `db.ts` should own database connection and setup.
+- Query functions become easier to read when grouped in one dedicated file.
+- Routes become cleaner when they focus only on HTTP behavior.
+- Internal refactors are safer when API behavior stays stable.
+
+## Ch26 Checklist
+
+- [x] Create chapter lesson
+- [x] Create examples
+- [x] Create guided exercise
+- [x] Student completes exercise
+- [x] Review exercise
+- [x] Chapter summary
+
+## Ch26 Summary
+
+- A test database should be separate from the app's normal database.
+- Test setup should control table state with reset and seed helpers.
+- API tests should verify both HTTP status and the returned body shape.
+- Cleanup should close the server after the run to avoid hanging test processes.
+
+## Ch27 Checklist
+
+- [x] Create chapter lesson
+- [x] Create examples
+- [x] Create guided exercise
 - [ ] Student completes exercise
 - [ ] Review exercise
 - [ ] Chapter summary
 
 ## Current Exercise
 
-- File: `exercises/ch25-task-api-query-layer/`
+- File: `exercises/ch27-task-api-timestamps/`
 - Task:
-  - split DB setup into `data/db.ts`
-  - move task SQL into `data/task-queries.ts`
-  - keep route behavior the same while refactoring internals
-  - reduce the role of `data/task-store.ts` or remove it
+  - add `created_at` and `updated_at` to the SQLite schema
+  - map timestamp fields from DB rows into app-level task objects
+  - return timestamp fields from create/read/update responses
+  - update `updated_at` when a task changes
 
 ## Review Rules
 
