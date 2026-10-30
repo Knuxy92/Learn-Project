@@ -1,12 +1,12 @@
-# Chapter 23: SQLite Basics
+# บทที่ 23: พื้นฐาน SQLite
 
-## Recap
+## ทบทวน
 
 ตอนนี้นายมี:
 
 - API ที่แยกโครงสร้างได้
 - persistence ผ่าน JSON file
-- automated tests
+- test อัตโนมัติ
 - ความเข้าใจ Promise/await ที่พอใช้กับ async flow ได้แล้ว
 
 ก้าวถัดไปคือเข้า database จริง
@@ -17,8 +17,8 @@
 
 - เปิด database
 - สร้าง table
-- insert row
-- select row
+- เพิ่ม row ด้วย insert
+- อ่าน row ด้วย select
 
 ## 1. Why SQLite First
 
@@ -126,7 +126,7 @@ const mappedTask = {
 };
 ```
 
-## 8. Example
+## 8. ตัวอย่าง
 
 ```ts
 import path from "node:path";
@@ -152,7 +152,7 @@ const rows = db.prepare("SELECT id, title, done FROM tasks").all();
 console.log(rows);
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -162,7 +162,7 @@ exercises/ch23-sqlite-basics.ts
 
 ให้ทำตามนี้:
 
-1. import:
+1. ทำ import:
    - `path` จาก `node:path`
    - `DatabaseSync` จาก `node:sqlite`
 
@@ -191,20 +191,20 @@ exercises/ch23-storage/tasks.db
 8. map rows จาก `DbTaskRow[]` เป็น `Task[]`
 
 9. พิมพ์:
-   - raw rows
-   - mapped tasks
+   - row ดิบ
+   - task ที่ map แล้ว
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ยังไม่ทำ API
 
 เรากำลังเรียน:
 
-- database file
+- file ของ database
 - table
 - row
 - query
-- row mapping
+- การ map row
 
 หลังจากบทนี้ค่อยย้าย task API ไปใช้ SQLite ใน `Ch24`
 

@@ -1,6 +1,6 @@
-# Chapter 3: Operators & Expressions
+# บทที่ 3: ตัวดำเนินการและนิพจน์
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียนตัวแปรและ data types เช่น string, number, boolean, null และ undefined
 
@@ -19,8 +19,7 @@ const quantity = 3;
 console.log(price * quantity);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 300
 ```
@@ -47,8 +46,7 @@ score += 5;
 console.log(score);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 15
 ```
@@ -65,8 +63,7 @@ const age = 17;
 console.log(age >= 18);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 false
 ```
@@ -80,8 +77,7 @@ console.log(5 === '5');
 console.log(5 == '5');
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 false
 true
@@ -100,8 +96,7 @@ const hasTicket = true;
 console.log(age >= 18 && hasTicket);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 true
 ```
@@ -125,13 +120,12 @@ const label = age >= 18 ? 'adult' : 'minor';
 console.log(label);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 minor
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 

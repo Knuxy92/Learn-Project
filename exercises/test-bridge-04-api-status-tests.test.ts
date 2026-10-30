@@ -72,7 +72,7 @@ test("POST /tasks with invalid body should return 400", async () => {
     }),
   });
 
-  assert.strictEqual(response1.status, 201); 
+  assert.strictEqual(response1.status, 200);
   assert.strictEqual(data?.id, 1); 
   assert.strictEqual(data?.title, "Testing Api");
   assert.strictEqual(data?.done, false); 

@@ -1,6 +1,6 @@
-# Chapter 22: API Testing with `node:test`
+# บทที่ 22: ทดสอบ API ด้วย `node:test`
 
-## Recap
+## ทบทวน
 
 ตอนนี้นายมี API ที่:
 
@@ -30,7 +30,7 @@ test ช่วยตอบคำถาม 3 อย่าง:
 กับ API สิ่งที่เรามักอยาก test คือ:
 
 - status code
-- response body
+- body ของ response
 - behavior ตอน success
 - behavior ตอน error
 
@@ -119,11 +119,11 @@ test ที่ดีควร:
 - เตรียมข้อมูลก่อนรัน
 - เปิด server
 - ยิง request
-- assert
+- ตรวจสอบผลด้วย assert
 - ปิด server
 - restore ไฟล์ทดสอบกลับ
 
-## 7. Example
+## 7. ตัวอย่าง
 
 ```ts
 import test from "node:test";
@@ -138,7 +138,7 @@ test("GET /tasks should return an array", async () => {
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -174,7 +174,7 @@ exercises/ch22-api-tests/
    - restore ไฟล์ `fixtures/test-tasks.json` กลับค่าเดิม
    - ปิด server ที่เปิดใน test
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ไม่ได้วัดว่า test ต้องสวยที่สุด
 

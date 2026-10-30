@@ -41,14 +41,14 @@ test("GET /tasks should return seeded tasks", async () => {
   seedTask("Testing 1");
   const response = await fetch("http://localhost:3005/tasks");
   const getTasks = await response.json();
-  console.log(getTasks);
+
   assert.strictEqual(response.status, 200);
   assert.strictEqual(Array.isArray(getTasks), true);
-  assert.deepStrictEqual(getTasks[0], {
-    id: 1,
-    title: "Testing 1",
-    done: false,
-  });
+  assert.strictEqual(getTasks[0].id, 1);
+  assert.strictEqual(getTasks[0].title, "Testing 1");
+  assert.strictEqual(getTasks[0].done, false);
+  assert.strictEqual(typeof getTasks[0].createdAt, "string");
+  assert.strictEqual(typeof getTasks[0].updatedAt, "string");
 });
 
 test("POST /tasks should create a new task", async () => {
@@ -68,11 +68,11 @@ test("POST /tasks should create a new task", async () => {
   assert.strictEqual(response.status, 201);
   assert.strictEqual(typeof getTasks, "object");
   assert.strictEqual(typeof getTasks.id, "number");
-  assert.deepStrictEqual(getTasks, {
-    id: 1,
-    title: "Testing 1",
-    done: false,
-  });
+  assert.strictEqual(getTasks.id, 1);
+  assert.strictEqual(getTasks.title, "Testing 1");
+  assert.strictEqual(getTasks.done, false);
+  assert.strictEqual(typeof getTasks.createdAt, "string");
+  assert.strictEqual(typeof getTasks.updatedAt, "string");
 });
 
 test("GET /tasks/999 should return 404", async () => {

@@ -1,6 +1,6 @@
-# Chapter 11: Error Handling
+# บทที่ 11: การจัดการ error
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน string methods, regex เบื้องต้น และ Date
 
@@ -26,7 +26,7 @@ try {
 }
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Something went wrong
@@ -46,7 +46,7 @@ try {
 }
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Trying...
@@ -68,7 +68,7 @@ try {
 }
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 SyntaxError
@@ -89,7 +89,7 @@ if (age < 0) {
 }
 ```
 
-## 6. Guided Exercise
+## 6. โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -117,7 +117,7 @@ exercises/ch11-safe-json.js
    - ถ้าพัง ให้คืน `null`
    - ใน `finally` ให้พิมพ์ `'Finished parsing'`
 
-Expected output ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
+ผลลัพธ์ที่คาดหวัง ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
 แต่ต้องมีครบว่า:
 
 - parse JSON ที่ดีได้

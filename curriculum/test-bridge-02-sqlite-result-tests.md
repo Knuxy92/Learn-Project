@@ -1,6 +1,6 @@
-# Test Bridge 02: SQLite Result Tests
+# ช่วงเชื่อมทดสอบ 02: ทดสอบผลลัพธ์จาก SQLite
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 ก่อน test storage function หรือ API ต้องแม่นก่อนว่า result ของ SQLite query ควรถูก assert ยังไง
 
@@ -13,7 +13,7 @@
 
 ยังไม่เปิด server และยังไม่ไปแตะ route
 
-## Goal
+## เป้าหมาย
 
 ฝึก 4 อย่าง:
 
@@ -55,7 +55,7 @@ const row = db
 - ถ้าเจอ row ค่าควรถูก
 - ถ้าไม่เจอควรได้ `undefined`
 
-สรุป: `.get()` ต้อง test ทั้ง found และ missing
+สรุป: `.get()` ต้อง test ทั้งกรณีเจอ และกรณีไม่เจอ
 
 ## 3. Test `lastInsertRowid`
 
@@ -91,7 +91,7 @@ const result = db
 
 สรุป: `changes` ช่วยแยก "แก้/ลบสำเร็จ" ออกจาก "รันได้แต่ไม่เจอ row"
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import { test } from "node:test";
@@ -146,7 +146,7 @@ exercises/test-bridge-02-sqlite-result-tests.test.ts
    - `path` จาก `node:path`
    - `DatabaseSync` จาก `node:sqlite`
 
-2. สร้าง database file ที่:
+2. สร้างไฟล์ database ที่:
 
 ```txt
 exercises/test-bridge-02-storage/tasks.db
@@ -159,7 +159,7 @@ exercises/test-bridge-02-storage/tasks.db
 
 4. เขียน helper `resetTasksTable()`
    - ลบ rows เก่าออกก่อนแต่ละ test
-   - reset sequence ด้วย
+   - reset ตัวนับ id ด้วย
 
 5. เขียน test 4 ตัว:
    - `.all()` ควรคืน array 2 rows ตามลำดับ `ORDER BY id DESC`
@@ -172,22 +172,22 @@ exercises/test-bridge-02-storage/tasks.db
    - `assert.equal(...)` สำหรับ number/undefined
    - `assert.deepEqual(...)` สำหรับ object/array
 
-## Run
+## วิธีรัน
 
 ใช้คำสั่ง:
 
 ```bash
-cmd /c node --test -r ts-node/register exercises/test-bridge-02-sqlite-result-tests.test.ts
+node --test -r ts-node/register exercises/test-bridge-02-sqlite-result-tests.test.ts
 ```
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อรัน test แล้วควรผ่าน 4 tests และอธิบายได้ว่า:
 
-- `.all()` ใช้เช็ก list ยังไง
-- `.get()` ต้องเช็ก found และ not found ยังไง
+- `.all()` ใช้เช็กรายการยังไง
+- `.get()` ต้องเช็กกรณีเจอ และกรณีไม่เจอ ยังไง
 - `lastInsertRowid` ใช้ยืนยัน row ใหม่ยังไง
-- `changes` ใช้ยืนยัน delete/update ยังไง
+- `changes` ใช้ยืนยันการลบ/แก้ไขยังไง
 
 เสร็จแล้วพิมพ์:
 

@@ -1,6 +1,6 @@
-# Chapter 26: API Testing with Database
+# บทที่ 26: ทดสอบ API กับ database
 
-## Recap
+## ทบทวน
 
 ตอนนี้เราได้ครบ 2 ส่วนสำคัญแล้ว:
 
@@ -11,7 +11,7 @@
 
 - test API โดยใช้ database test แยกจากของจริง
 
-## 1. Goal Of This Chapter
+## 1. เป้าหมายของบทนี้
 
 บทนี้ไม่ได้เน้นเพิ่ม feature ใหม่
 
@@ -54,9 +54,9 @@ exercises/ch26-storage/test-tasks.db
 
 เราเน้น:
 
-- success flow
-- not found
-- bad request
+- flow ที่สำเร็จ
+- กรณีไม่เจอข้อมูล
+- กรณี request ผิดรูปแบบ
 
 ## 4. Test Setup Shape
 
@@ -121,7 +121,7 @@ test("GET /tasks should return seeded tasks", async () => {
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้ใช้โฟลเดอร์:
 
@@ -138,12 +138,12 @@ exercises/ch26-task-api-database-tests/
 5. เปิด server บน test port
 6. ปิด server ด้วย `after(...)`
 7. เขียน test อย่างน้อย 4 ตัว:
-   - `GET /tasks` success
-   - `POST /tasks` success
-   - `GET /tasks/:id` not found
-   - invalid `POST /tasks` returns `400`
+   - `GET /tasks` สำเร็จ
+   - `POST /tasks` สำเร็จ
+   - `GET /tasks/:id` ที่ไม่เจอ
+   - `POST /tasks` ที่ข้อมูลผิดได้ `400`
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อเสร็จ:
 
@@ -152,20 +152,20 @@ exercises/ch26-task-api-database-tests/
 - API behavior ถูกยืนยันจาก automated test
 - พร้อมต่อยอดไป integration testing ที่แน่นขึ้น
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ยังไม่เน้น:
 
-- mocking DB
-- transaction rollback strategy
+- การ mocking DB
+- กลยุทธ์ transaction rollback
 - parallel test isolation ซับซ้อน
 - supertest หรือ test library เพิ่ม
 
 เราโฟกัสแค่:
 
-- real HTTP requests
-- separate test DB
-- stable setup/reset flow
+- HTTP request จริง
+- test DB แยกจากของจริง
+- setup/reset flow ที่ stable
 
 เสร็จแล้วพิมพ์:
 

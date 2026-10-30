@@ -37,8 +37,8 @@ test("readTasks should return mapped boolean values", async () => {
       ...tasks[0],
     },
     {
-      id: 1,
-      title: "testing1",
+      id: 2,
+      title: "testing2",
       done: false,
     },
   );
@@ -47,8 +47,8 @@ test("readTasks should return mapped boolean values", async () => {
       ...tasks[1],
     },
     {
-      id: 2,
-      title: "testing2",
+      id: 1,
+      title: "testing1",
       done: false,
     },
   );

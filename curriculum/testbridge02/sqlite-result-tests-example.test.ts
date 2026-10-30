@@ -31,7 +31,7 @@ test(".all() should return rows in DESC order", () => {
 
   assert.ok(Array.isArray(rows));
   assert.equal(rows.length, 2);
-  assert.deepEqual(rows[0], { id: 2, title: "Second", done: 1 });
+  assert.deepEqual({ ...rows[0] }, { id: 2, title: "Second", done: 1 });
 });
 
 test("delete should report changes", () => {

@@ -1,11 +1,11 @@
-# Chapter 24: Task API with SQLite
+# บทที่ 24: Task API กับ SQLite
 
-## Recap
+## ทบทวน
 
 ตอนนี้นายผ่าน 2 ขั้นสำคัญแล้ว:
 
-- `Ch21` JSON file persistence
-- `Ch23` SQLite basics
+- `Ch21` persistence ด้วยไฟล์ JSON
+- `Ch23` พื้นฐาน SQLite
 
 ดังนั้นก้าวถัดไปคือ:
 
@@ -21,16 +21,16 @@
 สิ่งที่ไม่ควรเปลี่ยน:
 
 - routes
-- request shape
-- response shape
-- validation behavior
+- shape ของ request
+- shape ของ response
+- พฤติกรรมของ validation
 - status code หลัก
 
 สิ่งที่เปลี่ยน:
 
-- data source
-- query logic
-- id generation
+- แหล่งข้อมูล
+- logic ของ query
+- การสร้าง id
 
 ## 2. Why This Step Matters
 
@@ -48,14 +48,14 @@
 
 ในบทนี้ data layer ควรรับผิดชอบ:
 
-- connect database
+- เชื่อมต่อ database
 - create table ถ้ายังไม่มี
-- map row -> `Task`
+- map row เป็น `Task`
 - CRUD ผ่าน SQL
 
 route layer ควรทำแค่:
 
-- parse params/body
+- แปลง params/body
 - เรียก storage function
 - ตอบ response
 
@@ -122,7 +122,7 @@ db.prepare("UPDATE tasks SET title = ?, done = ? WHERE id = ?").run(
 db.prepare("DELETE FROM tasks WHERE id = ?").run(id);
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -167,7 +167,7 @@ exercises/ch24-storage/tasks.db
 8. ใน `app.ts` และ `server.ts`
    - โครงเหมือนเดิม
 
-## Expected Behavior
+## พฤติกรรมที่คาดหวัง
 
 หลังทำเสร็จ:
 
@@ -181,7 +181,7 @@ exercises/ch24-storage/tasks.db
 
 แต่ข้อมูลจะถูกเก็บใน SQLite แทน JSON
 
-## Important Note
+## ข้อควรระวัง
 
 ในบทนี้ยังไม่เน้น:
 
@@ -192,9 +192,9 @@ exercises/ch24-storage/tasks.db
 
 เราโฟกัสแค่:
 
-- single table
+- table เดียว
 - CRUD
-- row mapping
+- การ map row
 
 เมื่อเสร็จแล้วพิมพ์:
 

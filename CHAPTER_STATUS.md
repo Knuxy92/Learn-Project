@@ -1,597 +1,597 @@
-# Chapter Status
+# สถานะบท
 
-## Active Chapter
+## บทที่กำลังเรียน
 
-- Chapter: `Ch27 - Timestamps and Richer Schema`
-- Status: `active`
-- Main goal: expand the SQLite task schema with timestamp fields and map them cleanly
-
-## Ch1 Checklist
-
-- [x] Node.js is available
-- [x] Create first `.js` example
-- [x] Create first guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch1 Summary
-
-- JavaScript code can run with Node.js.
-- `console.log()` prints output to the terminal.
-- Files in `curriculum/` are examples and lessons.
-- Files in `exercises/` are for student work.
-
-## Ch2 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch2 Summary
-
-- `const` is for values we do not plan to reassign.
-- `let` is for values that need reassignment.
-- Basic data types include string, number, boolean, null, and undefined.
-- `typeof null` returns `object`, which is a weird old JavaScript behavior.
-- Type coercion can make `'5' + 3` become `'53'`, while `'5' - 3` becomes `2`.
-
-## Ch3 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch3 Summary
-
-- Arithmetic operators calculate values like subtotal.
-- Comparison operators create boolean values such as `quantity > 10`.
-- Ternary expressions can choose between two values.
-- `===` should be preferred over `==`.
-
-## Ch4 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch4 Summary
-
-- `if / else if / else` lets code choose between multiple conditions.
-- `switch` starts at the matching case and needs `break` to stop.
-- Truthy/falsy values let non-boolean values behave like conditions.
-- `||` can be used to choose a fallback value.
-
-## Ch5 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch5 Summary
-
-- Functions help us reuse code.
-- Parameters receive values from the caller.
-- Arguments are the actual values we pass in.
-- `return` sends a value back out of a function.
-- Default parameters help when no argument is passed.
-
-## Ch6 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch6 Summary
-
-- Arrays store multiple values in order.
-- Index starts at `0`.
-- `.length` gives the number of items.
-- `.push()` adds to the end.
-- `.pop()` removes the last item.
-- `for...of` loops through each item.
-
-## Ch7 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch7 Summary
-
-- `map()` transforms every item.
-- `filter()` keeps items that match a condition.
-- `find()` returns the first matching item.
-- `some()` checks if at least one item matches.
-- `every()` checks if all items match.
-- `reduce()` combines many values into one result.
-
-## Ch8 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch8 Summary
-
-- Objects store data as `key: value` pairs.
-- Dot notation is the most common way to read properties.
-- Objects can also contain functions called methods.
-- Destructuring pulls values out into variables.
-- Spread helps create a new object from an existing one.
-
-## Ch9 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch9 Summary
-
-- A callback is a function passed into another function.
-- A higher-order function takes or returns a function.
-- A closure lets a function remember values from outside it.
-- Rest parameters gather many arguments into one array.
-- Spread can unpack an array into separate arguments.
-
-## Ch10 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch10 Summary
-
-- String methods help clean and transform text.
-- Template literals make string formatting easier.
-- Regex can check simple text patterns.
-- `Date` helps us work with real dates and time values.
-- `.toLocaleDateString()` is useful for human-readable date output.
-
-## Ch11 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch11 Summary
-
-- `try` contains code that may fail.
-- `catch` handles errors so the whole program does not crash.
-- `finally` always runs, whether success or failure happens.
-- `return` from a function is different from `console.log()`.
-
-## Ch12 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch12 Summary
-
-- Async work does not finish immediately.
-- `await` waits for a promise inside the current async function flow.
-- `fetch()` gets data from a URL.
-- We should await the async result before using array properties like `.length`.
-
-## Ch13 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch13 Summary
-
-- TypeScript is JavaScript with types.
-- Type annotations can make code clearer and catch mistakes earlier.
-- Type inference means TS can often guess types for us.
-- We can start small by typing simple variables and function parameters.
-
-## Ch14 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch14 Summary
-
-- TypeScript can describe arrays, tuples, and unions.
-- `type` and `interface` both describe data shapes.
-- Optional properties use `?`.
-- `readonly` protects values from reassignment.
-
-## Ch15 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch15 Summary
-
-- Function parameters and return values can be typed clearly.
-- Function type aliases describe the shape of a function.
-- Generics let one function work with many types safely.
-- Utility types like `Pick` and `Omit` reshape existing types.
-
-## Ch16 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch16 Summary
-
-- Narrowing helps TypeScript understand a more specific type after checks.
-- Type guards let us safely inspect `unknown` values.
-- Discriminated unions make multi-shape data easier to handle.
-- `unknown` is safer than `any` because it forces checks first.
-
-## Ch17 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch17 Summary
-
-- Node.js runs the backend server.
-- Express helps define routes quickly.
-- `req` is the incoming request.
-- `res` is the outgoing response.
-- `res.json()` is a common way to return API data.
-
-## Ch18 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch18 Summary
-
-- CRUD API maps well to `GET`, `POST`, `PUT`, and `DELETE`.
-- `req.params` is used for path values like ids.
-- `req.body` is used for incoming JSON data.
-- `express.json()` is required before reading JSON body data.
-- In-memory arrays are useful for learning API flow before databases.
-
-## Ch19 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch19 Summary
-
-- Middleware can stop bad requests before they reach route handlers.
-- Validation should match the contract of each route.
-- `POST` and `PUT` often need different validation rules.
-- Consistent `{ message: ... }` error responses make APIs easier to use and debug.
-
-## Ch20 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch20 Summary
-
-- Backend code becomes easier to maintain when routes, middleware, data, and types are split by responsibility.
-- `app.ts` should compose middleware and routers.
-- `server.ts` should only start the app.
-- A router should usually use paths relative to its mount point.
-
-## Ch21 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch21 Summary
-
-- JSON files are a simple first persistence layer before a real database.
-- File storage works well when separated behind a storage layer.
-- Async route handlers must await storage operations.
-- Persistence is only useful if behavior still matches the API contract.
-
-## Ch22 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch22 Summary
-
-- Automated tests reduce manual API checking.
-- Test data should be isolated from production data.
-- Cleanup must close the server and restore fixtures reliably.
-- Test runner lifecycle hooks are safer than time-based cleanup.
-
-## Bridge 01 Checklist
-
-- [x] Create bridge lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Bridge 01 Summary
-
-- Promise represents a value that will arrive later.
-- `await` converts `Promise<T>` flow into `T` flow inside an async function.
-- Callback APIs often need to be wrapped before they can be awaited cleanly.
-- Cleanup code should wait for real completion, not rely on time-based guesses.
-
-## Bridge 02 Checklist
-
-- [x] Create bridge lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Bridge 02 Summary
-
-- SQL commands have different jobs: `SELECT`, `INSERT`, `UPDATE`, `DELETE`.
-- `WHERE id = ?` helps target one row instead of touching everything.
-- `SELECT *` is convenient for learning/debugging, but explicit columns are clearer in app code.
-- `ORDER BY` makes list behavior predictable instead of relying on guessed row order.
-
-## Bridge 03 Checklist
-
-- [x] Create bridge lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Bridge 03 Summary
-
-- `.exec()` is for setup SQL, not row reads.
-- `.all()` returns arrays and can return `[]` when no rows match.
-- `.get()` returns one row or `undefined`.
-- `.run()` is for `INSERT`, `UPDATE`, and `DELETE`, and its result object contains useful metadata.
-- `lastInsertRowid` helps identify newly created rows, while `changes` shows whether a write query affected anything.
-
-## Bridge 04 Checklist
-
-- [x] Create bridge lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Bridge 04 Summary
-
-- `.get()` returning `undefined` is a normal not-found result, not a SQL failure.
-- `.all()` returning `[]` is a normal empty result.
-- SQL errors happen when the query or schema is broken.
-- Backend code should treat not found as `404` and real SQL failures as `500`.
-
-## Test Bridge Plan
-
-- [x] Plan test bridge sequence
-- [x] Test Bridge 01 - Assert basics
-- [x] Test Bridge 02 - SQLite result tests
-- [x] Test Bridge 03 - Storage function tests
-- [x] Test Bridge 04 - API status tests
-
-## Test Bridge 01 Checklist
-
-- [x] Create bridge lesson
-- [x] Create example
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Test Bridge 01 Summary
-
-- `test(...)` defines one behavior-focused test case.
-- `assert.equal(...)` is for primitive values like numbers, strings, and `undefined`.
-- `assert.deepEqual(...)` is for arrays and objects.
-- `assert.ok(...)` is for truthy conditions.
-
-## Test Bridge 02 Checklist
-
-- [x] Create bridge lesson
-- [x] Create example
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Test Bridge 02 Summary
-
-- SQLite result tests should check behavior of `.all()`, `.get()`, `lastInsertRowid`, and `changes`.
-- Resetting table data before each test makes result counts and ids predictable.
-- Database rows may need cleanup or field-by-field asserts depending on the returned object shape.
-- Query-level tests are useful before moving up to storage-level behavior tests.
-
-## Test Bridge 03 Checklist
-
-- [x] Create bridge lesson
-- [x] Create example
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Test Bridge 03 Summary
-
-- Storage function tests focus on behavior of app-level functions instead of raw SQL driver methods.
-- Resetting the SQLite table before each test keeps ids and row counts predictable.
-- `findTaskById()` should be tested for both found and missing cases.
-- `createTask()` and `deleteTask()` should prove both success flow and repeat/not-found behavior.
-
-## Test Bridge 04 Checklist
-
-- [x] Create bridge lesson
-- [x] Create example
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Bridge summary
-
-## Test Bridge 04 Summary
-
-- API tests verify route behavior, status codes, and response bodies through real HTTP requests.
-- `after()` is the safe place to close the test server so the process does not hang.
-- Even HTTP-level tests still need controlled database state to stay predictable.
-- `400` and `404` are different failures and should be tested separately.
-
-## Ch23 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch23 Summary
-
-- SQLite stores data in a local file and is useful as a first real database.
-- A table schema defines the shape of stored rows.
-- Database rows often need mapping before they match app-level types.
-- `0/1` values in SQLite often need conversion into booleans in the app.
-
-## Ch24 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] SQL revision after bridge
-- [x] Chapter summary
-
-## Ch24 Summary
-
-- SQLite can replace JSON storage without changing the outer API contract.
-- Database rows often need mapping before they match app-level types.
-- `lastInsertRowid` and `changes` are useful for create/delete flows.
-- The route layer should keep focusing on request/response behavior while storage handles persistence.
-
-## Ch25 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch25 Summary
-
-- `db.ts` should own database connection and setup.
-- Query functions become easier to read when grouped in one dedicated file.
-- Routes become cleaner when they focus only on HTTP behavior.
-- Internal refactors are safer when API behavior stays stable.
-
-## Ch26 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [x] Student completes exercise
-- [x] Review exercise
-- [x] Chapter summary
-
-## Ch26 Summary
-
-- A test database should be separate from the app's normal database.
-- Test setup should control table state with reset and seed helpers.
-- API tests should verify both HTTP status and the returned body shape.
-- Cleanup should close the server after the run to avoid hanging test processes.
-
-## Ch27 Checklist
-
-- [x] Create chapter lesson
-- [x] Create examples
-- [x] Create guided exercise
-- [ ] Student completes exercise
-- [ ] Review exercise
-- [ ] Chapter summary
-
-## Current Exercise
-
-- File: `exercises/ch27-task-api-timestamps/`
-- Task:
-  - add `created_at` and `updated_at` to the SQLite schema
-  - map timestamp fields from DB rows into app-level task objects
-  - return timestamp fields from create/read/update responses
-  - update `updated_at` when a task changes
-
-## Review Rules
-
-- First say what is good.
-- Then give max 3 feedback points.
-- If it runs and meets the requirement, pass it.
-- Style polish can wait unless it blocks understanding.
+- บท: `Ch27 - Timestamps and Richer Schema`
+- สถานะ: `active`
+- เป้าหมายหลัก: ขยาย schema ของ task ใน SQLite ด้วยฟิลด์ timestamp และ map ค่าเหล่านั้นให้เรียบร้อย
+
+## รายการตรวจ Ch1
+
+- [x] มี Node.js พร้อมใช้
+- [x] สร้างตัวอย่าง `.js` ชุดแรก
+- [x] สร้างโจทย์แบบมีไกด์ชุดแรก
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch1
+
+- เราเขียน JavaScript แล้วรันด้วย Node.js ได้
+- `console.log()` พิมพ์ผลลัพธ์ออกมาที่ terminal
+- ไฟล์ใน `curriculum/` เป็นตัวอย่างและบทเรียน
+- ไฟล์ใน `exercises/` ไว้สำหรับทำแบบฝึกหัด
+
+## รายการตรวจ Ch2
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch2
+
+- `const` ใช้สำหรับค่าที่เราไม่วางแผนจะเปลี่ยน
+- `let` ใช้สำหรับค่าที่ต้องเปลี่ยนค่าใหม่
+- ชนิดข้อมูลพื้นฐานมี string, number, boolean, null และ undefined
+- `typeof null` คืนค่า `object` ซึ่งเป็นพฤติกรรมแปลก ๆ ของ JavaScript มาตั้งแต่เดิม
+- Type coercion ทำให้ `'5' + 3` กลายเป็น `'53'` ขณะที่ `'5' - 3` ได้ `2`
+
+## รายการตรวจ Ch3
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch3
+
+- ตัวดำเนินการทางคณิตศาสตร์ใช้คำนวณค่า เช่น subtotal
+- ตัวดำเนินการเปรียบเทียบให้ค่า boolean เช่น `quantity > 10`
+- ternary expression ใช้เลือกค่าระหว่างสองค่า
+- ควรใช้ `===` แทน `==`
+
+## รายการตรวจ Ch4
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch4
+
+- `if / else if / else` ให้โค้ดเลือกจากหลายเงื่อนไข
+- `switch` เริ่มที่ case ที่ตรงกัน และต้องใช้ `break` เพื่อหยุด
+- ค่า truthy/falsy ทำให้ค่าที่ไม่ใช่ boolean ใช้เป็นเงื่อนไขได้
+- `||` ใช้เลือกค่า fallback ได้
+
+## รายการตรวจ Ch5
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch5
+
+- function ช่วยให้เราใช้โค้ดซ้ำได้
+- parameter รับค่าจากผู้เรียกใช้
+- argument คือค่าจริงที่เราส่งเข้าไป
+- `return` ส่งค่ากลับออกจาก function
+- default parameter ช่วยเมื่อเราไม่ส่ง argument เข้ามา
+
+## รายการตรวจ Ch6
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch6
+
+- array เก็บหลายค่าเรียงตามลำดับ
+- index เริ่มที่ `0`
+- `.length` บอกจำนวนสมาชิก
+- `.push()` เพิ่มค่าไว้ท้าย array
+- `.pop()` ลบสมาชิกตัวสุดท้ายออก
+- `for...of` วนผ่านสมาชิกทีละตัว
+
+## รายการตรวจ Ch7
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch7
+
+- `map()` แปลงค่าสมาชิกทุกตัว
+- `filter()` เก็บเฉพาะสมาชิกที่ตรงเงื่อนไข
+- `find()` คืนสมาชิกตัวแรกที่ตรงเงื่อนไข
+- `some()` ตรวจว่ามีสมาชิกอย่างน้อยหนึ่งตัวที่ตรงเงื่อนไข
+- `every()` ตรวจว่าสมาชิกทุกตัวตรงเงื่อนไข
+- `reduce()` รวมหลายค่าให้เหลือผลลัพธ์เดียว
+
+## รายการตรวจ Ch8
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch8
+
+- object เก็บข้อมูลเป็นคู่ `key: value`
+- dot notation เป็นวิธีอ่าน property ที่ใช้กันมากที่สุด
+- object เก็บ function ที่เรียกว่า method ไว้ได้ด้วย
+- destructuring ดึงค่าออกมาเก็บในตัวแปร
+- spread ช่วยสร้าง object ใหม่จาก object เดิม
+
+## รายการตรวจ Ch9
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch9
+
+- callback คือ function ที่ถูกส่งเข้าไปใน function อีกตัว
+- higher-order function คือ function ที่รับหรือคืนค่าเป็น function
+- closure ทำให้ function จำค่าที่อยู่ภายนอกตัวมันได้
+- rest parameter รวมหลาย argument เป็น array เดียว
+- spread ใช้กระจาย array ออกเป็น argument แยกกัน
+
+## รายการตรวจ Ch10
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch10
+
+- method ของ string ช่วยทำความสะอาดและแปลงข้อความ
+- template literal ทำให้การจัดรูปแบบ string ง่ายขึ้น
+- regex ใช้ตรวจรูปแบบข้อความง่าย ๆ ได้
+- `Date` ช่วยให้เราจัดการวันที่และค่าเวลาจริง
+- `.toLocaleDateString()` มีประโยชน์เมื่ออยากแสดงวันที่ให้คนอ่าน
+
+## รายการตรวจ Ch11
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch11
+
+- `try` ใส่โค้ดที่อาจเกิดข้อผิดพลาด
+- `catch` จัดการ error เพื่อไม่ให้ทั้งโปรแกรมพัง
+- `finally` ทำงานเสมอ ไม่ว่าจะสำเร็จหรือล้มเหลว
+- `return` จาก function ต่างจาก `console.log()`
+
+## รายการตรวจ Ch12
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch12
+
+- งาน async ไม่ได้เสร็จทันที
+- `await` รอ promise ภายใน flow ของ async function ปัจจุบัน
+- `fetch()` ดึงข้อมูลจาก URL
+- เราควร await ผลลัพธ์ async ก่อนใช้ property ของ array เช่น `.length`
+
+## รายการตรวจ Ch13
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch13
+
+- TypeScript คือ JavaScript ที่มี type
+- type annotation ทำให้โค้ดชัดเจนขึ้นและจับข้อผิดพลาดได้เร็วขึ้น
+- type inference หมายถึง TS เดา type ให้เราได้บ่อยครั้ง
+- เราเริ่มจากเล็ก ๆ ได้ ด้วยการใส่ type ให้ตัวแปรง่าย ๆ และ parameter ของ function
+
+## รายการตรวจ Ch14
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch14
+
+- TypeScript อธิบาย array, tuple และ union ได้
+- `type` และ `interface` ต่างก็ใช้บอกโครงสร้างข้อมูล
+- property ที่ไม่บังคับใช้ `?`
+- `readonly` ป้องกันไม่ให้ค่าเดิมถูกเขียนทับ
+
+## รายการตรวจ Ch15
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch15
+
+- parameter และค่าที่ return ของ function ระบุ type ได้ชัดเจน
+- type alias ของ function ใช้บอกโครงสร้างของ function
+- generic ทำให้ function เดียวรองรับหลาย type ได้อย่างปลอดภัย
+- utility type อย่าง `Pick` และ `Omit` ใช้ปรับ type ที่มีอยู่แล้ว
+
+## รายการตรวจ Ch16
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch16
+
+- narrowing ช่วยให้ TypeScript เข้าใจ type ที่เจาะจงขึ้นหลังผ่านการตรวจ
+- type guard ทำให้เราตรวจค่า `unknown` ได้อย่างปลอดภัย
+- discriminated union ทำให้จัดการข้อมูลหลายรูปแบบได้ง่ายขึ้น
+- `unknown` ปลอดภัยกว่า `any` เพราะบังคับให้ตรวจก่อนใช้
+
+## รายการตรวจ Ch17
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch17
+
+- Node.js รัน backend server
+- Express ช่วยให้กำหนด route ได้เร็ว
+- `req` คือ request ที่เข้ามา
+- `res` คือ response ที่ส่งออกไป
+- `res.json()` เป็นวิธีที่ใช้บ่อยในการคืนข้อมูล API
+
+## รายการตรวจ Ch18
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch18
+
+- CRUD API เข้ากันได้ดีกับ `GET`, `POST`, `PUT` และ `DELETE`
+- `req.params` ใช้กับค่าที่อยู่ใน path เช่น id
+- `req.body` ใช้กับข้อมูล JSON ที่ส่งเข้ามา
+- ต้องใช้ `express.json()` ก่อนอ่านข้อมูล JSON ใน body
+- array ใน memory มีประโยชน์สำหรับเรียน flow ของ API ก่อนใช้ database
+
+## รายการตรวจ Ch19
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch19
+
+- middleware หยุด request ที่ไม่ดีได้ก่อนถึง route handler
+- validation ควรตรงกับ contract ของแต่ละ route
+- `POST` และ `PUT` มักต้องใช้กฎ validation ต่างกัน
+- error response แบบ `{ message: ... }` ที่สม่ำเสมอทำให้ API ใช้ง่ายและ debug ง่ายขึ้น
+
+## รายการตรวจ Ch20
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch20
+
+- โค้ด backend ดูแลต่อได้ง่ายขึ้นเมื่อแยก route, middleware, data และ type ตามหน้าที่
+- `app.ts` ควรประกอบ middleware และ router เข้าด้วยกัน
+- `server.ts` ควรทำหน้าที่แค่เริ่ม app
+- router มักควรใช้ path แบบอ้างอิงจากจุดที่ mount
+
+## รายการตรวจ Ch21
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch21
+
+- ไฟล์ JSON เป็น persistence layer ง่าย ๆ ชั้นแรกก่อนใช้ database จริง
+- การเก็บข้อมูลในไฟล์ทำงานได้ดีเมื่อแยกไว้หลัง storage layer
+- async route handler ต้อง await operation ของ storage
+- persistence มีประโยชน์ก็ต่อเมื่อพฤติกรรมยังตรงกับ contract ของ API
+
+## รายการตรวจ Ch22
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch22
+
+- test อัตโนมัติลดการตรวจ API ด้วยมือ
+- ข้อมูลสำหรับ test ควรแยกจากข้อมูล production
+- cleanup ต้องปิด server และคืนค่า fixture ให้แน่นอน
+- lifecycle hook ของ test runner ปลอดภัยกว่าการ cleanup ตามเวลา
+
+## รายการตรวจ Bridge 01
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Bridge 01
+
+- Promise แทนค่าที่จะมาถึงในภายหลัง
+- `await` เปลี่ยน flow แบบ `Promise<T>` ให้เป็น flow แบบ `T` ภายใน async function
+- API แบบ callback มักต้องห่อก่อนจึงจะ await ได้อย่างเรียบร้อย
+- โค้ด cleanup ควรรอให้เสร็จจริง ไม่ใช่อาศัยการเดาจากเวลา
+
+## รายการตรวจ Bridge 02
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Bridge 02
+
+- คำสั่ง SQL มีหน้าที่ต่างกัน: `SELECT`, `INSERT`, `UPDATE`, `DELETE`
+- `WHERE id = ?` ช่วยเจาะจง row เดียวแทนที่จะแตะทุก row
+- `SELECT *` สะดวกตอนเรียนและ debug แต่การระบุ column ให้ชัดเจนอ่านง่ายกว่าในโค้ด app
+- `ORDER BY` ทำให้ลำดับของ list แน่นอน แทนที่จะเดาลำดับ row เอา
+
+## รายการตรวจ Bridge 03
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Bridge 03
+
+- `.exec()` ใช้กับ SQL สำหรับ setup ไม่ใช่การอ่าน row
+- `.all()` คืน array และอาจคืน `[]` เมื่อไม่มี row ที่ตรง
+- `.get()` คืน row เดียว หรือ `undefined`
+- `.run()` ใช้กับ `INSERT`, `UPDATE` และ `DELETE` และ object ผลลัพธ์มี metadata ที่มีประโยชน์
+- `lastInsertRowid` ช่วยระบุ row ที่เพิ่งสร้างใหม่ ส่วน `changes` บอกว่า query ที่เขียนข้อมูลกระทบอะไรหรือไม่
+
+## รายการตรวจ Bridge 04
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Bridge 04
+
+- `.get()` คืน `undefined` เป็นผลปกติของการไม่พบข้อมูล ไม่ใช่ SQL ล้มเหลว
+- `.all()` คืน `[]` เป็นผลว่างปกติ
+- SQL error เกิดเมื่อ query หรือ schema ผิด
+- โค้ด backend ควรถือว่าไม่พบข้อมูลเป็น `404` และ SQL ที่ล้มเหลวจริงเป็น `500`
+
+## แผนช่วงเชื่อมทดสอบ
+
+- [x] วางลำดับช่วงเชื่อมทดสอบ
+- [x] ช่วงเชื่อมทดสอบ 01 - พื้นฐาน assert
+- [x] ช่วงเชื่อมทดสอบ 02 - ทดสอบผลลัพธ์จาก SQLite
+- [x] ช่วงเชื่อมทดสอบ 03 - ทดสอบ storage function
+- [x] ช่วงเชื่อมทดสอบ 04 - ทดสอบสถานะของ API
+
+## รายการตรวจ Test Bridge 01
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Test Bridge 01
+
+- `test(...)` กำหนด test case หนึ่งกรณีที่เน้นพฤติกรรม
+- `assert.equal(...)` ใช้กับค่าพื้นฐานเช่น number, string และ `undefined`
+- `assert.deepEqual(...)` ใช้กับ array และ object
+- `assert.ok(...)` ใช้กับเงื่อนไขที่เป็น truthy
+
+## รายการตรวจ Test Bridge 02
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Test Bridge 02
+
+- test ผลลัพธ์ของ SQLite ควรตรวจพฤติกรรมของ `.all()`, `.get()`, `lastInsertRowid` และ `changes`
+- การ reset ข้อมูลใน table ก่อนแต่ละ test ทำให้จำนวนผลลัพธ์และ id แน่นอน
+- row ใน database อาจต้อง cleanup หรือ assert ทีละฟิลด์ ขึ้นกับรูปร่าง object ที่คืนมา
+- test ระดับ query มีประโยชน์ก่อนขยับไป test พฤติกรรมระดับ storage
+
+## รายการตรวจ Test Bridge 03
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Test Bridge 03
+
+- test ของ storage function เน้นพฤติกรรมของ function ระดับ app แทน method ดิบของ SQL driver
+- การ reset table ของ SQLite ก่อนแต่ละ test ทำให้ id และจำนวน row แน่นอน
+- ควร test `findTaskById()` ทั้งกรณีเจอและไม่เจอ
+- `createTask()` และ `deleteTask()` ควรพิสูจน์ทั้ง flow ที่สำเร็จและพฤติกรรมเมื่อทำซ้ำหรือไม่พบข้อมูล
+
+## รายการตรวจ Test Bridge 04
+
+- [x] สร้างเนื้อหาช่วงเชื่อม
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปช่วงเชื่อม
+
+## สรุป Test Bridge 04
+
+- test ของ API ตรวจพฤติกรรมของ route, status code และ body ของ response ผ่าน HTTP request จริง
+- `after()` เป็นจุดที่ปลอดภัยในการปิด test server เพื่อไม่ให้ process ค้าง
+- แม้ test ระดับ HTTP ก็ยังต้องคุมสถานะของ database ให้แน่นอน
+- `400` และ `404` เป็นความล้มเหลวคนละแบบ ควร test แยกกัน
+
+## รายการตรวจ Ch23
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch23
+
+- SQLite เก็บข้อมูลในไฟล์ local และเหมาะเป็น database จริงตัวแรก
+- schema ของ table กำหนดรูปร่างของ row ที่เก็บไว้
+- row ใน database มักต้อง map ก่อนจึงจะตรงกับ type ระดับ app
+- ค่า `0/1` ใน SQLite มักต้องแปลงเป็น boolean ใน app
+
+## รายการตรวจ Ch24
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] ทบทวน SQL หลังจบช่วงเชื่อม
+- [x] สรุปบท
+
+## สรุป Ch24
+
+- SQLite แทนที่การเก็บข้อมูลแบบ JSON ได้โดยไม่ต้องเปลี่ยน contract ของ API ด้านนอก
+- row ใน database มักต้อง map ก่อนจึงจะตรงกับ type ระดับ app
+- `lastInsertRowid` และ `changes` มีประโยชน์ใน flow สร้างและลบ
+- route layer ควรเน้นพฤติกรรม request/response ส่วน storage จัดการ persistence
+
+## รายการตรวจ Ch25
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch25
+
+- `db.ts` ควรรับผิดชอบการเชื่อมต่อและ setup database
+- function ที่เป็น query อ่านง่ายขึ้นเมื่อรวมไว้ในไฟล์เดียวที่แยกไว้ชัดเจน
+- route จะสะอาดขึ้นเมื่อโฟกัสเฉพาะพฤติกรรม HTTP
+- การ refactor ภายในปลอดภัยขึ้นเมื่อพฤติกรรมของ API ยังคงเดิม
+
+## รายการตรวจ Ch26
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [x] ผู้เรียนทำโจทย์เสร็จ
+- [x] ตรวจโจทย์
+- [x] สรุปบท
+
+## สรุป Ch26
+
+- database สำหรับ test ควรแยกจาก database ปกติของ app
+- setup ของ test ควรคุมสถานะ table ด้วย helper สำหรับ reset และ seed
+- test ของ API ควรตรวจทั้ง HTTP status และรูปร่างของ body ที่คืนมา
+- cleanup ควรปิด server หลังรันเสร็จ เพื่อไม่ให้ test process ค้าง
+
+## รายการตรวจ Ch27
+
+- [x] สร้างเนื้อหาบทเรียน
+- [x] สร้างตัวอย่าง
+- [x] สร้างโจทย์แบบมีไกด์
+- [ ] ผู้เรียนทำโจทย์เสร็จ
+- [ ] ตรวจโจทย์
+- [ ] สรุปบท
+
+## โจทย์ปัจจุบัน
+
+- ไฟล์: `exercises/ch27-task-api-timestamps/`
+- โจทย์:
+  - เพิ่ม `created_at` และ `updated_at` เข้าไปใน schema ของ SQLite
+  - map ฟิลด์ timestamp จาก row ใน DB เข้าไปใน object ของ task ระดับ app
+  - คืนฟิลด์ timestamp ใน response ของ create/read/update
+  - อัปเดต `updated_at` เมื่อ task มีการเปลี่ยนแปลง
+
+## กติกาการตรวจ
+
+- เริ่มจากบอกว่าอะไรที่ดีอยู่แล้ว
+- จากนั้นให้ feedback ไม่เกิน 3 ข้อ
+- ถ้ารันได้และตรงตามโจทย์ ให้ผ่าน
+- การขัดเกลาสไตล์รอได้ เว้นแต่ทำให้อ่านไม่เข้าใจ

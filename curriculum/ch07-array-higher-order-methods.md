@@ -1,6 +1,6 @@
-# Chapter 7: Array Higher-Order Methods
+# บทที่ 7: เมธอดขั้นสูงของ array
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน array, index, `.length`, `.push()`, `.pop()` และ `for...of`
 
@@ -21,7 +21,7 @@ const doubledNumbers = numbers.map((number) => {
 console.log(doubledNumbers);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 [ 2, 4, 6 ]
@@ -42,7 +42,7 @@ const evenNumbers = numbers.filter((number) => {
 console.log(evenNumbers);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 [ 2, 4 ]
@@ -63,7 +63,7 @@ const foundNumber = numbers.find((number) => {
 console.log(foundNumber);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 10
@@ -84,7 +84,7 @@ const hasEvenNumber = numbers.some((number) => {
 console.log(hasEvenNumber);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 true
@@ -105,7 +105,7 @@ const allEven = numbers.every((number) => {
 console.log(allEven);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 true
@@ -126,7 +126,7 @@ const total = numbers.reduce((sum, number) => {
 console.log(total);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 60
@@ -141,7 +141,7 @@ Output:
 - อยากได้ true/false ว่าทุกตัวใช่ไหม -> `every`
 - อยากรวมให้เหลือค่าเดียว -> `reduce`
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -171,7 +171,7 @@ exercises/ch07-product-methods.js
 6. `totalPrice`
    ใช้ `reduce()` รวมราคาสินค้าทั้งหมด
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
 Product names: [ 'Keyboard', 'Mouse', 'Notebook' ]

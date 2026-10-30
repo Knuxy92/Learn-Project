@@ -61,7 +61,7 @@ console.log(deleteResult.changes)
 console.log(deleteMissingResult.changes)
 
 // TODO 10:
-// answer in short comments:
+// ตอบเป็นคอมเมนต์สั้น ๆ:
 // - what does .all() return when there are no rows จะคืน Arry เปล่า [] ไม่มีอะไรเลย
 // - what does .get() return when no row is found จะคืน undefined
 // - what is lastInsertRowid used for ไว้เช็ค rowid ล่าสุดที่ instant ไป

@@ -1,8 +1,8 @@
-# Test Bridge 03: Storage Function Tests
+# ช่วงเชื่อมทดสอบ 03: ทดสอบ storage function
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
-ก่อนจะไป test route หรือ HTTP status เราต้องแน่ใจก่อนว่า storage layer ทำงานถูกจริง
+ก่อนจะไป test route หรือ HTTP status เราต้องแน่ใจก่อนว่าชั้น storage ทำงานถูกจริง
 
 บทนี้จะยังไม่เปิด server และยังไม่แตะ `Express`
 
@@ -13,7 +13,7 @@
 - `createTask()`
 - `deleteTask()`
 
-## Goal
+## เป้าหมาย
 
 ฝึก 4 อย่าง:
 
@@ -26,11 +26,11 @@
 
 ถ้า route พัง เราจะยังไม่รู้ทันทีว่าพังเพราะ:
 
-- route logic
+- ตรรกะของ route
 - validation
 - storage function
 
-ถ้าเราแยก test storage function ก่อน เราจะรู้ชัดขึ้นว่า data layer ใช้งานได้จริง
+ถ้าเราแยก test storage function ก่อน เราจะรู้ชัดขึ้นว่าชั้นข้อมูลใช้งานได้จริง
 
 สรุป: บทนี้คือแยก test ชั้น data ออกมาก่อน เพื่อให้ตอนถึง API test จะ debug ง่ายขึ้น
 
@@ -55,7 +55,7 @@
 
 - จำนวน rows จะเพี้ยน
 - id จะไหลต่อ
-- test จะเดายากว่า fail เพราะ logic หรือ fail เพราะข้อมูลเก่า
+- test จะเดายากว่า fail เพราะตรรกะ หรือ fail เพราะข้อมูลเก่า
 
 รอบนี้ให้มี helper แบบนี้:
 
@@ -96,7 +96,7 @@ const resetTasksTable = (): void => {
 
 สรุป: เราไม่ได้ test ทุก function พร้อมกัน แต่ test ทีละพฤติกรรมให้ชัด
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import { test } from "node:test";
@@ -159,7 +159,7 @@ exercises/ch24-storage/tasks.db
 
 4. เขียน helper `resetTasksTable()`
    - ลบ rows เก่า
-   - reset sequence
+   - reset ตัวนับ id
 
 5. เขียน test 4 ตัว:
    - `readTasks()` ควรคืน array ของ task และ map `done` เป็น boolean
@@ -168,26 +168,26 @@ exercises/ch24-storage/tasks.db
    - `deleteTask()` ควรคืน `true` รอบแรก และ `false` รอบที่สอง
 
 6. ใช้ assert ให้ตรงชนิดข้อมูล:
-   - `assert.equal(...)` สำหรับ primitive
+   - `assert.equal(...)` สำหรับค่าพื้นฐาน
    - `assert.deepEqual(...)` สำหรับ array/object
    - `assert.ok(...)` ถ้าต้องเช็กเงื่อนไขหรือชนิด
 
-## Run
+## วิธีรัน
 
 ใช้คำสั่ง:
 
 ```bash
-cmd /c node --test -r ts-node/register exercises/test-bridge-03-storage-function-tests.test.ts
+node --test -r ts-node/register exercises/test-bridge-03-storage-function-tests.test.ts
 ```
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อรันแล้วควรผ่าน 4 tests และอธิบายได้ว่า:
 
 - storage function test ต่างจาก SQL result test ยังไง
 - ทำไมต้อง reset database ก่อนแต่ละ test
 - ทำไม `done` ใน app เป็น boolean แม้ใน SQLite จะเก็บเป็นเลข
-- ทำไมควร test not found แยกจาก found
+- ทำไมควร test กรณีไม่เจอแยกจากกรณีเจอ
 
 เสร็จแล้วพิมพ์:
 

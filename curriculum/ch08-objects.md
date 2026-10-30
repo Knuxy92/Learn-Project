@@ -1,6 +1,6 @@
-# Chapter 8: Objects
+# บทที่ 8: object
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ array methods เพื่อจัดการข้อมูลหลายตัว
 
@@ -14,17 +14,17 @@ Object คือกล่องข้อมูลที่เก็บค่า�
 
 ```js
 const user = {
-  name: 'Knuxy92',
+  name: 'Student',
   age: 17,
 };
 
 console.log(user);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-{ name: 'Knuxy92', age: 17 }
+{ name: 'Student', age: 17 }
 ```
 
 ## 2. Dot Notation
@@ -43,7 +43,7 @@ console.log(user.name);
 console.log(user.age);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Neo
@@ -64,7 +64,7 @@ const user = {
 console.log(user['name']);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Neo
@@ -87,7 +87,7 @@ user.name = 'Mint';
 console.log(user);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 { name: 'Mint', age: 20 }
@@ -111,7 +111,7 @@ const bankAccount = {
 console.log(bankAccount.getBalance());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 1000
@@ -135,7 +135,7 @@ console.log(name);
 console.log(age);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Neo
@@ -162,13 +162,13 @@ const updatedUser = {
 console.log(updatedUser);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 { name: 'Neo', age: 21 }
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -193,7 +193,7 @@ exercises/ch08-bank-account.js
 7. ใช้ destructuring ดึง `owner` และ `currency`
 8. ใช้ spread operator สร้าง `accountSummary` จาก `bankAccount` แล้วเพิ่ม `bankName`
 
-Expected output ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
+ผลลัพธ์ที่คาดหวัง ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
 แต่ต้องแสดงครบว่า:
 
 - owner คืออะไร

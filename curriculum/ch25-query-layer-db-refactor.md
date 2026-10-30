@@ -1,6 +1,6 @@
-# Chapter 25: Query Layer and DB Refactor
+# บทที่ 25: query layer และ refactor ชั้น database
 
-## Recap
+## ทบทวน
 
 ตอนนี้เราได้ 2 อย่างแล้ว:
 
@@ -9,14 +9,14 @@
 
 แต่ตอนนี้ data layer ยังรวมหลายหน้าที่ไว้ในไฟล์เดียว เช่น:
 
-- connect database
-- create table
-- map row
-- query CRUD
+- เชื่อมต่อ database
+- สร้าง table
+- แปลง row
+- query แบบ CRUD
 
 ในบทนี้เราจะเริ่มแยกหน้าที่ให้ชัดขึ้น
 
-## 1. Goal Of This Chapter
+## 1. เป้าหมายของบทนี้
 
 เป้าหมายไม่ใช่เปลี่ยน behavior ของ API
 
@@ -38,8 +38,8 @@
   - เปิด database
   - สร้าง table ถ้ายังไม่มี
 - `data/task-queries.ts`
-  - query tasks
-  - map row -> `Task`
+  - query ข้อมูล tasks
+  - แปลง row -> `Task`
   - export functions ให้ route ใช้
 
 route layer ควรเหลือหน้าที่:
@@ -138,7 +138,7 @@ const getAllTasks = (): Task[] => {
 - ที่อยู่ของ query logic
 - helper functions ภายใน data layer
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้ใช้โฟลเดอร์:
 
@@ -161,7 +161,7 @@ exercises/ch25-task-api-query-layer/
    - `DELETE /tasks/:id`
    ยังทำงานเหมือนเดิม
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อเสร็จ:
 
@@ -170,20 +170,20 @@ exercises/ch25-task-api-query-layer/
 - route อ่านง่ายขึ้น
 - API contract ยังเหมือนเดิม
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ยังไม่เน้น:
 
 - repository pattern แบบเต็ม
-- dependency injection
-- transactions
+- การทำ dependency injection
+- การใช้ transactions
 - test database แยกชุดใหม่
 
 เราโฟกัสแค่:
 
-- file responsibility
-- query layer
-- cleaner refactor
+- ความรับผิดชอบของแต่ละไฟล์
+- การแยก query layer
+- refactor ให้สะอาดขึ้น
 
 เสร็จแล้วพิมพ์:
 

@@ -1,6 +1,6 @@
-# Test Bridge 04: API Status Tests
+# ช่วงเชื่อมทดสอบ 04: ทดสอบสถานะของ API
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 ก่อนหน้านี้เรา test มา 3 ชั้นแล้ว:
 
@@ -14,11 +14,11 @@
 
 - status code
 - response body พื้นฐาน
-- behavior ตอน success
-- behavior ตอน not found
-- behavior ตอน bad request
+- behavior ตอนสำเร็จ
+- behavior ตอนไม่เจอข้อมูล
+- behavior ตอน request ผิดรูปแบบ
 
-## Goal
+## เป้าหมาย
 
 ฝึก 4 อย่าง:
 
@@ -29,7 +29,7 @@
 
 ## 1. ทำไม API test ต้องแยกจาก storage test
 
-storage test ตอบคำถามว่า function ใน data layer ทำงานไหม
+storage test ตอบคำถามว่า function ในชั้นข้อมูลทำงานไหม
 
 API test ตอบคำถามเพิ่มอีกว่า:
 
@@ -87,7 +87,7 @@ const resetTasksTable = (): void => {
 };
 ```
 
-สรุป: API test ที่ดีต้องควบคุม data state ให้ได้เหมือน storage test
+สรุป: API test ที่ดีต้องควบคุมสถานะข้อมูลให้ได้เหมือน storage test
 
 ## 4. พฤติกรรมที่ควร test
 
@@ -111,7 +111,7 @@ const resetTasksTable = (): void => {
 
 สรุป: บทนี้เน้น status code ก่อน ยังไม่บังคับ test ทุก route แบบละเอียด
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import { test, after } from "node:test";
@@ -161,7 +161,7 @@ exercises/ch24-storage/tasks.db
 
 3. เขียน helper `resetTasksTable()`
    - ลบ rows เก่า
-   - reset sequence
+   - reset ตัวนับ id
 
 4. เปิด server บน port `3002`
 
@@ -173,17 +173,17 @@ exercises/ch24-storage/tasks.db
    - `POST /tasks` ด้วย body ไม่ถูก ควรได้ `400`
    - `DELETE /tasks/999` ควรได้ `404`
 
-7. ถ้าจะเพิ่ม test success อีกตัวก็ได้ เช่น `POST /tasks` แล้วค่อยเช็กว่าได้ object กลับมา
+7. ถ้าจะเพิ่ม test กรณีสำเร็จอีกตัวก็ได้ เช่น `POST /tasks` แล้วค่อยเช็กว่าได้ object กลับมา
 
-## Run
+## วิธีรัน
 
 ใช้คำสั่ง:
 
 ```bash
-cmd /c node --test -r ts-node/register exercises/test-bridge-04-api-status-tests.test.ts
+node --test -r ts-node/register exercises/test-bridge-04-api-status-tests.test.ts
 ```
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อรันแล้วควรผ่าน 4 tests และอธิบายได้ว่า:
 

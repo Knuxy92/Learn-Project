@@ -57,14 +57,14 @@ const orders3 = db
   .all() as unknown as TaskRow[];
 
 // TODO 9:
-// print 4 rounds
+// พิมพ์ 4 รอบ
 console.log(orders);
 console.log(onetask);
 console.log(orders2);
 console.log(orders3);
 
 // TODO 10:
-// answer in short comments:
+// ตอบเป็นคอมเมนต์สั้น ๆ:
 // important เพราะเอาไว้หาแบบเฉาะจง ถ้าไม่ใช้ WHERE มันอาจะ UPDATE ทุก Row เลย
 // เฉาะจงมากกว่า แล้วจะได้เอาออกมาแค่ที่ใช้ การ * มันจะดึงทุก Col ออกมาเลย
 // เพื่อจัดระเบียดข้อมูลให้ Debug ง่ายและแสดงข้อมูลเป็นลำลับ

@@ -1,6 +1,6 @@
-# Bridge 03: SQLite Driver Return Values
+# ช่วงเชื่อม 03: ค่าที่ SQLite driver คืนกลับมา
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 หลัง `Bridge 02` ตอนนี้รู้แล้วว่า query แบบไหนใช้ "อ่าน", "สร้าง", "แก้", "ลบ"
 
@@ -13,7 +13,7 @@
 
 ถ้าไม่แยกชั้นนี้ให้ชัด ผู้เรียนจะเริ่มใช้ method ตามความจำแทนความเข้าใจ
 
-## Entry Point
+## จุดเข้า
 
 เราเข้า bridge นี้หลังจาก:
 
@@ -21,7 +21,7 @@
 - อ่าน SQL query ออกแล้ว
 - พร้อมผูก query แต่ละแบบเข้ากับ SQLite driver method ที่ถูกต้อง
 
-## Exit Point
+## จุดออก
 
 ออกจาก bridge นี้ได้เมื่อทำได้ครบ:
 
@@ -31,7 +31,7 @@
 4. อธิบายได้ว่า `.run()` ใช้กับ `INSERT`, `UPDATE`, `DELETE`
 5. ใช้ `lastInsertRowid` และ `changes` ได้ถูกสถานการณ์
 
-## Return to Main Line
+## กลับเข้าสายหลัก
 
 หลังจบ bridge นี้ เราจะไปต่อที่:
 
@@ -39,7 +39,7 @@
 
 เหตุผลคือพอแยก driver return values ได้แล้ว ค่อยต่อด้วยการแปลความหมายของผลลัพธ์ว่าอันไหนคือ "ไม่เจอข้อมูล" และอันไหนคือ "query/database พัง"
 
-## Main Goal
+## เป้าหมายหลัก
 
 bridge นี้เน้น 5 เรื่อง:
 
@@ -145,8 +145,8 @@ const newId = Number(result.lastInsertRowid);
 
 ใช้ตอน:
 
-- create task
-- ต้องการ return task ที่เพิ่งสร้าง
+- สร้าง task
+- ต้องการคืน task ที่เพิ่งสร้าง
 - ไม่ควรหา id เองจาก array หรือเดาเลขเอง
 
 ## 6. `changes`
@@ -168,7 +168,7 @@ console.log(result.changes);
 - `changes > 0` แปลว่ามี row ถูกกระทบ
 - `changes === 0` แปลว่า query รันได้ แต่ไม่เจอ row ที่ตรงเงื่อนไข
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import path from "node:path";
@@ -221,7 +221,7 @@ exercises/bridge-03-driver-return-values.ts
 
 ให้ทำตามนี้:
 
-1. import:
+1. ทำการ import:
    - `path` จาก `node:path`
    - `DatabaseSync` จาก `node:sqlite`
 
@@ -236,7 +236,7 @@ exercises/bridge-03-storage/tasks.db
    - `title TEXT NOT NULL`
    - `done INTEGER NOT NULL DEFAULT 0`
 
-4. clear rows เก่าออกก่อนเริ่ม
+4. เคลียร์ rows เก่าออกก่อนเริ่ม
 
 5. ใช้ `.run()` insert task 2 ตัว
 
@@ -257,9 +257,9 @@ exercises/bridge-03-storage/tasks.db
 
 12. พิมพ์ผลออกมา 6 อย่าง
     - `lastId`
-    - all tasks
-    - one task
-    - missing task
+    - tasks ทั้งหมด
+    - task เดียว
+    - task ที่ไม่มีอยู่
     - `deleteResult.changes`
     - `deleteMissingResult.changes`
 
@@ -269,7 +269,7 @@ exercises/bridge-03-storage/tasks.db
     - `lastInsertRowid` ใช้ทำอะไร
     - `changes === 0` แปลว่าอะไร
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 หลังทำเสร็จ นายควรอธิบายได้ว่า:
 

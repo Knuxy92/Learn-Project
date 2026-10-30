@@ -35,8 +35,8 @@ test("readTasks should return mapped boolean values", async () => {
 
   assert.equal(tasks.length, 2);
   assert.deepEqual(tasks, [
-    { id: 1, title: "First", done: false },
     { id: 2, title: "Second", done: true },
+    { id: 1, title: "First", done: false },
   ]);
 });
 

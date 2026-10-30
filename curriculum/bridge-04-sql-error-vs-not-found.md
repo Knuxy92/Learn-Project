@@ -1,6 +1,6 @@
-# Bridge 04: SQL Error vs Not Found
+# ช่วงเชื่อม 04: SQL error กับ not found
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 หลัง `Bridge 03` ตอนนี้รู้แล้วว่า:
 
@@ -17,7 +17,7 @@
 
 ถ้าไม่แยกให้ชัด ผู้เรียนจะเริ่มมองทุกปัญหาใน database ว่าเป็น error ทั้งหมด ซึ่งทำให้ route logic และ HTTP status code ผิดตั้งแต่ต้น
 
-## Entry Point
+## จุดเข้า
 
 เราเข้า bridge นี้หลังจาก:
 
@@ -25,7 +25,7 @@
 - รู้แล้วว่า `.get()` อาจคืน `undefined`
 - พร้อมแปลความหมายของผลลัพธ์แต่ละแบบ
 
-## Exit Point
+## จุดออก
 
 ออกจาก bridge นี้ได้เมื่อทำได้ครบ:
 
@@ -35,7 +35,7 @@
 4. แยกได้ว่า backend ควรตอบ `404` ตอนไหน
 5. แยกได้ว่า backend ควรตอบ `500` ตอนไหน
 
-## Return to Main Line
+## กลับเข้าสายหลัก
 
 หลังจบ bridge นี้ เราจะไปต่อที่:
 
@@ -43,14 +43,14 @@
 
 เหตุผลคือเมื่อแยก not found กับ SQL error ได้แล้ว ขั้นถัดไปคือกัน bad input ตั้งแต่ก่อน query จะถูกรัน
 
-## Main Goal
+## เป้าหมายหลัก
 
 bridge นี้เน้น 4 เรื่อง:
 
 1. not found
 2. empty list
 3. SQL error
-4. backend meaning
+4. ความหมายฝั่ง backend
 
 ## 1. Not Found Is Normal
 
@@ -138,7 +138,7 @@ backend ต้องแปลผลลัพธ์ให้ถูก ไม่�
 - ไม่ใช่ not found
 - เหมาะกับ `500 Internal Server Error`
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import path from "node:path";
@@ -195,7 +195,7 @@ exercises/bridge-04-sql-error-vs-not-found.ts
 
 ให้ทำตามนี้:
 
-1. import:
+1. ทำการ import:
    - `path` จาก `node:path`
    - `DatabaseSync` จาก `node:sqlite`
 
@@ -210,7 +210,7 @@ exercises/bridge-04-storage/tasks.db
    - `title TEXT NOT NULL`
    - `done INTEGER NOT NULL DEFAULT 0`
 
-4. clear rows เก่าออกก่อนเริ่ม
+4. เคลียร์ rows เก่าออกก่อนเริ่ม
 
 5. insert task 2 ตัว
    - 1 ตัว `done = 0`
@@ -242,13 +242,13 @@ exercises/bridge-04-storage/tasks.db
     - SQL throw ต่างจาก not found ยังไง
     - backend ควรคิดถึง `404` กับ `500` ต่างกันยังไง
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 หลังทำเสร็จ นายควรอธิบายได้ว่า:
 
 - `undefined` จาก `.get()` คือ not found
 - `[]` จาก `.all()` คือ empty result
-- SQL throw คือ query/database failed
+- SQL throw คือ query/database ที่ล้มเหลว
 - backend ไม่ควรตอบ status เดียวกันให้ทุกกรณี
 
 เสร็จแล้วพิมพ์:

@@ -2,7 +2,7 @@
 
 เป้าหมายของแผนนี้คือทำให้การใช้ SQLite ใน backend ไม่ใช่แค่ "เขียนให้ผ่าน" แต่เข้าใจว่าแต่ละสถานการณ์ต้องใช้ SQL แบบไหน, SQLite driver คืนค่าอะไร, route ต้องแปลงผลลัพธ์เป็น HTTP response ยังไง, และควรแก้ปัญหาแบบไหน
 
-## Current Problem
+## ปัญหาปัจจุบัน
 
 `Ch24` เริ่มเอา SQLite มาใช้กับ Task API แล้ว แต่ยังมีช่องว่างสำคัญ:
 
@@ -49,7 +49,7 @@ SELECT id, title, done FROM tasks WHERE id = ?
 
 เหตุผลคือถ้า table มี column เพิ่มในอนาคต app จะไม่เผลอรับข้อมูลที่ไม่ได้ตั้งใจ และ type mapping จะชัดกว่า
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก bridge นี้ได้เมื่อ:
 
@@ -94,7 +94,7 @@ const rows = db
   .all();
 ```
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก section นี้ได้เมื่อ:
 
@@ -103,15 +103,15 @@ const rows = db
 - ใช้ `ORDER BY id ASC` ได้
 - เลือก order ง่ายๆ ให้ `GET /tasks` ได้
 
-## Mini Exercises for SQL Bridge 02
+## แบบฝึกหัดเสริม SQL Bridge 02
 
 เขียน SQL query สำหรับงานเหล่านี้:
 
-1. Get all tasks
-2. Get one task by id
-3. Create a new task
-4. Update a task title and done value
-5. Delete a task by id
+1. ดึง task ทั้งหมด
+2. ดึง task เดียวตาม id
+3. สร้าง task ใหม่
+4. แก้ title และค่า done ของ task
+5. ลบ task ตาม id
 
 ตอบคำถาม:
 
@@ -232,7 +232,7 @@ const deleted = result.changes > 0;
 2. `UPDATE`
 3. `SELECT` อีกรอบเพื่อคืนข้อมูลล่าสุด
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก bridge นี้ได้เมื่อ:
 
@@ -287,13 +287,13 @@ try {
 
 ### Backend Mapping
 
-| Situation | Meaning | HTTP Response |
+| สถานการณ์ | ความหมาย | HTTP Response |
 | --- | --- | --- |
-| `.get()` returns `undefined` | row not found | `404 Not Found` |
-| `.all()` returns `[]` | ไม่มี row ในรายการ | `200 OK` with empty array |
-| SQL throws an error | database/query พัง | `500 Internal Server Error` |
+| `.get()` คืน `undefined` | ไม่เจอ row | `404 Not Found` |
+| `.all()` คืน `[]` | ไม่มี row ในรายการ | `200 OK` พร้อม array ว่าง |
+| SQL throw error | database/query พัง | `500 Internal Server Error` |
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก section นี้ได้เมื่อ:
 
@@ -302,7 +302,7 @@ try {
 - อธิบายได้ว่า SQL error ควรกลายเป็น `500` ใน API
 - แยก "data not found" กับ "database failed" ได้
 
-## Mini Exercises for SQL Bridge 03
+## แบบฝึกหัดเสริม SQL Bridge 03
 
 ตอบคำถาม:
 
@@ -375,7 +375,7 @@ mapper ทำให้การแปลงชัดเจน:
 - app object ใช้ `done: boolean`
 - ถ้า schema เปลี่ยนในอนาคต จะรู้ว่าต้องแก้จุดไหน
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก bridge นี้ได้เมื่อ:
 
@@ -385,7 +385,7 @@ mapper ทำให้การแปลงชัดเจน:
 - จัดการ `.get()` ที่คืน `undefined` ได้
 - จัดการ `.all()` ที่คืน array ว่างได้
 
-## Mini Exercises for SQL Bridge 04
+## แบบฝึกหัดเสริม SQL Bridge 04
 
 ให้ database row นี้:
 
@@ -484,7 +484,7 @@ app.put("/tasks/:id", (req, res) => {
 });
 ```
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก section นี้ได้เมื่อ:
 
@@ -499,19 +499,19 @@ backend route ไม่ได้มีหน้าที่แค่ run SQL แ
 
 ### Common Mapping Rules
 
-| API Situation | Database Result | HTTP Response |
+| สถานการณ์ของ API | ผลจาก database | HTTP Response |
 | --- | --- | --- |
-| Get all tasks | `.all()` returns array | `200 OK` |
-| Get all tasks, table is empty | `.all()` returns `[]` | `200 OK` with `[]` |
-| Get task by id, found | `.get()` returns row | `200 OK` |
-| Get task by id, not found | `.get()` returns `undefined` | `404 Not Found` |
-| Create task | `.run()` returns `lastInsertRowid` | `201 Created` |
-| Update task, id exists | update succeeds | `200 OK` |
-| Update task, id not found | check returns `undefined` | `404 Not Found` |
-| Delete task, id exists | `changes > 0` | `204 No Content` or `200 OK` |
-| Delete task, id not found | `changes === 0` | `404 Not Found` |
-| Bad request body | validation fails | `400 Bad Request` |
-| SQL error | query throws | `500 Internal Server Error` |
+| ดึง task ทั้งหมด | `.all()` คืน array | `200 OK` |
+| ดึง task ทั้งหมด แต่ table ว่าง | `.all()` คืน `[]` | `200 OK` พร้อม `[]` |
+| ดึง task ตาม id แล้วเจอ | `.get()` คืน row | `200 OK` |
+| ดึง task ตาม id แล้วไม่เจอ | `.get()` คืน `undefined` | `404 Not Found` |
+| สร้าง task | `.run()` คืน `lastInsertRowid` | `201 Created` |
+| แก้ task ที่ id มีอยู่ | update สำเร็จ | `200 OK` |
+| แก้ task ที่ id ไม่มีอยู่ | check แล้วได้ `undefined` | `404 Not Found` |
+| ลบ task ที่ id มีอยู่ | `changes > 0` | `204 No Content` หรือ `200 OK` |
+| ลบ task ที่ id ไม่มีอยู่ | `changes === 0` | `404 Not Found` |
+| request body ผิด | validation fail | `400 Bad Request` |
+| SQL error | query โยน error | `500 Internal Server Error` |
 
 ### Get Task by ID
 
@@ -563,7 +563,7 @@ app.delete("/tasks/:id", (req, res) => {
 });
 ```
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก section นี้ได้เมื่อ:
 
@@ -577,23 +577,23 @@ app.delete("/tasks/:id", (req, res) => {
 
 เลือก HTTP response ที่ถูกต้อง:
 
-1. `.get()` returns `undefined`
-2. `.all()` returns `[]`
+1. `.get()` คืน `undefined`
+2. `.all()` คืน `[]`
 3. request body ไม่มี `title`
 4. `INSERT` สำเร็จและได้ `lastInsertRowid`
-5. `DELETE` returns `changes === 0`
-6. SQL query throws an error
+5. `DELETE` คืน `changes === 0`
+6. SQL query โยน error
 
-Expected answers:
+เฉลย:
 
-| Case | Response |
+| กรณี | Response |
 | --- | --- |
-| `.get()` returns `undefined` | `404 Not Found` |
-| `.all()` returns `[]` | `200 OK` |
-| Missing `title` | `400 Bad Request` |
-| `INSERT` succeeds | `201 Created` |
-| `DELETE` changes is `0` | `404 Not Found` |
-| SQL throws | `500 Internal Server Error` |
+| `.get()` คืน `undefined` | `404 Not Found` |
+| `.all()` คืน `[]` | `200 OK` |
+| ไม่มี `title` | `400 Bad Request` |
+| `INSERT` สำเร็จ | `201 Created` |
+| `DELETE` changes เป็น `0` | `404 Not Found` |
+| SQL โยน error | `500 Internal Server Error` |
 
 ## Ch24 Revision - Task API with SQLite
 
@@ -706,7 +706,7 @@ export { getTaskById };
 
 route ควรรู้เรื่อง HTTP request/response เป็นหลัก และเรียก query function แทนการเขียน SQL กระจายหลายที่
 
-### Exit Criteria
+### เงื่อนไขออก
 
 ออกจาก section นี้ได้เมื่อ:
 
@@ -773,10 +773,10 @@ CREATE TABLE IF NOT EXISTS tasks (
 
 หัวข้อนี้ optional ในช่วงนี้ เพราะ main goal ยังเป็น:
 
-- understand CRUD
-- understand driver return values
-- understand row mapping
-- understand HTTP responses
+- เข้าใจ CRUD
+- เข้าใจค่าที่ driver คืนมา
+- เข้าใจการ map row
+- เข้าใจ HTTP response
 
 ## Later SQL Topics
 
@@ -787,11 +787,11 @@ CREATE TABLE IF NOT EXISTS tasks (
 - `JOIN`
 - `LIMIT`
 - `COUNT`
-- transactions
-- migrations
-- indexes
-- pagination
-- soft delete
+- เรื่อง transactions
+- เรื่อง migrations
+- เรื่อง indexes
+- เรื่อง pagination
+- เรื่อง soft delete
 - SQL injection แบบลึกขึ้น
 
 ## Final Rule

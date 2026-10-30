@@ -1,4 +1,4 @@
-var userName = 'Knuxy92';
+var userName = 'Student';
 var userAge = 17;
 var isStudent = true;
 var formatProfile = function (name, age, studentStatus) {

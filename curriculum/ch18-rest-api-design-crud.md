@@ -1,6 +1,6 @@
-# Chapter 18: REST API Design & CRUD
+# บทที่ 18: ออกแบบ REST API และ CRUD
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเริ่มเปิด Express server และสร้าง route แบบ `GET` ง่าย ๆ ได้แล้ว
 
@@ -24,10 +24,10 @@ CRUD คือ 4 งานพื้นฐานของระบบข้อม
 
 ในโลก API มัก map กับ HTTP methods แบบนี้:
 
-- `GET` -> Read
-- `POST` -> Create
-- `PUT` -> Update
-- `DELETE` -> Delete
+- `GET` -> อ่านข้อมูล
+- `POST` -> สร้างข้อมูล
+- `PUT` -> แก้ไขข้อมูล
+- `DELETE` -> ลบข้อมูล
 
 ## 2. REST Route Shape
 
@@ -123,7 +123,7 @@ const tasks: Task[] = [
 - ข้อมูลแบบนี้จะหายเมื่อปิด server
 - แต่เหมาะมากสำหรับฝึก flow ของ API ก่อนเข้า database จริง
 
-## 6. Example
+## 6. ตัวอย่าง
 
 ```ts
 import express from 'express';
@@ -159,7 +159,7 @@ app.get('/tasks/:id', (req, res) => {
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -230,7 +230,7 @@ app.use(express.json());
 - `PUT /tasks/1`
 - `DELETE /tasks/1`
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ยังไม่เน้น validation ลึก
 

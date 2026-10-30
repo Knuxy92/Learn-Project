@@ -41,14 +41,14 @@ try {
 }
 
 // TODO 7:
-// print:
+// พิมพ์:
 console.log("foundTask:", foundTask);
 console.log("missingTask:", missingTask);
 console.log("emptyRows:", emptyRows);
 console.log("queryStatus:", queryStatus);
 
 // TODO 8:
-// answer in short comments:
+// ตอบเป็นคอมเมนต์สั้น ๆ:
 // - why missingTask is not a SQL error : missingTask ยังทำงานถูกต้องของมันไม่ได้ผิดอะไรเลยไม่ Error 
 // - why emptyRows is not a SQL error : emptyRows มันหาค่านั้นๆไม่เจอเลยคือ Empty Rows
 // - how SQL throw is different from not found : มันช่วยให้ Debug ได้ง่ายขึ้น

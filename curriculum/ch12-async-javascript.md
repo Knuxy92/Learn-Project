@@ -1,6 +1,6 @@
-# Chapter 12: Asynchronous JavaScript
+# บทที่ 12: async ใน JavaScript
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน error handling ด้วย `try`, `catch`, และ `finally`
 
@@ -28,7 +28,7 @@ setTimeout(() => {
 console.log('End');
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Start
@@ -50,7 +50,7 @@ promise.then((result) => {
 });
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Done
@@ -75,7 +75,7 @@ const run = async () => {
 run();
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Hello
@@ -97,13 +97,13 @@ const run = async () => {
 run();
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 10
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -131,7 +131,7 @@ exercises/ch12-user-fetch.js
    - เรียกทั้ง 3 function
    - console.log ผลลัพธ์ออกมา
 
-Expected output ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
+ผลลัพธ์ที่คาดหวัง ไม่ต้องเหมือนเป๊ะทุกตัวอักษร
 แต่ต้องมีครบว่า:
 
 - จำนวน user

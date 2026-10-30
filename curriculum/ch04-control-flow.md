@@ -1,6 +1,6 @@
-# Chapter 4: Control Flow
+# บทที่ 4: การควบคุมทิศทาง
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ operators เพื่อคำนวณและเปรียบเทียบค่า
 
@@ -20,8 +20,7 @@ if (score >= 50) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 pass
 ```
@@ -42,8 +41,7 @@ if (score >= 50) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 fail
 ```
@@ -66,8 +64,7 @@ if (score >= 80) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 B
 ```
@@ -90,8 +87,7 @@ switch (role) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 full access
 ```
@@ -121,8 +117,7 @@ if (userName) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 missing name
 ```
@@ -140,13 +135,12 @@ const displayName = nickname || 'Anonymous';
 console.log(displayName);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Anonymous
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -161,11 +155,11 @@ exercises/ch04-grade-calculator.js
 3. ใช้ truthy/falsy เพื่อตรวจว่ามี `studentName` ไหม
 4. ใช้ short-circuit ตั้ง display name ถ้าชื่อว่าง
 
-## Grade Rules
+## กติกาการให้เกรด
 
 ให้ใช้กฎนี้:
 
-| Score | Grade |
+| คะแนน | เกรด |
 |---|---|
 | `score >= 90` | `A` |
 | `score >= 80` | `B` |
@@ -173,11 +167,11 @@ exercises/ch04-grade-calculator.js
 | `score >= 60` | `D` |
 | ต่ำกว่า `60` | `F` |
 
-## Message Rules
+## กติกาข้อความ
 
 ให้ใช้ข้อความนี้:
 
-| Grade | Message |
+| เกรด | ข้อความ |
 |---|---|
 | `A` | `Excellent work` |
 | `B` | `Great job` |
@@ -190,14 +184,14 @@ exercises/ch04-grade-calculator.js
 ให้ใช้ค่า test นี้ตอนส่งตรวจ:
 
 ```js
-const studentName = 'Knuxy92';
+const studentName = 'Student';
 const score = 85;
 ```
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
-Student: Knuxy92
+Student: Student
 Score: 85
 Grade: B
 Message: Great job

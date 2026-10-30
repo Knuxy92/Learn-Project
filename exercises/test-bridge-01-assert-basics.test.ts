@@ -14,7 +14,7 @@ const tasks: Task[] = [
 ];
 
 // TODO 1:
-const countDoneTasks = (tasks: Task[]): .titlember =>
+const countDoneTasks = (tasks: Task[]): number =>
   tasks.filter((task) => task.done).length;
 
 // TODO 2:
@@ -37,8 +37,7 @@ test("findTaskTitle should return undefined when id does not exist", () => {
 });
 
 test("tasks fixture should be an array with at least one item", () => {
-  // TODO:
-  assert.equal(tasks[0].title, tasks[1].title);
   assert.ok(Array.isArray(tasks));
-  assert.deepEqual(tasks[0], tasks[1]);
+  assert.ok(tasks.length > 0);
+  assert.deepEqual(tasks[0], { id: 1, title: "Study SQL", done: true });
 });

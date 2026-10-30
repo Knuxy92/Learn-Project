@@ -20,7 +20,7 @@ type UserWithoutEmail = Omit<User, 'email'>;
 
 const userPreview: UserPreview = {
   id: 1,
-  name: 'Knuxy92',
+  name: 'Student',
 };
 
 const userWithoutEmail: UserWithoutEmail = {

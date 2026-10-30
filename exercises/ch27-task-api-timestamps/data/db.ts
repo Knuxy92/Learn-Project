@@ -1,11 +1,14 @@
 import { DatabaseSync } from "node:sqlite";
 import path from "node:path";
 
-const dbPath = path.join(__dirname, "../../ch27-storage/tasks.db");
+const dbPath =
+  process.env.TASKS_DB_PATH ??
+  path.join(__dirname, "../../ch27-storage/tasks.db");
+
 const db = new DatabaseSync(dbPath);
 
-// Ch27 starter:
-// add created_at and updated_at to this schema.
+// จุดเริ่มต้นของ Ch27:
+// เพิ่ม created_at และ updated_at เข้าไปใน schema นี้
 db.exec(`
 CREATE TABLE IF NOT EXISTS tasks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

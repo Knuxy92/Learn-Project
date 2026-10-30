@@ -1,6 +1,6 @@
-# Chapter 20: Project Structure & Mini Project
+# บทที่ 20: โครงสร้างโปรเจกต์และ mini project
 
-## Recap
+## ทบทวน
 
 ตอนนี้นายทำ API ที่มี:
 
@@ -25,10 +25,10 @@
 
 เมื่อโปรเจกต์โตขึ้น เรามักจะแยกความรับผิดชอบ:
 
-- server setup
+- การตั้งค่า server
 - routes
 - middleware
-- data
+- ข้อมูล
 - types
 
 เป้าหมายคือให้แต่ละไฟล์มีหน้าที่ชัด
@@ -56,7 +56,7 @@ mini-task-api/
 - `server.ts` = เปิด port
 - `app.ts` = ประกอบ express app
 - `data/tasks.ts` = เก็บ array ข้อมูล
-- `middleware/validate-task.ts` = validation middleware
+- `middleware/validate-task.ts` = middleware สำหรับ validation
 - `routes/task-routes.ts` = รวม task routes
 - `types/task.ts` = type ของ Task
 
@@ -66,10 +66,10 @@ mini-task-api/
 
 ตัวอย่างที่ควรแยก:
 
-- type definition
-- route handler
-- validation middleware
-- in-memory data source
+- การประกาศ type
+- handler ของ route
+- middleware สำหรับ validation
+- แหล่งข้อมูลใน memory
 
 ข้อดีคือ:
 
@@ -84,11 +84,11 @@ mini-task-api/
 `app.ts`
 - สร้าง express app
 - ใส่ middleware
-- register routes
-- export app
+- ลงทะเบียน routes
+- export `app`
 
 `server.ts`
-- import app
+- import `app`
 - เรียก `app.listen(...)`
 
 ตัวอย่าง:
@@ -160,7 +160,7 @@ app.use('/tasks', taskRouter);
 - อ่านง่ายขึ้น
 - พร้อมต่อยอดหลังจากจบ chapter นี้
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -213,7 +213,7 @@ app.use('/tasks', taskRouter);
 
 และ validation behavior ควรเหมือน Ch19
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ไม่ได้วัดว่า "เขียน route ใหม่ได้ไหม"
 

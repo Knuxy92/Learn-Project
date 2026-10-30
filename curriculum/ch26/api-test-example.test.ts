@@ -8,6 +8,7 @@ process.env.TASKS_DB_PATH = path.join(
   "../ch26-storage/example-test.db",
 );
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { app } = require("../../exercises/ch26-task-api-database-tests/app");
 
 const db = new DatabaseSync(process.env.TASKS_DB_PATH);

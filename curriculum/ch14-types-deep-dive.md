@@ -1,6 +1,6 @@
-# Chapter 14: TypeScript Types Deep Dive
+# บทที่ 14: เจาะลึก type ใน TypeScript
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเริ่ม TypeScript ด้วย type annotations พื้นฐาน
 
@@ -11,7 +11,7 @@
 - union types
 - type aliases
 - interfaces
-- optional properties
+- optional property
 - readonly
 
 ## 1. Arrays in TypeScript
@@ -24,7 +24,7 @@ const userNames: string[] = ['Neo', 'Mint', 'Beam'];
 console.log(userNames[0]);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Neo
@@ -35,16 +35,16 @@ Neo
 Tuple คือ array ที่กำหนดชนิดของแต่ละตำแหน่งไว้แน่นอน
 
 ```ts
-const userEntry: [string, number] = ['Knuxy92', 17];
+const userEntry: [string, number] = ['Student', 17];
 
 console.log(userEntry[0]);
 console.log(userEntry[1]);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-Knuxy92
+Student
 17
 ```
 
@@ -58,7 +58,7 @@ const userId: string | number = 'abc123';
 console.log(userId);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 abc123
@@ -100,7 +100,7 @@ type LibraryBook = {
 };
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -128,7 +128,7 @@ exercises/ch14-library-types.ts
 
 5. สร้าง object `library` ตาม interface `Library`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 - พิมพ์ `featuredBook`
 - พิมพ์ `bookId`

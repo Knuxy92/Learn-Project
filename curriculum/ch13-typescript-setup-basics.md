@@ -1,6 +1,6 @@
-# Chapter 13: TypeScript Setup & Basics
+# บทที่ 13: ติดตั้ง TypeScript และพื้นฐาน
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน async, `fetch()`, และ `async/await`
 
@@ -14,37 +14,37 @@ TypeScript คือ JavaScript ที่เพิ่มระบบ type เข
 
 ## 2. JavaScript ก่อน แล้วค่อย TypeScript
 
-JavaScript version:
+เวอร์ชัน JavaScript:
 
 ```js
-const userName = 'Knuxy92';
+const userName = 'Student';
 const userAge = 17;
 
 console.log(userName);
 console.log(userAge);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-Knuxy92
+Student
 17
 ```
 
-TypeScript version:
+เวอร์ชัน TypeScript:
 
 ```ts
-const userName: string = 'Knuxy92';
+const userName: string = 'Student';
 const userAge: number = 17;
 
 console.log(userName);
 console.log(userAge);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-Knuxy92
+Student
 17
 ```
 
@@ -60,7 +60,7 @@ Type inference คือการที่ TypeScript เดา type ให้�
 เราต้องรู้มันเพราะไม่จำเป็นต้องใส่ type ทุกบรรทัดเสมอไป
 
 ```ts
-const userName = 'Knuxy92';
+const userName = 'Student';
 const userAge = 17;
 ```
 
@@ -73,9 +73,9 @@ const userAge = 17;
 
 เรามักใส่ type ชัด ๆ ตอน:
 
-- function parameters
-- function return values
-- object types
+- parameter ของ function
+- return value ของ function
+- type ของ object
 - ตอนอยากให้โค้ดสื่อเจตนาให้ชัด
 
 ## 5. Setup ที่เราจะใช้
@@ -83,9 +83,9 @@ const userAge = 17;
 ในโปรเจกต์นี้เราจะใช้:
 
 - `tsc` เพื่อ compile TypeScript
-- Node.js เพื่อรัน output JS
+- Node.js เพื่อรัน JS ที่ compile ออกมา
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -101,15 +101,15 @@ exercises/ch13-ts-variables.ts
 4. สร้าง function `formatProfile`
    - รับ `name`, `age`, `isStudent`
    - คืน string รูปแบบ:
-     `Knuxy92 - 17 - true`
+     `Student - 17 - true`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
-Knuxy92
+Student
 17
 true
-Knuxy92 - 17 - true
+Student - 17 - true
 ```
 
 เมื่อเสร็จแล้วพิมพ์:

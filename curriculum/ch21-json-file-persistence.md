@@ -1,6 +1,6 @@
-# Chapter 21: JSON File Persistence
+# บทที่ 21: เก็บข้อมูลด้วยไฟล์ JSON
 
-## Recap
+## ทบทวน
 
 ตอนนี้ API ของนายมี:
 
@@ -102,7 +102,7 @@ await writeFile(filePath, JSON.stringify(tasks, null, 2));
 - logic เรื่องไฟล์ถูกรวมไว้ที่เดียว
 - วันหลังย้ายไป database ง่ายขึ้น
 
-## 6. Example
+## 6. ตัวอย่าง
 
 ```ts
 import { readFile, writeFile } from 'node:fs/promises';
@@ -123,16 +123,16 @@ const writeTasks = async (tasks: unknown) => {
 
 บทนี้ยังไม่เน้นเรื่อง:
 
-- concurrent writes
-- file locking
+- การเขียนพร้อมกัน
+- การล็อกไฟล์
 - race condition
-- database transactions
+- transaction ของ database
 
 เราจะสมมุติว่า request มาไม่ซ้อนกันหนัก
 
 เป้าหมายคือเข้าใจ persistence flow ก่อน
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -170,7 +170,7 @@ exercises/ch21-persistent-task-api/
 7. ใน `server.ts`
    - เปิด server ที่ port `3000`
 
-## Expected Behavior
+## พฤติกรรมที่คาดหวัง
 
 หลังทำเสร็จ:
 
@@ -179,7 +179,7 @@ exercises/ch21-persistent-task-api/
 - `DELETE /tasks/:id` แล้วไฟล์ควรถูกอัปเดต
 - ปิดแล้วเปิด server ใหม่ ข้อมูลล่าสุดยังอยู่
 
-## Important Note
+## ข้อควรระวัง
 
 ถ้า route เปลี่ยนเป็น async แล้ว ต้องระวังเรื่อง `await`
 

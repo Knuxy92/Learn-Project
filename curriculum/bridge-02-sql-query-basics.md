@@ -1,6 +1,6 @@
-# Bridge 02: SQL Query Basics
+# ช่วงเชื่อม 02: พื้นฐาน SQL query
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 หลัง `Ch24` เห็นแล้วว่าแค่รู้ SQLite แบบผิวๆ ยังไม่พอสำหรับอ่านและแก้ backend code จริง
 
@@ -13,7 +13,7 @@
 
 ดังนั้น bridge นี้จะหยุดจากการแก้ API ชั่วคราว แล้วกลับมาทำพื้นฐาน query ให้แน่นก่อน
 
-## Entry Point
+## จุดเข้า
 
 เราเข้า bridge นี้หลังจาก:
 
@@ -21,7 +21,7 @@
 - เริ่มใช้ SQLite จริงแล้ว
 - แต่ยังรู้สึกว่า query ถูกเขียนตาม pattern มากกว่าตามความเข้าใจ
 
-## Exit Point
+## จุดออก
 
 ออกจาก bridge นี้ได้เมื่อทำได้ครบ:
 
@@ -31,21 +31,21 @@
 4. ใช้ `ORDER BY id ASC` และ `ORDER BY id DESC` ได้
 5. อ่าน SQL แล้วบอกได้ว่า query นั้นกำลัง "อ่าน", "สร้าง", "แก้", หรือ "ลบ" ข้อมูล
 
-## Return to Main Line
+## กลับเข้าสายหลัก
 
 หลังจบ bridge นี้ เราจะไปต่อที่:
 
 - `SQL Bridge 03 - SQLite Driver Return Values`
 
-เหตุผลคือพอ query basics แน่นแล้ว ค่อยผูกเข้ากับ `.all()`, `.get()`, `.run()`, `.exec()` จะเข้าใจง่ายกว่า
+เหตุผลคือพอพื้นฐาน query แน่นแล้ว ค่อยผูกเข้ากับ `.all()`, `.get()`, `.run()`, `.exec()` จะเข้าใจง่ายกว่า
 
-## Main Goal
+## เป้าหมายหลัก
 
 bridge นี้เน้น 4 เรื่อง:
 
-1. CRUD SQL commands
+1. คำสั่ง SQL แบบ CRUD
 2. `WHERE` และ placeholder `?`
-3. `SELECT *` vs explicit columns
+3. `SELECT *` กับ column ที่ระบุชัดเจน
 4. `ORDER BY`
 
 ## 1. Four Core SQL Commands
@@ -124,10 +124,10 @@ SELECT * FROM tasks WHERE id = ?;
 ข้อเสีย:
 
 - app จะรับทุก column แม้ไม่จำเป็น
-- ถ้า schema เปลี่ยน later code จะไม่ชัดว่าตั้งใจใช้ field ไหน
+- ถ้า schema เปลี่ยน ภายหลัง code จะไม่ชัดว่าตั้งใจใช้ field ไหน
 - type mapping อ่านยากขึ้น
 
-ดังนั้นใน app code ควรเริ่มใช้ explicit columns เป็น default:
+ดังนั้นใน app code ควรเริ่มระบุชื่อ column ให้ชัดเจนเป็นค่าเริ่มต้น:
 
 ```sql
 SELECT id, title, done FROM tasks WHERE id = ?;
@@ -135,7 +135,7 @@ SELECT id, title, done FROM tasks WHERE id = ?;
 
 ## 4. `ORDER BY`
 
-เวลาอ่านหลาย row อย่า assume ว่า database จะคืนลำดับเดิมเสมอ
+เวลาอ่านหลาย row อย่าคิดว่า database จะคืนลำดับเดิมเสมอ
 
 ถ้า API ต้องการลำดับชัดเจน ให้เขียนลงใน query
 
@@ -160,7 +160,7 @@ ORDER BY id DESC;
 - ถ้าอยากเห็น task ใหม่ก่อน ใช้ `ORDER BY id DESC`
 - ถ้าอยากเห็น task เก่าก่อน ใช้ `ORDER BY id ASC`
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import path from "node:path";
@@ -202,7 +202,7 @@ exercises/bridge-02-sql-query-basics.ts
 
 ให้ทำตามนี้:
 
-1. import:
+1. ทำการ import:
    - `path` จาก `node:path`
    - `DatabaseSync` จาก `node:sqlite`
 
@@ -241,17 +241,17 @@ SELECT id, title, done FROM tasks WHERE id = ?
    - ลบตาม `id`
 
 9. พิมพ์ผลออกมา 4 รอบ
-   - all tasks after insert
-   - one task by id
-   - all tasks after update
-   - all tasks after delete
+   - tasks ทั้งหมดหลัง insert
+   - task เดียวตาม id
+   - tasks ทั้งหมดหลัง update
+   - tasks ทั้งหมดหลัง delete
 
 10. ตอบใน comment สั้นๆ ในไฟล์
    - ทำไม `WHERE id = ?` สำคัญ
-   - ทำไมใน app code ควร prefer `SELECT id, title, done` มากกว่า `SELECT *`
+   - ทำไมใน app code ควรเลือกใช้ `SELECT id, title, done` มากกว่า `SELECT *`
    - ทำไม `GET /tasks` ควรมี `ORDER BY`
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 หลังทำเสร็จ นายควรอธิบายได้ว่า:
 

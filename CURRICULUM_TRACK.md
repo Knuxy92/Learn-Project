@@ -1,4 +1,4 @@
-# JS/TS Curriculum Track
+# เส้นทางการเรียน JS/TS
 
 ไฟล์นี้คือรางหลักสูตรหลักของโปรเจกต์นี้
 
@@ -11,63 +11,63 @@
 
 ---
 
-## Current Position
+## ตำแหน่งปัจจุบัน
 
-- Current phase: `Phase 1 - JavaScript Fundamentals`
-- Current chapter: `Chapter 1 - Setup & First Code`
-- Current mode: `structured restart`
-- Pace: `medium-slow`
-
----
-
-## Teaching Rules
-
-- One new concept per example.
-- Every new concept gets:
-  - what it is
-  - why it matters
-  - short code example
-  - output
-- Exercises progress from guided to semi-guided to open.
-- When stuck:
-  - first ask: hint
-  - second ask: partial answer
-  - third ask: full answer
-- Review feedback max 3 main points.
+- ช่วงปัจจุบัน: `Phase 1 - JavaScript Fundamentals`
+- บทปัจจุบัน: `Chapter 1 - Setup & First Code`
+- โหมดปัจจุบัน: `structured restart`
+- จังหวะ: `medium-slow`
 
 ---
 
-## Chapter Status
+## กติกาการสอน
 
-| Chapter | Topic | Status |
+- หนึ่ง concept ใหม่ต่อหนึ่งตัวอย่าง
+- ทุก concept ใหม่ต้องมี:
+  - มันคืออะไร
+  - ทำไมสำคัญ
+  - ตัวอย่าง code สั้น ๆ
+  - ผลลัพธ์
+- โจทย์ไล่จากแบบมีคนนำ ไปกึ่งนำ ไปจนเปิดอิสระ
+- ตอนติด:
+  - ถามครั้งแรก: hint
+  - ถามครั้งที่สอง: คำตอบบางส่วน
+  - ถามครั้งที่สาม: คำตอบเต็ม
+- feedback ตอน review ไม่เกิน 3 ประเด็นหลัก
+
+---
+
+## สถานะบท
+
+| บท | หัวข้อ | สถานะ |
 |---|---|---|
-| Ch1 | Setup & First Code | Completed |
-| Ch2 | Variables & Data Types | Completed |
-| Ch3 | Operators & Expressions | Completed |
-| Ch4 | Control Flow | Completed |
-| Ch5 | Functions | Completed |
-| Ch6 | Arrays | Completed |
-| Ch7 | Array Higher-Order Methods | Completed |
-| Ch8 | Objects | Completed |
-| Ch9 | Functions & Closures | Completed |
-| Ch10 | Strings & Dates | Completed |
-| Ch11 | Error Handling | Completed |
-| Ch12 | Async JavaScript | Completed |
-| Ch13 | TypeScript Setup & Basics | Completed |
-| Ch14 | TypeScript Types Deep Dive | Completed |
-| Ch15 | TypeScript Functions & Generics | Completed |
-| Ch16 | TypeScript Advanced Patterns | Completed |
-| Ch17 | Node.js & Express Basics | Active |
-| Ch18 | REST API Design & CRUD | Not started |
-| Ch19 | Middleware, Validation & Error Handling | Not started |
-| Ch20 | Project Structure & Mini Project | Not started |
+| Ch1 | ติดตั้งและโค้ดแรก | เสร็จแล้ว |
+| Ch2 | ตัวแปรและชนิดข้อมูล | เสร็จแล้ว |
+| Ch3 | ตัวดำเนินการและนิพจน์ | เสร็จแล้ว |
+| Ch4 | การควบคุมทิศทาง | เสร็จแล้ว |
+| Ch5 | ฟังก์ชัน | เสร็จแล้ว |
+| Ch6 | array | เสร็จแล้ว |
+| Ch7 | เมธอดขั้นสูงของ array | เสร็จแล้ว |
+| Ch8 | object | เสร็จแล้ว |
+| Ch9 | ฟังก์ชันและ closure | เสร็จแล้ว |
+| Ch10 | string และวันที่ | เสร็จแล้ว |
+| Ch11 | การจัดการ error | เสร็จแล้ว |
+| Ch12 | async ใน JavaScript | เสร็จแล้ว |
+| Ch13 | ติดตั้ง TypeScript และพื้นฐาน | เสร็จแล้ว |
+| Ch14 | เจาะลึก type ใน TypeScript | เสร็จแล้ว |
+| Ch15 | ฟังก์ชันและ generics ใน TypeScript | เสร็จแล้ว |
+| Ch16 | pattern ขั้นสูงใน TypeScript | เสร็จแล้ว |
+| Ch17 | พื้นฐาน Node.js และ Express | กำลังเรียน |
+| Ch18 | ออกแบบ REST API และ CRUD | ยังไม่เริ่ม |
+| Ch19 | middleware, validation และการจัดการ error | ยังไม่เริ่ม |
+| Ch20 | โครงสร้างโปรเจกต์และ mini project | ยังไม่เริ่ม |
 
 ---
 
-## Rule
+## กติกา
 
-Before creating a new lesson, check:
+ก่อนสร้างบทใหม่ ให้เช็ก:
 
-1. Does this chapter use any concept from a later chapter?
-2. If yes, teach the prerequisite first.
-3. If no, create the lesson.
+1. บทนี้ใช้ concept จากบทหลังหรือไม่
+2. ถ้าใช่ ให้สอน prerequisite ก่อน
+3. ถ้าไม่ ให้สร้างบทได้เลย

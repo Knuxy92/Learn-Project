@@ -31,7 +31,7 @@ type EventHandler = (event: UserEvent) => void;
 
 const handleEvent: EventHandler = (event): void => printEvent(event);
 
-handleEvent({ type: "login", userName: "Knuxy92" });
+handleEvent({ type: "login", userName: "Student" });
 handleEvent({ type: "logout", userId: 17 });
 handleEvent({ type: "error", message: "Something went wrong" });
 

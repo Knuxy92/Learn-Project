@@ -2,7 +2,7 @@
 
 ช่วงนี้เป็นช่วงคั่นก่อนกลับไปต่อ SQL/backend หลัก เป้าหมายคือฝึกเขียน test แบบใช้งานจริง แต่ไม่ยัดเนื้อหาใหม่เยอะเกินไป
 
-## Rule
+## กติกา
 
 - ใช้แค่ `node:test` และ `node:assert/strict`
 - ยังไม่ใช้ Jest, Vitest หรือ library ใหม่
@@ -22,8 +22,8 @@
 โจทย์:
 
 - test ค่าพื้นฐาน
-- test array
-- test object
+- test กับ array
+- test กับ object
 - test function ง่ายๆ
 
 ## Test Bridge 02 - SQLite Result Tests
@@ -32,13 +32,13 @@
 
 - test ผลลัพธ์ของ `.all()`
 - test ผลลัพธ์ของ `.get()`
-- test `lastInsertRowid`
-- test `changes`
+- test ค่า `lastInsertRowid`
+- test ค่า `changes`
 
 โจทย์:
 
 - สร้าง test database
-- seed data
+- ใส่ seed data
 - assert ผลลัพธ์ของ query
 - reset database ก่อน test
 
@@ -53,17 +53,17 @@
 โจทย์:
 
 - สร้าง function เช่น `createTask`, `findTaskById`, `deleteTask`
-- test success case
-- test not found case
-- test `changes === 0`
+- test เคสสำเร็จ
+- test เคส not found
+- test กรณี `changes === 0`
 
 ## Test Bridge 04 - API Status Tests
 
 เป้าหมาย:
 
 - test HTTP API แบบเปิด server ชั่วคราว
-- assert status code
-- assert response body
+- assert ค่า status code
+- assert ค่า response body
 - ปิด server ด้วย `after()`
 
 โจทย์:
@@ -73,11 +73,11 @@
 - bad body ได้ `400`
 - broken/internal case ค่อยเรียนหลังจากเข้า error flow ชัดขึ้น
 
-## After This
+## หลังจากนี้
 
 หลังผ่าน 3-4 test bridges แล้วค่อยกลับไปต่อเส้นหลักที่วางไว้:
 
-- Input validation before database queries
-- HTTP response mapping
-- Ch24 SQLite revision
+- ตรวจ input ก่อนยิง query ลง database
+- map ผลลัพธ์เป็น HTTP response
+- แก้ revision ของ `Ch24` ที่ใช้ SQLite
 

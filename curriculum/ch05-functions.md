@@ -1,6 +1,6 @@
-# Chapter 5: Functions
+# บทที่ 5: ฟังก์ชัน
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ `if / else` และ `switch` เพื่อให้โปรแกรมตัดสินใจ
 
@@ -20,8 +20,7 @@ function sayHello() {
 sayHello();
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Hello
 ```
@@ -40,8 +39,7 @@ const sayHello = () => {
 sayHello();
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Hello
 ```
@@ -57,13 +55,12 @@ const greetUser = (userName) => {
   console.log(`Hello ${userName}`);
 };
 
-greetUser('Knuxy92');
+greetUser('Student');
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
-Hello Knuxy92
+Hello Student
 ```
 
 ## 4. Return Value
@@ -80,8 +77,7 @@ const add = (firstNumber, secondNumber) => {
 console.log(add(2, 3));
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 5
 ```
@@ -100,8 +96,7 @@ const greetUser = (userName = 'Guest') => {
 console.log(greetUser());
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Hello Guest
 ```
@@ -121,13 +116,12 @@ const createMessage = () => {
 console.log(createMessage());
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Inside function
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -148,17 +142,17 @@ exercises/ch05-utility-functions.js
    คืน `false` ถ้าไม่ลงตัว
 
 4. `greetUser(userName = 'Guest')`
-   คืน string รูปแบบ `Hello Guest` หรือ `Hello Knuxy92`
+   คืน string รูปแบบ `Hello Guest` หรือ `Hello Student`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
 Tax: 70
-Full name: Knuxy Dev
+Full name: Student Dev
 Is 10 even: true
 Is 7 even: false
 Hello Guest
-Hello Knuxy92
+Hello Student
 ```
 
 เมื่อเสร็จแล้วพิมพ์:

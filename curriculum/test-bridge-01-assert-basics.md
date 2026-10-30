@@ -1,12 +1,12 @@
-# Test Bridge 01: Assert Basics
+# ช่วงเชื่อมทดสอบ 01: พื้นฐาน assert
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 ก่อน test database หรือ API ต้องแม่นก่อนว่า test หนึ่งตัวเขียนยังไง และ assert แต่ละแบบใช้เช็กอะไร
 
 บทนี้จะยังไม่ใช้ SQL และยังไม่เปิด server
 
-## Goal
+## เป้าหมาย
 
 ฝึก 4 อย่าง:
 
@@ -17,7 +17,7 @@
 
 ## 1. `test(...)`
 
-`test(...)` ใช้สร้าง test case หนึ่งตัว
+`test(...)` ใช้สร้าง test หนึ่งตัว
 
 ```ts
 import { test } from "node:test";
@@ -27,7 +27,7 @@ test("name of behavior", () => {
 });
 ```
 
-สรุป: test หนึ่งตัวควรเช็ก behavior หนึ่งเรื่องให้ชัด
+สรุป: test หนึ่งตัวควรเช็กพฤติกรรมหนึ่งเรื่องให้ชัด
 
 ## 2. `assert.equal(...)`
 
@@ -70,7 +70,7 @@ assert.ok(Array.isArray(tasks));
 
 สรุป: ใช้เมื่ออยากเช็กเงื่อนไข
 
-## Example
+## ตัวอย่าง
 
 ```ts
 import { test } from "node:test";
@@ -116,32 +116,32 @@ type Task = {
 ```
 
 3. สร้าง function `countDoneTasks(tasks: Task[]): number`
-   - return จำนวน task ที่ `done === true`
+   - คืนจำนวน task ที่ `done === true`
 
 4. สร้าง function `findTaskTitle(tasks: Task[], id: number): string | undefined`
-   - ถ้าเจอ task ให้ return `title`
-   - ถ้าไม่เจอให้ return `undefined`
+   - ถ้าเจอ task ให้คืน `title`
+   - ถ้าไม่เจอให้คืน `undefined`
 
 5. เขียน test 4 ตัว:
    - `countDoneTasks` ควรนับเฉพาะ task ที่ done
    - `findTaskTitle` ควรคืน title เมื่อเจอ id
    - `findTaskTitle` ควรคืน `undefined` เมื่อไม่เจอ id
-   - tasks fixture ควรเป็น array และมีอย่างน้อย 1 item
+   - tasks fixture ควรเป็น array และมีอย่างน้อย 1 รายการ
 
 6. ใช้ assert ให้ตรงสถานการณ์:
    - ใช้ `assert.equal(...)` กับ number/string/undefined
    - ใช้ `assert.ok(...)` กับเงื่อนไข
    - ใช้ `assert.deepEqual(...)` อย่างน้อย 1 ครั้งกับ object หรือ array
 
-## Run
+## วิธีรัน
 
 ใช้คำสั่ง:
 
 ```bash
-cmd /c node --test -r ts-node/register exercises/test-bridge-01-assert-basics.test.ts
+node --test -r ts-node/register exercises/test-bridge-01-assert-basics.test.ts
 ```
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อรัน test แล้วควรผ่านทุกตัว
 

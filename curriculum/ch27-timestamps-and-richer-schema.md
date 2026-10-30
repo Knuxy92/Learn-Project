@@ -1,6 +1,6 @@
-# Chapter 27: Timestamps and Richer Schema
+# บทที่ 27: timestamp และ schema ที่ละเอียดขึ้น
 
-## Recap
+## ทบทวน
 
 ตอนนี้เราได้ครบ 3 ชั้นสำคัญแล้ว:
 
@@ -10,7 +10,7 @@
 
 ก้าวถัดไปคือทำ schema ให้ใกล้ของจริงขึ้นอีกนิด
 
-## 1. Goal Of This Chapter
+## 1. เป้าหมายของบทนี้
 
 บทนี้ยังไม่ใช่เรื่อง relation หรือ join
 
@@ -31,9 +31,9 @@
 
 field พวกนี้ช่วยทั้ง:
 
-- debug
-- sorting
-- audit
+- การ debug
+- การ sort
+- การ audit
 - UI ที่ต้องแสดงเวลา
 
 ## 3. Suggested Schema Upgrade
@@ -114,7 +114,7 @@ SET title = ?, done = ?, updated_at = CURRENT_TIMESTAMP
 WHERE id = ?
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้ใช้โฟลเดอร์:
 
@@ -126,13 +126,13 @@ exercises/ch27-task-api-timestamps/
 
 1. เพิ่ม `created_at` และ `updated_at` ใน schema
 2. เพิ่ม field ใหม่ใน `DbTaskRow` และ `Task`
-3. map `created_at -> createdAt`
-4. map `updated_at -> updatedAt`
+3. แปลง `created_at -> createdAt`
+4. แปลง `updated_at -> updatedAt`
 5. ตอน create ให้ response มี timestamp fields
 6. ตอน update ให้ `updated_at` เปลี่ยนตาม
 7. ให้ route behavior เดิมยังอยู่
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
 เมื่อเสร็จ:
 

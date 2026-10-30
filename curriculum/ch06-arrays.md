@@ -1,6 +1,6 @@
-# Chapter 6: Arrays
+# บทที่ 6: array
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ function เพื่อเก็บ logic ที่เรียกใช้ซ้ำได้
 
@@ -18,7 +18,7 @@ const fruits = ['apple', 'banana', 'orange'];
 console.log(fruits);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 [ 'apple', 'banana', 'orange' ]
@@ -43,7 +43,7 @@ console.log(fruits[0]);
 console.log(fruits[1]);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 apple
@@ -62,7 +62,7 @@ const fruits = ['apple', 'banana', 'orange'];
 console.log(fruits.length);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 3
@@ -86,7 +86,7 @@ todos.pop();
 console.log(todos);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 [ 'learn JS', 'build project' ]
@@ -107,14 +107,14 @@ for (const todo of todos) {
 }
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 learn JS
 practice code
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -131,7 +131,7 @@ exercises/ch06-todo-array.js
 5. ใช้ `.pop()` ลบงานสุดท้ายออก 1 งาน
 6. ใช้ `for...of` พิมพ์งานทุกตัว
 
-Expected output ไม่จำเป็นต้องเหมือนเป๊ะทุกตัวอักษร
+ผลลัพธ์ที่คาดหวัง ไม่จำเป็นต้องเหมือนเป๊ะทุกตัวอักษร
 แต่ต้องแสดงครบว่า:
 
 - งานตัวแรกคืออะไร

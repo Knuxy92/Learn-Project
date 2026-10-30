@@ -1,4 +1,4 @@
-const studentName = 'Knuxy92';
+const studentName = 'Student';
 const studentAge = 17;
 
 console.log(`My name is ${studentName}`);

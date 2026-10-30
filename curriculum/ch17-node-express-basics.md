@@ -1,8 +1,8 @@
-# Chapter 17: Node.js & Express Basics
+# บทที่ 17: พื้นฐาน Node.js และ Express
 
-## Recap
+## ทบทวน
 
-ตอนนี้เราเรียน JavaScript และ TypeScript foundation ครบแล้ว
+ตอนนี้เราเรียนพื้นฐาน JavaScript และ TypeScript ครบแล้ว
 
 บทนี้เราจะเริ่มเข้า backend จริงด้วย Node.js และ Express
 
@@ -39,7 +39,7 @@ app.listen(3000, () => {
 - `req` คือข้อมูลที่เข้ามาจากคนเรียก route
 - `res` คือสิ่งที่เราส่งกลับไป
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 

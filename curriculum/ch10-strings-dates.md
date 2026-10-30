@@ -1,15 +1,15 @@
-# Chapter 10: Working with Strings & Dates
+# บทที่ 10: การใช้งาน string และวันที่
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน callback, closure, rest, และ spread ใน function calls
 
 บทนี้เราจะใช้สิ่งที่พบเจอบ่อยมากในโปรแกรมจริง:
 
-- string methods
-- template literals
-- regex basics
-- Date basics
+- method ของ string
+- การใช้ template literal
+- พื้นฐาน regex
+- พื้นฐาน Date
 
 ## 1. String Methods
 
@@ -24,7 +24,7 @@ console.log(userName.trim());
 console.log(userName.toUpperCase());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 knuxy92
@@ -38,16 +38,16 @@ Template literal คือการใส่ตัวแปรลงในข้
 เราต้องใช้มันเพราะมันอ่านง่ายกว่าการต่อ string ยาว ๆ
 
 ```js
-const firstName = 'Knuxy';
+const firstName = 'Student';
 const lastName = 'Dev';
 
 console.log(`${firstName} ${lastName}`);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-Knuxy Dev
+Student Dev
 ```
 
 ## 3. Regex Basics
@@ -63,7 +63,7 @@ const emailPattern = /@/;
 console.log(emailPattern.test(email));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 true
@@ -81,13 +81,13 @@ const today = new Date();
 console.log(today.toISOString());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 2026-04-26T...
 ```
 
-## 5. Guided Exercise
+## 5. โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -111,19 +111,19 @@ exercises/ch10-string-validator.js
 
 4. `formatWelcomeMessage(firstName, lastName)`
    - ใช้ template literal
-   - คืนข้อความ `Welcome Knuxy Dev`
+   - คืนข้อความ `Welcome Student Dev`
 
 5. `formatToday()`
    - สร้าง `new Date()`
    - คืนค่าจาก `.toLocaleDateString()`
 
-Expected output ไม่ต้องตรงวันที่เป๊ะ
+ผลลัพธ์ที่คาดหวัง ไม่ต้องตรงวันที่เป๊ะ
 แต่ต้องมีครบว่า:
 
 - format username ได้
 - email ผ่าน/ไม่ผ่านได้
 - password strength ทำงานได้
-- welcome message ถูก
+- welcome message ถูกต้อง
 - date ถูกแสดงออกมา
 
 เมื่อเสร็จแล้วพิมพ์:

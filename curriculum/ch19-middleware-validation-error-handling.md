@@ -1,6 +1,6 @@
-# Chapter 19: Middleware, Validation & Error Handling
+# บทที่ 19: middleware, validation และการจัดการ error
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ Express ทำ CRUD API กับข้อมูลใน array ได้แล้ว
 
@@ -24,10 +24,10 @@ middleware คือ function ที่รัน "ก่อน" หรือ "�
 
 มันมักใช้ทำงานแบบนี้:
 
-- parse body
-- log request
+- แปลง body
+- บันทึก log ของ request
 - ตรวจ auth
-- validate input
+- ตรวจสอบ input
 
 รูปแบบพื้นฐาน:
 
@@ -126,7 +126,7 @@ API ควรตอบ error shape ให้สม่ำเสมอ
 - debug ง่าย
 - API อ่านพฤติกรรมได้ชัด
 
-## 6. Example
+## 6. ตัวอย่าง
 
 ```ts
 import express from 'express';
@@ -170,7 +170,7 @@ app.post('/tasks', validateTaskBody, (req, res) => {
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -222,7 +222,7 @@ exercises/ch19-task-validation.ts
 - `PUT /tasks/1` พร้อม `{ "done": "yes" }`
 - `PUT /tasks/1` พร้อม `{ "title": "   " }`
 
-## Important Note
+## ข้อควรระวัง
 
 บทนี้ยังเป็น validation แบบ manual
 

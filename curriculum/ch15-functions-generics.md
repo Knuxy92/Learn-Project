@@ -1,6 +1,6 @@
-# Chapter 15: TypeScript Functions & Generics
+# บทที่ 15: ฟังก์ชันและ generics ใน TypeScript
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน type aliases, interfaces, tuples, unions, optional properties, และ readonly
 
@@ -18,7 +18,7 @@ const add = (firstNumber: number, secondNumber: number): number => {
 console.log(add(2, 3));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 5
@@ -38,7 +38,7 @@ const multiply: MathFn = (firstNumber, secondNumber) => {
 console.log(multiply(4, 5));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 20
@@ -57,7 +57,7 @@ console.log(firstItem(['a', 'b', 'c']));
 console.log(firstItem([10, 20, 30]));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 a
@@ -95,7 +95,7 @@ type UserWithoutAge = Omit<User, 'age'>;
 
 `Omit` = ตัดบาง field ออก
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -127,7 +127,7 @@ exercises/ch15-storage.ts
 
 7. สร้างตัวแปร `userPreview` และ `userWithoutEmail`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 - `subtract(10, 3)` ได้ `7`
 - `firstItem(['a', 'b', 'c'])` ได้ `'a'`

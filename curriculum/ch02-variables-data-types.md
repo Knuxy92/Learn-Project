@@ -1,6 +1,6 @@
-# Chapter 2: Variables & Data Types
+# บทที่ 2: ตัวแปรและชนิดข้อมูล
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ `console.log()` เพื่อพิมพ์ข้อความออกมาที่ terminal
 
@@ -13,15 +13,14 @@ Variable คือตัวเก็บข้อมูลที่มีชื�
 เราต้องใช้ variable เพราะโปรแกรมต้องจำข้อมูลไว้ใช้ต่อ เช่น ชื่อ อายุ หรือสถานะผู้ใช้
 
 ```js
-const userName = 'Knuxy92';
+const userName = 'Student';
 
 console.log(userName);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
-Knuxy92
+Student
 ```
 
 ## 2. `const`
@@ -36,8 +35,7 @@ const userName = 'Neo';
 console.log(userName);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Neo
 ```
@@ -55,8 +53,7 @@ score = 10;
 console.log(score);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 10
 ```
@@ -73,8 +70,7 @@ var oldStyle = 'avoid this';
 console.log(oldStyle);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 avoid this
 ```
@@ -95,8 +91,7 @@ console.log(userAge);
 console.log(isStudent);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Mint
 17
@@ -117,8 +112,7 @@ console.log(email);
 console.log(nickname);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 undefined
 null
@@ -136,8 +130,7 @@ console.log(typeof 20);
 console.log(typeof true);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 string
 number
@@ -155,8 +148,7 @@ console.log('5' + 3);
 console.log('5' - 3);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 53
 2
@@ -167,7 +159,7 @@ Output:
 - `'5' + 3` กลายเป็น string ต่อกัน
 - `'5' - 3` JavaScript พยายามแปลง `'5'` เป็น number ก่อนลบ
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 

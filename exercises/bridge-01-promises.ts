@@ -1,4 +1,3 @@
-import { resolve } from "node:dns";
 import { createServer } from "node:http";
 
 const server = createServer((req, res) => {

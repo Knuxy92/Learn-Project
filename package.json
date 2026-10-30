@@ -2,9 +2,11 @@
   "name": "learn-project",
   "version": "1.0.0",
   "description": "โปรเจกต์นี้เป็นพื้นที่เรียน JavaScript -> TypeScript -> Backend API แบบเรียง prerequisite ให้ชัด",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test --test-concurrency=1 -r ts-node/register \"exercises/**/*.test.ts\" \"curriculum/**/*.test.ts\"",
+    "lint": "eslint .",
+    "example:ch01": "node curriculum/ch01/hello-world.js"
   },
   "keywords": [],
   "author": "",
@@ -16,11 +18,12 @@
     "@types/node": "^25.6.0",
     "eslint": "^10.2.1",
     "globals": "^17.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.0"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "ts-node": "^10.9.2"
+    "express": "^5.2.1"
   }
 }

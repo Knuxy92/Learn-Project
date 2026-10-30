@@ -1,4 +1,4 @@
-const studentName = "Knuxy92";
+const studentName = "Student";
 const score = 85;
 
 let grade = "";

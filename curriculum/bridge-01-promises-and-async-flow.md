@@ -1,6 +1,6 @@
-# Bridge 01: Promises and Async Flow
+# ช่วงเชื่อม 01: Promise และลำดับการทำงานของ async
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
 ช่วง `Ch21` และ `Ch22` เราเริ่มใช้ของพวกนี้จริงแล้ว:
 
@@ -26,7 +26,7 @@
 
 แต่เป็นการอุด prerequisite ให้แน่นก่อนกลับเข้าสาย backend หลัก
 
-## Entry Point
+## จุดเข้า
 
 เราเข้าบทนี้หลังจาก:
 
@@ -38,7 +38,7 @@
 - เข้าตรงนี้เพราะเริ่มใช้ async ของจริงมากขึ้น
 - ถ้าไม่หยุดอธิบายตรงนี้ ต่อไปจะเริ่มใช้แบบจำมากกว่าเข้าใจ
 
-## Exit Point
+## จุดออก
 
 เราจะออกจากบทคั่นนี้เมื่อทำได้ครบ:
 
@@ -50,7 +50,7 @@
 
 เมื่อครบ 5 ข้อนี้ จะกลับเข้าสายหลักได้
 
-## Return to Main Line
+## กลับเข้าสายหลัก
 
 หลังจบบทนี้ เราจะกลับเข้าสายหลักที่:
 
@@ -62,7 +62,7 @@
 - API ของ database ใน Node มัก async
 - ถ้า Promise ยังไม่แม่น การ debug DB flow จะยากกว่าจำเป็น
 
-## Main Line After This Bridge
+## สายหลักหลังจบช่วงเชื่อม
 
 ลำดับถัดจากนี้:
 
@@ -72,7 +72,7 @@
 4. `Ch25 - Query Layer and DB Refactor`
 5. `Ch26 - API Testing with Database`
 
-## Why We Do Not Skip This
+## ทำไมข้ามช่วงนี้ไม่ได้
 
 ถ้าข้ามบทนี้เลย ปัญหาที่จะเจอใน database/testing ต่อไปคือ:
 
@@ -81,14 +81,14 @@
 - งงว่า value ไหนเป็น promise และ value ไหนเป็นค่าจริง
 - แก้ bug แบบลองผิดลองถูกมากเกินไป
 
-## Lesson Goal
+## เป้าหมายของบท
 
 บทนี้จะเน้น 4 อย่าง:
 
-1. Promise states
-2. `async` function return type
-3. callback -> promise wrapping
-4. cleanup flow with `after()`
+1. สถานะของ Promise
+2. ชนิดค่าที่ `async` function คืนกลับมา
+3. การ wrap callback ให้เป็น Promise
+4. flow ของ cleanup ด้วย `after()`
 
 ## Example 1: Promise as Future Value
 
@@ -130,7 +130,7 @@ await new Promise<void>((resolve, reject) => {
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -148,7 +148,7 @@ exercises/bridge-01-promises.ts
    - คืน array string 2 ตัว
 
 3. สร้าง `closeServer(server)` ที่คืน `Promise<void>`
-   - wrap `server.close(...)`
+   - ห่อ `server.close(...)`
 
 4. สร้าง function `runDemo()`
    - `await wait(100)`
@@ -159,7 +159,7 @@ exercises/bridge-01-promises.ts
    - อะไรคือ `Promise<string[]>`
    - อะไรคือ `string[]`
 
-## Expected Output
+## ผลลัพธ์ที่คาดหวัง
 
 ประมาณนี้:
 

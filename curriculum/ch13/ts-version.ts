@@ -1,4 +1,4 @@
-const userName: string = 'Knuxy92';
+const userName: string = 'Student';
 const userAge: number = 17;
 
 console.log(userName);

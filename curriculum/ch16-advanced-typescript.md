@@ -1,16 +1,16 @@
-# Chapter 16: TypeScript Advanced Patterns
+# บทที่ 16: pattern ขั้นสูงใน TypeScript
 
-## Recap
+## ทบทวน
 
-บทที่แล้วเราเรียน typed functions, generics, และ utility types
+บทที่แล้วเราเรียน function ที่มี type, generics, และ utility types
 
 บทนี้เราจะเริ่มเข้า patterns ที่สำคัญมากใน TypeScript:
 
 - narrowing
 - type guards
-- discriminated unions
+- discriminated union
 - `unknown` vs `any`
-- module mindset แบบเบื้องต้น
+- แนวคิดการแยก module แบบเบื้องต้น
 
 ## 1. Narrowing
 
@@ -30,7 +30,7 @@ printValue('hello');
 printValue(12.5);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 HELLO
@@ -50,7 +50,7 @@ console.log(isString('hello'));
 console.log(isString(123));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 true
@@ -59,10 +59,10 @@ false
 
 ## 3. `unknown` vs `any`
 
-- `any` = ปล่อยผ่าน almost ทุกอย่าง
+- `any` = ปล่อยผ่านได้เกือบทุกอย่าง
 - `unknown` = ยังไม่รู้ type จึงต้องเช็กก่อนใช้
 
-เราควร prefer `unknown` เพราะปลอดภัยกว่า
+เราควรเลือกใช้ `unknown` เพราะปลอดภัยกว่า
 
 ## 4. Discriminated Union
 
@@ -83,7 +83,7 @@ const printResult = (result: Result): void => {
 };
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -115,9 +115,9 @@ exercises/ch16-event-system.ts
 6. สร้างตัวแปร `handleEvent` ตาม type `EventHandler`
    - ให้มันเรียก `printEvent(event)`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
-- `Login: Knuxy92`
+- `Login: Student`
 - `Logout: 17`
 - `Error: Something went wrong`
 - `HELLO`

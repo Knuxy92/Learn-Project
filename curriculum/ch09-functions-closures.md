@@ -1,6 +1,6 @@
-# Chapter 9: More on Functions & Closures
+# บทที่ 9: ฟังก์ชันและ closure เพิ่มเติม
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราเรียน object, methods, destructuring, และ spread
 
@@ -20,7 +20,7 @@ numbers.forEach((number) => {
 });
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 1
@@ -44,7 +44,7 @@ runTask(() => {
 });
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Task finished
@@ -72,7 +72,7 @@ console.log(counter());
 console.log(counter());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 1
@@ -93,7 +93,7 @@ const addAll = (...numbers) => {
 console.log(addAll(10, 20, 30));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 60
@@ -115,13 +115,13 @@ const values = [5, 7];
 console.log(add(...values));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 12
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -146,7 +146,7 @@ exercises/ch09-create-counter.js
 4. สร้าง array `values = [10, 20, 30]`
    แล้วใช้ spread ส่งเข้า `sumAll`
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
 Count: 0
