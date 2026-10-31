@@ -1,20 +1,20 @@
-# เส้นทางการเรียน JS/TS
+# เส้นทางการเรียน JavaScript สู่ Backend
 
 ไฟล์นี้คือรางหลักสูตรหลักของโปรเจกต์นี้
 
 เป้าหมาย:
 
-- เรียน JavaScript ให้แน่นก่อน
-- ค่อยเข้า TypeScript
-- แล้วค่อยไป REST API
+- ปูพื้นฐาน JavaScript ให้กว้างและแน่นพอ
+- ต่อยอดเป็น backend ด้วย Express แบบง่าย ๆ
 - ไม่ใช้ concept ที่ยังไม่ได้สอน
+- จบด้วยงานท้ายที่เอาไปใช้ต่อได้จริง
 
 ---
 
 ## ตำแหน่งปัจจุบัน
 
-- ช่วงปัจจุบัน: `Phase 1 - JavaScript Fundamentals`
-- บทปัจจุบัน: `Chapter 1 - Setup & First Code`
+- ช่วงปัจจุบัน: `Phase 3 - Backend with Express`
+- บทปัจจุบัน: `Ch17 - พื้นฐาน Node.js และ Express`
 - โหมดปัจจุบัน: `structured restart`
 - จังหวะ: `medium-slow`
 
@@ -53,14 +53,24 @@
 | Ch10 | string และวันที่ | เสร็จแล้ว |
 | Ch11 | การจัดการ error | เสร็จแล้ว |
 | Ch12 | async ใน JavaScript | เสร็จแล้ว |
-| Ch13 | ติดตั้ง TypeScript และพื้นฐาน | เสร็จแล้ว |
-| Ch14 | เจาะลึก type ใน TypeScript | เสร็จแล้ว |
-| Ch15 | ฟังก์ชันและ generics ใน TypeScript | เสร็จแล้ว |
-| Ch16 | pattern ขั้นสูงใน TypeScript | เสร็จแล้ว |
+| Ch13 | module และการแยกไฟล์ | เสร็จแล้ว |
+| Ch14 | destructuring, spread และข้อมูลซ้อนกัน | เสร็จแล้ว |
+| Ch15 | Node.js built-in modules | เสร็จแล้ว |
+| Ch16 | JSON และการตรวจข้อมูล | เสร็จแล้ว |
 | Ch17 | พื้นฐาน Node.js และ Express | กำลังเรียน |
 | Ch18 | ออกแบบ REST API และ CRUD | ยังไม่เริ่ม |
 | Ch19 | middleware, validation และการจัดการ error | ยังไม่เริ่ม |
 | Ch20 | โครงสร้างโปรเจกต์และ mini project | ยังไม่เริ่ม |
+| Ch21 | เก็บข้อมูลด้วยไฟล์ JSON | ยังไม่เริ่ม |
+| Ch22 | ทดสอบ API ด้วย `node:test` | ยังไม่เริ่ม |
+| Ch23 | งานท้าย: Task API ที่ใช้งานได้จริง | ยังไม่เริ่ม |
+
+### ช่วงเชื่อม
+
+| ช่วงเชื่อม | หัวข้อ | สถานะ |
+|---|---|---|
+| Test Bridge 01 | พื้นฐาน assert | ยังไม่เริ่ม |
+| Test Bridge 02 | ทดสอบสถานะของ API | ยังไม่เริ่ม |
 
 ---
 

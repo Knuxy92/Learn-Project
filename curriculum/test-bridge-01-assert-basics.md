@@ -2,9 +2,9 @@
 
 ## ทำไมต้องมีช่วงเชื่อมนี้
 
-ก่อน test database หรือ API ต้องแม่นก่อนว่า test หนึ่งตัวเขียนยังไง และ assert แต่ละแบบใช้เช็กอะไร
+ก่อน test storage หรือ API ต้องแม่นก่อนว่า test หนึ่งตัวเขียนยังไง และ assert แต่ละแบบใช้เช็กอะไร
 
-บทนี้จะยังไม่ใช้ SQL และยังไม่เปิด server
+บทนี้จะยังไม่แตะไฟล์ storage และยังไม่เปิด server
 
 ## เป้าหมาย
 
@@ -19,7 +19,7 @@
 
 `test(...)` ใช้สร้าง test หนึ่งตัว
 
-```ts
+```js
 import { test } from "node:test";
 
 test("name of behavior", () => {
@@ -33,7 +33,7 @@ test("name of behavior", () => {
 
 ใช้เช็กค่าพื้นฐาน เช่น string, number, boolean
 
-```ts
+```js
 import assert from "node:assert/strict";
 
 assert.equal(1 + 1, 2);
@@ -46,7 +46,7 @@ assert.equal("task".toUpperCase(), "TASK");
 
 ใช้เช็ก array หรือ object
 
-```ts
+```js
 assert.deepEqual(["a", "b"], ["a", "b"]);
 
 assert.deepEqual(
@@ -61,8 +61,8 @@ assert.deepEqual(
 
 ใช้เช็กว่าเงื่อนไขเป็น truthy
 
-```ts
-const tasks = ["Study SQL"];
+```js
+const tasks = ["Study", "Review"];
 
 assert.ok(tasks.length > 0);
 assert.ok(Array.isArray(tasks));
@@ -72,13 +72,11 @@ assert.ok(Array.isArray(tasks));
 
 ## ตัวอย่าง
 
-```ts
+```js
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-const countDoneTasks = (tasks: { done: boolean }[]): number => {
-  return tasks.filter((task) => task.done).length;
-};
+const countDoneTasks = (tasks) => tasks.filter((task) => task.done).length;
 
 test("countDoneTasks should count only done tasks", () => {
   const result = countDoneTasks([
@@ -96,7 +94,7 @@ test("countDoneTasks should count only done tasks", () => {
 แก้ไฟล์:
 
 ```txt
-exercises/test-bridge-01-assert-basics.test.ts
+exercises/test-bridge-01-assert-basics.test.js
 ```
 
 ให้ทำตามนี้:
@@ -105,20 +103,12 @@ exercises/test-bridge-01-assert-basics.test.ts
    - `test` จาก `node:test`
    - `assert` จาก `node:assert/strict`
 
-2. สร้าง type:
+2. ใช้ fixture `tasks` ที่มีอยู่แล้วในไฟล์ เป็น array ของ object ที่มี `id`, `title`, `done`
 
-```ts
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
-```
-
-3. สร้าง function `countDoneTasks(tasks: Task[]): number`
+3. สร้าง function `countDoneTasks(tasks)`
    - คืนจำนวน task ที่ `done === true`
 
-4. สร้าง function `findTaskTitle(tasks: Task[], id: number): string | undefined`
+4. สร้าง function `findTaskTitle(tasks, id)`
    - ถ้าเจอ task ให้คืน `title`
    - ถ้าไม่เจอให้คืน `undefined`
 
@@ -138,7 +128,7 @@ type Task = {
 ใช้คำสั่ง:
 
 ```bash
-node --test -r ts-node/register exercises/test-bridge-01-assert-basics.test.ts
+node --test exercises/test-bridge-01-assert-basics.test.js
 ```
 
 ## ผลลัพธ์ที่คาดหวัง

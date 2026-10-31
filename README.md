@@ -1,22 +1,19 @@
-# โปรเจกต์เรียน JavaScript / TypeScript
+# โปรเจกต์เรียน JavaScript สู่ Backend
 
-โปรเจกต์นี้เป็นพื้นที่เรียน JavaScript -> TypeScript -> Backend API แบบเรียง prerequisite ให้ชัด
+โปรเจกต์นี้เป็นพื้นที่เรียน JavaScript ตั้งแต่พื้นฐานไปจนทำ Backend API ด้วย Express ได้จริง
 
-## เส้นทางการเรียนปัจจุบัน
+## เส้นทางการเรียน
 
-เริ่มตาม curriculum:
-
-1. พื้นฐาน JavaScript
-2. JavaScript ระดับกลาง
-3. TypeScript
-4. การสร้าง API
+1. JavaScript พื้นฐาน (Ch1-Ch12)
+2. JavaScript ขั้นกลางสำหรับงาน backend (Ch13-Ch16)
+3. Backend ด้วย Express (Ch17-Ch22)
+4. งานท้าย: Task API ที่ใช้งานได้จริง (Ch23)
 
 ไฟล์หลัก:
 
 - `CURRICULUM_TRACK.md` - เส้นทางและสถานะบททั้งหมด
 - `CHAPTER_STATUS.md` - เช็กลิสต์และสรุปรายบท
-- `curriculum/ch01-setup-first-code.md` - บทเรียนบทแรก
-- `exercises/ch01-first-code.js` - โจทย์บทแรก
+- `NEXT_BACKEND_PLAN.md` - แผนหลังจบหลักสูตรนี้
 
 ## เริ่มตรงนี้
 
@@ -52,7 +49,7 @@ node exercises/ch01-first-code.js
 
 ## สิ่งที่ต้องมี
 
-- Node.js 22 ขึ้นไป (โปรเจกต์ใช้ `node:sqlite` ซึ่งมากับ Node เอง)
+- Node.js 20 ขึ้นไป
 - pnpm สำหรับติดตั้ง dependency
 
 ```bash
@@ -70,7 +67,7 @@ pnpm test
 รัน test เฉพาะไฟล์:
 
 ```bash
-node --test -r ts-node/register exercises/test-bridge-01-assert-basics.test.ts
+node --test exercises/test-bridge-01-assert-basics.test.js
 ```
 
 ตรวจ lint:
@@ -86,4 +83,7 @@ curriculum/   บทเรียนและตัวอย่างโค้ด
 exercises/    โจทย์และ mini project
 ```
 
-โฟลเดอร์ `*-storage/` ใช้เก็บไฟล์ SQLite ที่สร้างตอนรัน ไม่ได้ track ใน git
+โปรเจกต์นี้เป็น ESM ทั้งหมด (`"type": "module"`) จึงใช้ `import` / `export`
+และต้องใส่นามสกุล `.js` ใน path ทุกครั้งที่ import ไฟล์เอง
+
+โฟลเดอร์ `storage/` ใช้เก็บไฟล์ JSON ที่สร้างตอนรัน ไม่ได้ track ใน git

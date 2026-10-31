@@ -31,7 +31,7 @@ middleware คือ function ที่รัน "ก่อน" หรือ "�
 
 รูปแบบพื้นฐาน:
 
-```ts
+```js
 const middleware = (req, res, next) => {
   console.log('Before route');
   next();
@@ -52,15 +52,15 @@ const middleware = (req, res, next) => {
 
 เราสามารถใช้เฉพาะ route บางตัวได้:
 
-```ts
-app.post('/tasks', validateTaskBody, (req, res) => {
+```js
+app.post('/tasks', validateCreateTask, (req, res) => {
   res.json({ ok: true });
 });
 ```
 
 ลำดับคือ:
 
-1. request เข้า `validateTaskBody`
+1. request เข้า `validateCreateTask`
 2. ถ้าผ่าน ค่อยไป route handler
 3. ถ้าไม่ผ่าน middleware สามารถตอบ error ได้เลย
 
@@ -76,8 +76,8 @@ app.post('/tasks', validateTaskBody, (req, res) => {
 
 ตัวอย่าง:
 
-```ts
-const validateTaskBody = (req, res, next) => {
+```js
+const validateCreateTask = (req, res, next) => {
   const { title, done } = req.body;
 
   if (typeof title !== 'string' || title.trim() === '') {
@@ -128,21 +128,15 @@ API ควรตอบ error shape ให้สม่ำเสมอ
 
 ## 6. ตัวอย่าง
 
-```ts
+```js
 import express from 'express';
-
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
 
 const app = express();
 app.use(express.json());
 
-const tasks: Task[] = [];
+const tasks = [];
 
-const validateTaskBody = (req, res, next) => {
+const validateCreateTask = (req, res, next) => {
   const { title, done } = req.body;
 
   if (typeof title !== 'string' || title.trim() === '') {
@@ -158,15 +152,15 @@ const validateTaskBody = (req, res, next) => {
   next();
 };
 
-app.post('/tasks', validateTaskBody, (req, res) => {
-  const newTask: Task = {
+app.post('/tasks', validateCreateTask, (req, res) => {
+  const newTask = {
     id: 1,
     title: req.body.title.trim(),
     done: req.body.done ?? false,
   };
 
   tasks.push(newTask);
-  res.json(newTask);
+  res.status(201).json(newTask);
 });
 ```
 
@@ -175,7 +169,7 @@ app.post('/tasks', validateTaskBody, (req, res) => {
 ให้แก้ไฟล์:
 
 ```txt
-exercises/ch19-task-validation.ts
+exercises/ch19-task-validation.js
 ```
 
 ให้ทำตามนี้:
@@ -204,6 +198,9 @@ exercises/ch19-task-validation.ts
 6. ใน `POST /tasks`
    - ใช้ `req.body.title.trim()`
    - ให้ `done` เป็น `false`
+   - คืน status `201` พร้อม task ที่สร้างใหม่
+
+   หมายเหตุ: `POST` ต้องคืน `201` (ไม่ใช่ `200`) เพื่อให้ status ตรงกับส่วนอื่นของโปรเจกต์ที่ใช้ `201` ตอนสร้างข้อมูลใหม่
 
 7. ใน `PUT /tasks/:id`
    - ถ้ามี `title` ให้ update ด้วย `req.body.title.trim()`

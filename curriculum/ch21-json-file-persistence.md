@@ -42,13 +42,13 @@ JSON file เป็น step กลางที่ดี เพราะ:
 
 ใน Node.js เราใช้ `fs/promises` เพื่ออ่านและเขียนไฟล์แบบ async ได้
 
-```ts
+```js
 import { readFile, writeFile } from 'node:fs/promises';
 ```
 
 ตัวอย่าง:
 
-```ts
+```js
 const raw = await readFile('tasks.json', 'utf-8');
 const tasks = JSON.parse(raw);
 
@@ -65,7 +65,7 @@ await writeFile('tasks.json', JSON.stringify(tasks, null, 2));
 2. parse ด้วย `JSON.parse(...)`
 3. ได้ array/object กลับมา
 
-```ts
+```js
 const raw = await readFile(filePath, 'utf-8');
 const tasks = JSON.parse(raw);
 ```
@@ -77,7 +77,7 @@ const tasks = JSON.parse(raw);
 1. แปลง object/array เป็น text ด้วย `JSON.stringify(...)`
 2. เขียนทับลงไฟล์
 
-```ts
+```js
 await writeFile(filePath, JSON.stringify(tasks, null, 2));
 ```
 
@@ -104,17 +104,28 @@ await writeFile(filePath, JSON.stringify(tasks, null, 2));
 
 ## 6. ตัวอย่าง
 
-```ts
-import { readFile, writeFile } from 'node:fs/promises';
+```js
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
-const filePath = './storage/tasks.json';
+const filePath =
+  process.env.TASKS_FILE_PATH ??
+  path.join(import.meta.dirname, '..', 'storage', 'tasks.json');
 
 const readTasks = async () => {
-  const raw = await readFile(filePath, 'utf-8');
-  return JSON.parse(raw);
+  try {
+    const raw = await readFile(filePath, 'utf-8');
+
+    return JSON.parse(raw);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+
+    throw error;
+  }
 };
 
-const writeTasks = async (tasks: unknown) => {
+const writeTasks = async (tasks) => {
+  await mkdir(path.dirname(filePath), { recursive: true });
   await writeFile(filePath, JSON.stringify(tasks, null, 2));
 };
 ```
@@ -142,13 +153,10 @@ exercises/ch21-persistent-task-api/
 
 ให้ทำตามนี้:
 
-1. ใน `types/task.ts`
-   - สร้าง `type Task`
-
-2. ใน `storage/tasks.json`
+1. ใน `storage/tasks.json`
    - ให้มี task เริ่มต้นอย่างน้อย 2 ตัว
 
-3. ใน `data/task-store.ts`
+2. ใน `data/task-store.js`
    - สร้างและ export functions:
      - `readTasks()`
      - `writeTasks(tasks)`
@@ -157,17 +165,17 @@ exercises/ch21-persistent-task-api/
      - `updateTask(id, updates)`
      - `deleteTask(id)`
 
-4. ใน `middleware/validate-task.ts`
+3. ใน `middleware/validate-task.js`
    - ย้าย validation จาก Ch20 มาใช้ต่อ
 
-5. ใน `routes/task-routes.ts`
+4. ใน `routes/task-routes.js`
    - เปลี่ยน CRUD routes ให้เรียกผ่าน storage functions แทนการแตะ array ตรง ๆ
 
-6. ใน `app.ts`
+5. ใน `app.js`
    - ใช้ `express.json()`
    - mount `taskRouter` ที่ `/tasks`
 
-7. ใน `server.ts`
+6. ใน `server.js`
    - เปิด server ที่ port `3000`
 
 ## พฤติกรรมที่คาดหวัง
@@ -185,7 +193,7 @@ exercises/ch21-persistent-task-api/
 
 เช่น:
 
-```ts
+```js
 taskRouter.get('/', async (req, res) => {
   const tasks = await readTasks();
   res.json(tasks);

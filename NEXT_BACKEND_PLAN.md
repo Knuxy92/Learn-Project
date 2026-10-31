@@ -1,9 +1,11 @@
-# แผน Backend ขั้นต่อไป
+# แผนการเรียนรู้ระยะต่อไป
 
 ## ตำแหน่งปัจจุบัน
 
-ตอนนี้ผ่านแล้ว:
+ตอนนี้เรียนครบแล้ว:
 
+- `Ch1-Ch12` JavaScript พื้นฐานถึง async
+- `Ch13-Ch16` JavaScript ขั้นกลางสำหรับงาน backend
 - `Ch17` พื้นฐาน Express
 - `Ch18` CRUD API
 - `Ch19` validation middleware
@@ -11,69 +13,51 @@
 - `Ch21` เก็บข้อมูลลง JSON file
 - `Ch22` ทดสอบ API ด้วย `node:test`
 
-## ทำไมตอนนี้ต้องมี bridge
+## เป้าหมายของหลักสูตรนี้
 
-ช่วง `Ch21-Ch22` มีคำถามจริงที่โผล่มาซ้ำ:
+หลักสูตรนี้ตั้งใจให้จบที่ "ทำ backend ด้วย Express ได้จริง" ไม่ใช่ลงลึกทุกเรื่อง
 
-- Promise คืออะไร
-- `await` รออะไรอยู่
-- ทำไม callback ต้อง wrap ก่อน
-- ทำไม `after()` ต้องรอ `server.close()`
+เป้าหมายมีสามข้อ:
 
-ดังนั้นเราไม่ควรกระโดดเข้า database ทันที
+1. เขียน JavaScript ได้คล่องพออ่านโค้ดคนอื่นรู้เรื่อง
+2. เข้าใจว่า request วิ่งจาก client ไปถึงข้อมูลยังไง
+3. ส่งงานชิ้นหนึ่งที่รันได้จริงและมี test
 
-## แผนระยะสั้น
+## ขั้นสุดท้าย
 
-1. `Bridge 01` - Promise และลำดับการทำงานของ async
-   - เข้าเพราะ async เริ่มเป็นแกนหลักแล้ว
-   - ออกเมื่อเข้าใจ promise/callback wrapping/cleanup flow
+`Ch23` - งานท้าย Task API
 
-2. `Ch23` - พื้นฐาน SQLite
-   - เรียน schema, table, row, SQL พื้นฐาน
+เป็นงานประกอบทุกอย่างที่เรียนมา:
 
-3. `Ch24` - Task API กับ SQLite
-   - ย้าย task API จาก JSON file ไป SQLite
+- แยกโครงสร้างไฟล์
+- เก็บข้อมูลลง JSON
+- ตรวจ input
+- จัดการ error
+- เขียน test
 
-4. `Ch25` - query layer และ refactor ชั้น database
-   - แยก query/data access ให้สะอาดเหมือน storage layer เดิม
+ทำเสร็จแล้วถือว่าจบหลักสูตรนี้
 
-5. `Ch26` - ทดสอบ API กับ database
-   - ปรับ test ให้ใช้ DB test data แยกจากของจริง
+## หลังจบหลักสูตรนี้แล้วไปต่ออะไรได้
 
-## สรุปจุดเข้าและจุดออก
+ถ้าอยากไปไกลกว่านี้ ลำดับที่แนะนำ:
 
-### จุดเข้า Bridge 01
+1. **Database จริง** - เริ่มจาก SQLite หรือ PostgreSQL แทนไฟล์ JSON
+   - เรียน schema, index, migration
+   - เปลี่ยน `task-store.js` ให้คุยกับ database แทนไฟล์
 
-เข้าเมื่อ:
+2. **Authentication** - login, token, session
+   - ต้องเข้าใจ middleware และ error handling ให้แน่นก่อน
 
-- เริ่มใช้ async จริงกับ file, fetch, server, test cleanup
-- ยังมีคำถามเรื่อง Promise ซ้ำอยู่
+3. **Deploy** - เอา API ขึ้น server จริง
+   - เรียน environment variable, log, process manager
 
-### จุดออก Bridge 01
+4. **TypeScript** - กลับมาเรียนเมื่อ JS แน่นแล้ว
+   - จะเข้าใจ type เร็วขึ้นมาก เพราะพื้นฐาน JS ครบ
 
-ออกเมื่อ:
+## ทำไมไม่เรียน SQL หรือ TypeScript ในหลักสูตรนี้
 
-- แยก `Promise<T>` กับ `T` ได้
-- อธิบาย `await` ได้
-- wrap callback API เป็น Promise ได้
-- อ่าน cleanup flow ได้
+เพราะสองเรื่องนี้ทำให้หลักสูตรยาวขึ้นเกือบเท่าตัว และไม่จำเป็นต่อเป้าหมาย "ทำ Express API ได้"
 
-### กลับเข้าสายหลัก
+ถ้าใส่ทั้งสองอย่างตอนนี้ จะได้อย่างละนิดแต่ไม่แน่นสักอย่าง
 
-กลับเข้าสายหลักที่:
-
-- `Ch23` - พื้นฐาน SQLite
-
-## ทำไมต้องเรียงแบบนี้
-
-ถ้าข้าม Promise bridge แล้วไป DB เลย:
-
-- async query flow จะงง
-- cleanup ของ DB tests จะงง
-- debugging จะช้ากว่าเดิม
-
-ถ้าเก็บ Promise ให้แน่นก่อน:
-
-- database จะง่ายขึ้น
-- testing จะนิ่งขึ้น
-- code review จะคุยกันด้วยหลักที่ชัดขึ้น
+เรียน JS ให้แน่นก่อน แล้วค่อยเพิ่มทีละชั้น จะไปได้ไกลกว่า

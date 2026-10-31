@@ -5,10 +5,9 @@ node_modules
 .env
 .env*.local
 
-# Generated SQLite databases
-*.db
-*.db-journal
-*.db-wal
+# Generated data files
+storage/*.json
+!storage/.gitkeep
 
 # Build output
 dist/

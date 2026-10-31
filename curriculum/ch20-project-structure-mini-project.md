@@ -29,7 +29,6 @@
 - routes
 - middleware
 - ข้อมูล
-- types
 
 เป้าหมายคือให้แต่ละไฟล์มีหน้าที่ชัด
 
@@ -38,27 +37,24 @@
 โครงแบบเล็กที่เหมาะกับตอนนี้:
 
 ```txt
-mini-task-api/
-  server.ts
-  app.ts
+ch20-mini-task-api/
+  server.js
+  app.js
   data/
-    tasks.ts
+    tasks.js
   middleware/
-    validate-task.ts
+    validate-task.js
   routes/
-    task-routes.ts
-  types/
-    task.ts
+    task-routes.js
 ```
 
 ความหมาย:
 
-- `server.ts` = เปิด port
-- `app.ts` = ประกอบ express app
-- `data/tasks.ts` = เก็บ array ข้อมูล
-- `middleware/validate-task.ts` = middleware สำหรับ validation
-- `routes/task-routes.ts` = รวม task routes
-- `types/task.ts` = type ของ Task
+- `server.js` = เปิด port
+- `app.js` = ประกอบ express app
+- `data/tasks.js` = เก็บ array ข้อมูล
+- `middleware/validate-task.js` = middleware สำหรับ validation
+- `routes/task-routes.js` = รวม task routes
 
 ## 3. Separation of Responsibility
 
@@ -66,7 +62,6 @@ mini-task-api/
 
 ตัวอย่างที่ควรแยก:
 
-- การประกาศ type
 - handler ของ route
 - middleware สำหรับ validation
 - แหล่งข้อมูลใน memory
@@ -77,26 +72,26 @@ mini-task-api/
 - หา bug ง่ายขึ้น
 - ย้ายไป database จริงทีหลังง่ายขึ้น
 
-## 4. `app.ts` vs `server.ts`
+## 4. `app.js` vs `server.js`
 
 แนวคิดนี้ใช้บ่อยมาก
 
-`app.ts`
+`app.js`
 - สร้าง express app
 - ใส่ middleware
 - ลงทะเบียน routes
 - export `app`
 
-`server.ts`
+`server.js`
 - import `app`
 - เรียก `app.listen(...)`
 
 ตัวอย่าง:
 
-```ts
-// app.ts
+```js
+// app.js
 import express from 'express';
-import { taskRouter } from './routes/task-routes';
+import { taskRouter } from './routes/task-routes.js';
 
 const app = express();
 app.use(express.json());
@@ -105,9 +100,9 @@ app.use('/tasks', taskRouter);
 export { app };
 ```
 
-```ts
-// server.ts
-import { app } from './app';
+```js
+// server.js
+import { app } from './app.js';
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
@@ -116,9 +111,9 @@ app.listen(3000, () => {
 
 ## 5. Router
 
-แทนที่จะเขียนทุก route ใน `app.ts` เราสามารถใช้ `express.Router()`
+แทนที่จะเขียนทุก route ใน `app.js` เราสามารถใช้ `express.Router()`
 
-```ts
+```js
 import express from 'express';
 
 const taskRouter = express.Router();
@@ -132,7 +127,7 @@ export { taskRouter };
 
 แล้วเอาไปต่อใน app:
 
-```ts
+```js
 app.use('/tasks', taskRouter);
 ```
 
@@ -170,34 +165,31 @@ exercises/ch20-mini-task-api/
 
 ให้ทำตามนี้:
 
-1. ใน `types/task.ts`
-   - สร้าง `type Task`
-
-2. ใน `data/tasks.ts`
+1. ใน `data/tasks.js`
    - สร้างและ export `tasks`
    - ให้มี task เริ่มต้นอย่างน้อย 2 ตัว
 
-3. ใน `middleware/validate-task.ts`
+2. ใน `middleware/validate-task.js`
    - สร้างและ export:
      - `validateCreateTask`
      - `validateUpdateTask`
 
-4. ใน `routes/task-routes.ts`
+3. ใน `routes/task-routes.js`
    - สร้าง `taskRouter`
    - ย้าย CRUD routes ของ task มาไว้ที่นี่
-   - ใช้ `tasks` จาก `data/tasks.ts`
-   - ใช้ middleware จาก `middleware/validate-task.ts`
+   - ใช้ `tasks` จาก `data/tasks.js`
+   - ใช้ middleware จาก `middleware/validate-task.js`
 
-5. ใน `app.ts`
+4. ใน `app.js`
    - สร้าง express app
    - ใช้ `express.json()`
    - mount route ด้วย:
 
-```ts
+```js
 app.use('/tasks', taskRouter);
 ```
 
-6. ใน `server.ts`
+5. ใน `server.js`
    - import `app`
    - เปิด server ที่ port `3000`
 

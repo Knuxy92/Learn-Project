@@ -42,11 +42,11 @@ Node.js มี test runner ในตัวชื่อ `node:test`
 
 ตัวอย่าง:
 
-```ts
-import test from "node:test";
-import assert from "node:assert/strict";
+```js
+import test from 'node:test';
+import assert from 'node:assert/strict';
 
-test("1 + 1 should equal 2", () => {
+test('1 + 1 should equal 2', () => {
   assert.equal(1 + 1, 2);
 });
 ```
@@ -68,14 +68,17 @@ node --test
 
 ตัวอย่าง:
 
-```ts
-const response = await fetch("http://localhost:3002/tasks");
+```js
+const server = app.listen(3001);
+const baseUrl = 'http://localhost:3001';
+
+const response = await fetch(`${baseUrl}/tasks`);
 const data = await response.json();
 ```
 
 แล้วค่อย assert:
 
-```ts
+```js
 assert.equal(response.status, 200);
 assert.ok(Array.isArray(data));
 ```
@@ -95,17 +98,21 @@ assert.ok(Array.isArray(data));
 
 แทนที่จะ hardcode path เดียว:
 
-```ts
-const filePath = "...";
+```js
+const filePath = '...';
 ```
 
 เราจะเปิดทางให้ใช้:
 
-```ts
+```js
+import path from 'node:path';
+
 const filePath =
   process.env.TASKS_FILE_PATH ??
-  path.join(__dirname, "../storage/tasks.json");
+  path.join(import.meta.dirname, '..', 'storage', 'tasks.json');
 ```
+
+`import.meta.dirname` คือโฟลเดอร์ของไฟล์ที่กำลังรันอยู่ ซึ่งใน ESM ใช้แทนตัวแปร global แบบเก่าได้เลย
 
 ข้อดีคือ:
 
@@ -116,27 +123,67 @@ const filePath =
 
 test ที่ดีควร:
 
-- เตรียมข้อมูลก่อนรัน
+- ตั้ง `process.env.TASKS_FILE_PATH` ก่อน import app
+- import app ด้วย dynamic import
 - เปิด server
+- ลบไฟล์ทดสอบก่อนทุก test
 - ยิง request
 - ตรวจสอบผลด้วย assert
-- ปิด server
-- restore ไฟล์ทดสอบกลับ
+- ปิด server ใน `after`
 
 ## 7. ตัวอย่าง
 
-```ts
-import test from "node:test";
-import assert from "node:assert/strict";
+```js
+import { after, beforeEach, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { rm } from 'node:fs/promises';
+import path from 'node:path';
 
-test("GET /tasks should return an array", async () => {
-  const response = await fetch("http://localhost:3002/tasks");
+const storagePath = path.join(import.meta.dirname, 'storage', 'test-tasks.json');
+process.env.TASKS_FILE_PATH = storagePath;
+
+const { app } = await import('../ch21-persistent-task-api/app.js');
+
+const server = app.listen(3001);
+const baseUrl = 'http://localhost:3001';
+
+beforeEach(async () => {
+  await rm(storagePath, { force: true });
+});
+
+after(async () => {
+  await rm(storagePath, { force: true });
+
+  await new Promise((resolve, reject) => {
+    server.close((error) => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+});
+
+test('GET /tasks should return 200 and an array', async () => {
+  const response = await fetch(`${baseUrl}/tasks`);
   const data = await response.json();
 
   assert.equal(response.status, 200);
   assert.ok(Array.isArray(data));
 });
 ```
+
+ทำไมต้องใช้ dynamic import:
+
+static `import` ถูก hoist ขึ้นไปทำงานก่อน statement อื่นทั้งหมดในไฟล์
+
+ถ้าเราเขียน `import { app } ...` ไว้บนสุด แล้วค่อยตั้ง `process.env.TASKS_FILE_PATH` ข้างล่าง app จะถูกโหลดก่อนที่ env จะถูกตั้ง
+
+ผลคือ `task-store.js` อ่าน path ตอน import และได้ค่า default ไปแล้ว
+
+`await import(...)` เป็น expression ที่ทำงานตามลำดับ จึงต้องวางไว้หลังบรรทัดที่ตั้ง env
+
+ส่วน `beforeEach` ที่ลบไฟล์ด้วย `rm(path, { force: true })` ทำให้ทุก test เริ่มจากข้อมูลว่าง
+
+`force: true` หมายความว่าถ้าไฟล์ยังไม่มีก็ไม่ต้อง error
 
 ## โจทย์ที่ต้องทำ
 
@@ -148,31 +195,33 @@ exercises/ch22-api-tests/
 
 ให้ทำตามนี้:
 
-1. ใน `fixtures/test-tasks.json`
-   - ใส่ task เริ่มต้นอย่างน้อย 2 ตัว
-
-2. ปรับ `exercises/ch21-persistent-task-api/data/task-store.ts`
+1. ปรับ `exercises/ch21-persistent-task-api/data/task-store.js`
    - ให้รองรับ `process.env.TASKS_FILE_PATH`
    - ถ้าไม่มี env นี้ ให้ fallback ไปไฟล์เดิม
+   - สร้าง path ด้วย `import.meta.dirname`
 
-3. ใน `api.test.ts`
+2. ใน `exercises/ch22-api-tests/api.test.js`
    - ใช้ `node:test`
    - ใช้ `node:assert/strict`
-   - import `app` จาก Ch21
+   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `storage/test-tasks.json` ก่อน import
+   - import `app` จาก Ch21 ด้วย `const { app } = await import('../ch21-persistent-task-api/app.js');`
 
-4. ก่อนรัน test
-   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `fixtures/test-tasks.json`
-   - backup ข้อมูลเดิมในไฟล์ test
+3. ใช้ `beforeEach` ลบไฟล์ `storage/test-tasks.json` ด้วย `rm(storagePath, { force: true })`
+   - เพื่อให้ทุก test เริ่มจากข้อมูลว่าง
 
-5. เขียน test อย่างน้อย 4 ตัว:
+4. เขียน test อย่างน้อย 4 ตัว:
    - `GET /tasks` ควรได้ `200` และเป็น array
    - `POST /tasks` ควรสร้าง task ใหม่ได้
    - `PUT /tasks/999` ควรได้ `404`
    - `DELETE /tasks/999` ควรได้ `404`
 
-6. หลังจบ test
-   - restore ไฟล์ `fixtures/test-tasks.json` กลับค่าเดิม
-   - ปิด server ที่เปิดใน test
+5. ใช้ `after` ปิด server ที่เปิดใน test
+
+รันด้วย:
+
+```bash
+node --test exercises/ch22-api-tests/api.test.js
+```
 
 ## ข้อควรระวัง
 

@@ -53,7 +53,7 @@ DELETE /tasks/:id
 
 `req.params` ใช้อ่านค่าจาก URL path
 
-```ts
+```js
 app.get('/tasks/:id', (req, res) => {
   console.log(req.params.id);
 });
@@ -69,7 +69,7 @@ app.get('/tasks/:id', (req, res) => {
 
 เพราะงั้นถ้าจะเอาไปเทียบกับเลข เรามักแปลงก่อน:
 
-```ts
+```js
 const taskId = Number(req.params.id);
 ```
 
@@ -79,13 +79,13 @@ const taskId = Number(req.params.id);
 
 แต่ก่อนใช้ ต้องเปิด middleware นี้ก่อน:
 
-```ts
+```js
 app.use(express.json());
 ```
 
 ตัวอย่าง:
 
-```ts
+```js
 app.post('/tasks', (req, res) => {
   console.log(req.body);
 });
@@ -103,16 +103,10 @@ app.post('/tasks', (req, res) => {
 
 ในบทนี้เรายังไม่ใช้ database
 
-เราจะเก็บข้อมูลไว้ใน array ชั่วคราวแบบนี้:
+เราจะเก็บข้อมูลไว้ใน array ชั่วคราว โดยแต่ละ task เป็น object ที่มี `id`, `title`, `done` แบบนี้:
 
-```ts
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
-
-const tasks: Task[] = [
+```js
+const tasks = [
   { id: 1, title: 'Learn Express', done: false },
   { id: 2, title: 'Build CRUD API', done: false },
 ];
@@ -125,19 +119,13 @@ const tasks: Task[] = [
 
 ## 6. ตัวอย่าง
 
-```ts
+```js
 import express from 'express';
-
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
 
 const app = express();
 app.use(express.json());
 
-const tasks: Task[] = [
+const tasks = [
   { id: 1, title: 'Learn Express', done: false },
   { id: 2, title: 'Build CRUD API', done: true },
 ];
@@ -164,21 +152,27 @@ app.get('/tasks/:id', (req, res) => {
 ให้แก้ไฟล์:
 
 ```txt
-exercises/ch18-task-api.ts
+exercises/ch18-task-api.js
 ```
 
 ให้ทำตามนี้:
 
-1. สร้าง `type Task`
-   - `id: number`
-   - `title: string`
-   - `done: boolean`
+1. กำหนด shape ของ task แต่ละตัวเป็น object ที่มี
+   - `id` เป็น number
+   - `title` เป็น string
+   - `done` เป็น boolean
+
+   ตัวอย่าง:
+
+```js
+const task = { id: 1, title: 'Learn Express', done: false };
+```
 
 2. สร้าง array `tasks` เริ่มต้นอย่างน้อย 2 งาน
 
 3. เปิดใช้:
 
-```ts
+```js
 app.use(express.json());
 ```
 
@@ -235,6 +229,10 @@ app.use(express.json());
 บทนี้ยังไม่เน้น validation ลึก
 
 ดังนั้นเรา "สมมุติ" ไปก่อนว่า body ที่ส่งมามี shape ถูกต้อง
+
+แต่ JavaScript ไม่มี type checker มาช่วยเตือนตอนรัน เลยต้องตรวจ `typeof` เองถ้าสงสัยว่าค่าที่ได้มาเป็นชนิดที่ต้องการจริง
+
+เช่น `req.body.title` อาจไม่ใช่ string ถ้า client ส่งมาแปลก ๆ
 
 เรื่องตรวจข้อมูลจริงจังจะไปอยู่ในบทถัดไป
 

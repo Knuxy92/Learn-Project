@@ -2,7 +2,7 @@
 
 ## ทบทวน
 
-ตอนนี้เราเรียนพื้นฐาน JavaScript และ TypeScript ครบแล้ว
+ตอนนี้เราเรียนพื้นฐาน JavaScript ครบแล้ว
 
 บทนี้เราจะเริ่มเข้า backend จริงด้วย Node.js และ Express
 
@@ -20,7 +20,7 @@ Express คือ framework ที่ช่วยให้สร้าง web se
 
 ## 3. Basic Server
 
-```ts
+```js
 import express from 'express';
 
 const app = express();
@@ -44,7 +44,7 @@ app.listen(3000, () => {
 ให้แก้ไฟล์:
 
 ```txt
-exercises/ch17-basic-server.ts
+exercises/ch17-basic-server.js
 ```
 
 ให้ทำตามนี้:

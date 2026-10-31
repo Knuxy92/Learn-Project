@@ -1,0 +1,213 @@
+# บทที่ 14: destructuring, spread และข้อมูลซ้อนกัน
+
+## ทบทวน
+
+บทที่แล้วเราแยกโค้ดเป็น module ด้วย `export` / `import`
+
+บทนี้เราจะเรียน syntax ที่เจอบ่อยมากในโค้ด backend สมัยใหม่
+
+## 1. Object destructuring
+
+Destructuring คือการดึงค่าออกจาก object หรือ array มาใส่ตัวแปรทีเดียว
+
+```js
+const task = { id: 1, title: 'Learn JS', done: false };
+
+const { id, title } = task;
+
+console.log(id);
+console.log(title);
+```
+
+ผลลัพธ์:
+
+```txt
+1
+Learn JS
+```
+
+เราใช้มันเพราะโค้ด backend มักได้ object กลับมา แล้วต้องการแค่บาง field
+
+## 2. เปลี่ยนชื่อตอน destructuring
+
+```js
+const task = { id: 1, title: 'Learn JS' };
+
+const { title: taskTitle } = task;
+
+console.log(taskTitle);
+```
+
+ผลลัพธ์:
+
+```txt
+Learn JS
+```
+
+## 3. ค่า default
+
+ถ้า field ไม่มีอยู่ จะได้ `undefined` แต่เราใส่ค่า default ได้
+
+```js
+const { done = false, owner = 'Student' } = { id: 1 };
+
+console.log(done);
+console.log(owner);
+```
+
+ผลลัพธ์:
+
+```txt
+false
+Student
+```
+
+## 4. Array destructuring
+
+```js
+const numbers = [10, 20, 30];
+
+const [first, second] = numbers;
+
+console.log(first);
+console.log(second);
+```
+
+ผลลัพธ์:
+
+```txt
+10
+20
+```
+
+## 5. Spread
+
+Spread (`...`) ใช้กระจายค่าออกมา ใช้บ่อยตอน copy object หรือรวม array
+
+```js
+const task = { id: 1, title: 'Learn JS', done: false };
+
+const updated = { ...task, done: true };
+
+console.log(updated);
+```
+
+ผลลัพธ์:
+
+```txt
+{ id: 1, title: 'Learn JS', done: true }
+```
+
+สังเกตว่า `task` เดิมไม่เปลี่ยน เพราะ spread สร้าง object ใหม่
+
+## 6. Rest
+
+Rest (`...`) เก็บค่าที่เหลือไว้ในตัวแปรเดียว
+
+```js
+const { id, ...rest } = { id: 1, title: 'Learn JS', done: false };
+
+console.log(id);
+console.log(rest);
+```
+
+ผลลัพธ์:
+
+```txt
+1
+{ title: 'Learn JS', done: false }
+```
+
+## 7. ข้อมูลซ้อนกัน
+
+ข้อมูลจาก API มักซ้อนหลายชั้น ต้องเข้าถึงให้ปลอดภัย
+
+```js
+const user = {
+  name: 'Student',
+  address: { city: 'Bangkok' },
+};
+
+console.log(user.address.city);
+console.log(user.contact?.email);
+```
+
+ผลลัพธ์:
+
+```txt
+Bangkok
+undefined
+```
+
+`?.` (optional chaining) คืน `undefined` แทนการ throw error เมื่อ field ก่อนหน้าไม่มี
+
+## 8. ตัวอย่าง: merge ค่าที่อัปเดต
+
+```js
+const applyUpdate = (task, updates) => ({ ...task, ...updates });
+
+const task = { id: 1, title: 'Learn JS', done: false };
+
+console.log(applyUpdate(task, { done: true }));
+console.log(applyUpdate(task, { title: 'Learn Node' }));
+console.log(task);
+```
+
+ผลลัพธ์:
+
+```txt
+{ id: 1, title: 'Learn JS', done: true }
+{ id: 1, title: 'Learn Node', done: false }
+{ id: 1, title: 'Learn JS', done: false }
+```
+
+## โจทย์ที่ต้องทำ
+
+สร้างไฟล์:
+
+```txt
+exercises/ch14-destructuring.js
+```
+
+ให้ทำตามนี้:
+
+1. สร้าง `task` ที่มี `id`, `title`, `done`, และ `meta: { priority, tags }`
+
+2. เขียน function `describeTask(task)`
+   - destructure `title` และ `done`
+   - destructure `priority` จาก `meta` พร้อมค่า default `'normal'`
+   - คืน string รูปแบบ `title - done|pending - priority`
+
+3. เขียน function `updateTask(task, updates)`
+   - ใช้ spread คืน object ใหม่ที่รวม `updates`
+   - ต้องไม่แก้ `task` เดิม
+
+4. เขียน function `splitTask(task)`
+   - ใช้ rest แยก `id` ออกมา
+   - คืน object `{ id, rest }`
+
+5. พิมพ์ผลลัพธ์ของทั้งสาม function
+
+ตัวอย่างผลลัพธ์:
+
+```txt
+Learn JS - pending - high
+{ id: 1, title: 'Learn JS', done: true, meta: { priority: 'high', tags: [ 'js' ] } }
+{ id: 1, rest: { title: 'Learn JS', done: false, meta: { priority: 'high', tags: [ 'js' ] } } }
+```
+
+## วิธีรัน
+
+```bash
+node exercises/ch14-destructuring.js
+```
+
+## ผลลัพธ์ที่คาดหวัง
+
+รันแล้วเห็นผลลัพธ์ครบสามบรรทัด และ `task` เดิมยังมี `done: false`
+
+เสร็จแล้วพิมพ์:
+
+```txt
+ตรวจ Ch14
+```
