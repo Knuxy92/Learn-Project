@@ -1,14 +1,14 @@
-# Chapter 3: Operators & Expressions
+# บทที่ 3: ตัวดำเนินการและนิพจน์
 
-## Recap
+## ทบทวน
 
-บทที่แล้วเราเรียนตัวแปรและ data types เช่น string, number, boolean, null และ undefined
+บทที่แล้วเราเรียนตัวแปรและชนิดข้อมูล (data type) เช่น ข้อความ (string), number, ค่าจริงเท็จ (boolean), null และ undefined
 
 บทนี้เราจะใช้ค่าพวกนั้นมาคำนวณและเปรียบเทียบ
 
-## 1. Arithmetic Operators
+## 1. ตัวดำเนินการคำนวณ
 
-Arithmetic operators คือเครื่องหมายคำนวณ เช่น บวก ลบ คูณ หาร
+ตัวดำเนินการคำนวณ (arithmetic operators) คือเครื่องหมายสำหรับคำนวณ เช่น บวก ลบ คูณ หาร
 
 เราต้องใช้มันเพราะโปรแกรมมักต้องคำนวณราคา คะแนน จำนวน หรือผลรวม
 
@@ -19,8 +19,7 @@ const quantity = 3;
 console.log(price * quantity);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 300
 ```
@@ -34,9 +33,9 @@ Output:
 - `%` เอาเศษ
 - `**` ยกกำลัง
 
-## 2. Assignment Operators
+## 2. ตัวดำเนินการกำหนดค่า
 
-Assignment operators คือเครื่องหมายที่ใช้เปลี่ยนค่าตัวแปร
+ตัวดำเนินการกำหนดค่า (assignment operators) คือเครื่องหมายที่ใช้เปลี่ยนค่าตัวแปร
 
 เราต้องใช้มันเมื่อค่ามีการอัปเดต เช่น เพิ่มคะแนน หรือลดจำนวนสินค้า
 
@@ -47,15 +46,14 @@ score += 5;
 console.log(score);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 15
 ```
 
-## 3. Comparison Operators
+## 3. ตัวดำเนินการเปรียบเทียบ
 
-Comparison operators คือเครื่องหมายเปรียบเทียบค่า
+ตัวดำเนินการเปรียบเทียบ (comparison operators) คือเครื่องหมายเปรียบเทียบค่า
 
 เราต้องใช้มันเพื่อให้โปรแกรมตัดสินใจได้ เช่น ราคามากกว่า 1000 ไหม
 
@@ -65,8 +63,7 @@ const age = 17;
 console.log(age >= 18);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 false
 ```
@@ -80,16 +77,15 @@ console.log(5 === '5');
 console.log(5 == '5');
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 false
 true
 ```
 
-## 4. Logical Operators
+## 4. ตัวดำเนินการตรรกะ
 
-Logical operators ใช้รวมเงื่อนไขหลายอัน
+ตัวดำเนินการตรรกะ (logical operators) ใช้รวมเงื่อนไขหลายอัน
 
 เราต้องใช้มันเมื่อการตัดสินใจมีมากกว่าหนึ่งเงื่อนไข
 
@@ -100,8 +96,7 @@ const hasTicket = true;
 console.log(age >= 18 && hasTicket);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 true
 ```
@@ -110,11 +105,11 @@ true
 
 - `&&` และ
 - `||` หรือ
-- `!` กลับค่า true/false
+- `!` กลับค่าจริงเท็จ
 
-## 5. Ternary Operator
+## 5. ตัวดำเนินการ ternary
 
-Ternary operator คือ if/else แบบสั้นที่คืนค่าออกมา
+ตัวดำเนินการ ternary คือ if/else แบบสั้นที่คืนค่าออกมา
 
 เราต้องใช้มันเมื่ออยากเลือกค่าหนึ่งจากเงื่อนไขง่าย ๆ
 
@@ -125,13 +120,12 @@ const label = age >= 18 ? 'adult' : 'minor';
 console.log(label);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 minor
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -141,10 +135,10 @@ exercises/ch03-price-calculator.js
 
 เป้าหมาย:
 
-1. คำนวณ subtotal จาก `itemPrice * quantity`
+1. คำนวณยอดรวมย่อย (subtotal) จาก `itemPrice * quantity`
 2. ถ้า `quantity > 10` ให้ได้ส่วนลด 10%
-3. คำนวณ final total
-4. ใช้ ternary สร้างข้อความว่าได้ส่วนลดหรือไม่
+3. คำนวณยอดรวมสุดท้าย (final total)
+4. ใช้ตัวดำเนินการ ternary สร้างข้อความว่าได้ส่วนลดหรือไม่
 
 เมื่อเสร็จแล้วพิมพ์:
 

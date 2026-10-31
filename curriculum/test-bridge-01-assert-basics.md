@@ -1,12 +1,12 @@
-# Test Bridge 01: Assert Basics
+# ช่วงเชื่อมทดสอบ 01: พื้นฐานการตรวจสอบ (assert)
 
-## Why This Bridge Exists
+## ทำไมต้องมีช่วงเชื่อมนี้
 
-ก่อน test database หรือ API ต้องแม่นก่อนว่า test หนึ่งตัวเขียนยังไง และ assert แต่ละแบบใช้เช็กอะไร
+ก่อนทดสอบที่เก็บข้อมูล (storage) หรือ API ต้องแม่นก่อนว่าการทดสอบ (test) หนึ่งตัวเขียนยังไง และการตรวจสอบแต่ละแบบใช้เช็กอะไร
 
-บทนี้จะยังไม่ใช้ SQL และยังไม่เปิด server
+บทนี้จะยังไม่แตะไฟล์ที่เก็บข้อมูล และยังไม่เปิดเซิร์ฟเวอร์ (server)
 
-## Goal
+## เป้าหมาย
 
 ฝึก 4 อย่าง:
 
@@ -17,9 +17,9 @@
 
 ## 1. `test(...)`
 
-`test(...)` ใช้สร้าง test case หนึ่งตัว
+`test(...)` ใช้สร้างการทดสอบหนึ่งตัว
 
-```ts
+```js
 import { test } from "node:test";
 
 test("name of behavior", () => {
@@ -27,13 +27,13 @@ test("name of behavior", () => {
 });
 ```
 
-สรุป: test หนึ่งตัวควรเช็ก behavior หนึ่งเรื่องให้ชัด
+สรุป: การทดสอบหนึ่งตัวควรเช็กพฤติกรรม (behavior) หนึ่งเรื่องให้ชัด
 
 ## 2. `assert.equal(...)`
 
-ใช้เช็กค่าพื้นฐาน เช่น string, number, boolean
+ใช้เช็กค่าพื้นฐาน เช่น ข้อความ (string), number, ค่าจริงเท็จ (boolean)
 
-```ts
+```js
 import assert from "node:assert/strict";
 
 assert.equal(1 + 1, 2);
@@ -44,9 +44,9 @@ assert.equal("task".toUpperCase(), "TASK");
 
 ## 3. `assert.deepEqual(...)`
 
-ใช้เช็ก array หรือ object
+ใช้เช็ก array หรือออบเจ็กต์ (object)
 
-```ts
+```js
 assert.deepEqual(["a", "b"], ["a", "b"]);
 
 assert.deepEqual(
@@ -59,10 +59,10 @@ assert.deepEqual(
 
 ## 4. `assert.ok(...)`
 
-ใช้เช็กว่าเงื่อนไขเป็น truthy
+ใช้เช็กว่าเงื่อนไขเป็นค่าจริง (truthy)
 
-```ts
-const tasks = ["Study SQL"];
+```js
+const tasks = ["Study", "Review"];
 
 assert.ok(tasks.length > 0);
 assert.ok(Array.isArray(tasks));
@@ -70,15 +70,13 @@ assert.ok(Array.isArray(tasks));
 
 สรุป: ใช้เมื่ออยากเช็กเงื่อนไข
 
-## Example
+## ตัวอย่าง
 
-```ts
+```js
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-const countDoneTasks = (tasks: { done: boolean }[]): number => {
-  return tasks.filter((task) => task.done).length;
-};
+const countDoneTasks = (tasks) => tasks.filter((task) => task.done).length;
 
 test("countDoneTasks should count only done tasks", () => {
   const result = countDoneTasks([
@@ -96,54 +94,46 @@ test("countDoneTasks should count only done tasks", () => {
 แก้ไฟล์:
 
 ```txt
-exercises/test-bridge-01-assert-basics.test.ts
+exercises/test-bridge-01-assert-basics.test.js
 ```
 
 ให้ทำตามนี้:
 
-1. import:
+1. นำเข้า (import):
    - `test` จาก `node:test`
    - `assert` จาก `node:assert/strict`
 
-2. สร้าง type:
+2. ใช้ชุดข้อมูลตัวอย่าง (fixture) `tasks` ที่มีอยู่แล้วในไฟล์ เป็น array ของออบเจ็กต์ที่มี `id`, `title`, `done`
 
-```ts
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
-```
+3. สร้างฟังก์ชัน (function) `countDoneTasks(tasks)`
+   - คืนจำนวนงาน (task) ที่ `done === true`
 
-3. สร้าง function `countDoneTasks(tasks: Task[]): number`
-   - return จำนวน task ที่ `done === true`
+4. สร้างฟังก์ชัน `findTaskTitle(tasks, id)`
+   - ถ้าเจองานให้คืน `title`
+   - ถ้าไม่เจอให้คืน `undefined`
 
-4. สร้าง function `findTaskTitle(tasks: Task[], id: number): string | undefined`
-   - ถ้าเจอ task ให้ return `title`
-   - ถ้าไม่เจอให้ return `undefined`
-
-5. เขียน test 4 ตัว:
-   - `countDoneTasks` ควรนับเฉพาะ task ที่ done
+5. เขียนการทดสอบ 4 ตัว:
+   - `countDoneTasks` ควรนับเฉพาะงานที่ done
    - `findTaskTitle` ควรคืน title เมื่อเจอ id
    - `findTaskTitle` ควรคืน `undefined` เมื่อไม่เจอ id
-   - tasks fixture ควรเป็น array และมีอย่างน้อย 1 item
+   - ชุดข้อมูลตัวอย่าง tasks ควรเป็น array และมีอย่างน้อย 1 รายการ
 
-6. ใช้ assert ให้ตรงสถานการณ์:
-   - ใช้ `assert.equal(...)` กับ number/string/undefined
+6. ใช้การตรวจสอบให้ตรงสถานการณ์:
+   - ใช้ `assert.equal(...)` กับ number/ข้อความ/undefined
    - ใช้ `assert.ok(...)` กับเงื่อนไข
-   - ใช้ `assert.deepEqual(...)` อย่างน้อย 1 ครั้งกับ object หรือ array
+   - ใช้ `assert.deepEqual(...)` อย่างน้อย 1 ครั้งกับออบเจ็กต์หรือ array
 
-## Run
+## วิธีรัน
 
 ใช้คำสั่ง:
 
 ```bash
-cmd /c node --test -r ts-node/register exercises/test-bridge-01-assert-basics.test.ts
+node --test exercises/test-bridge-01-assert-basics.test.js
 ```
 
-## Expected Outcome
+## ผลลัพธ์ที่คาดหวัง
 
-เมื่อรัน test แล้วควรผ่านทุกตัว
+เมื่อรันการทดสอบแล้วควรผ่านทุกตัว
 
 เสร็จแล้วพิมพ์:
 

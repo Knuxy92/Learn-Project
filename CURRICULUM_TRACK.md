@@ -1,73 +1,83 @@
-# JS/TS Curriculum Track
+# เส้นทางการเรียน JavaScript สู่ฝั่งเซิร์ฟเวอร์ (backend)
 
-ไฟล์นี้คือรางหลักสูตรหลักของโปรเจกต์นี้
+ไฟล์นี้เป็นโครงหลักของหลักสูตรโปรเจกต์นี้
 
 เป้าหมาย:
 
-- เรียน JavaScript ให้แน่นก่อน
-- ค่อยเข้า TypeScript
-- แล้วค่อยไป REST API
-- ไม่ใช้ concept ที่ยังไม่ได้สอน
+- ปูพื้นฐาน JavaScript ให้กว้างและแน่นพอ
+- ต่อยอดเป็นงานฝั่งเซิร์ฟเวอร์ด้วย Express แบบง่าย ๆ
+- ไม่ใช้แนวคิด (concept) ที่ยังไม่ได้สอน
+- จบด้วยงานท้ายที่เอาไปใช้ต่อได้จริง
 
 ---
 
-## Current Position
+## ตำแหน่งปัจจุบัน
 
-- Current phase: `Phase 1 - JavaScript Fundamentals`
-- Current chapter: `Chapter 1 - Setup & First Code`
-- Current mode: `structured restart`
-- Pace: `medium-slow`
-
----
-
-## Teaching Rules
-
-- One new concept per example.
-- Every new concept gets:
-  - what it is
-  - why it matters
-  - short code example
-  - output
-- Exercises progress from guided to semi-guided to open.
-- When stuck:
-  - first ask: hint
-  - second ask: partial answer
-  - third ask: full answer
-- Review feedback max 3 main points.
+- ช่วงปัจจุบัน: `Phase 3 - Backend with Express`
+- บทปัจจุบัน: `Ch17 - พื้นฐาน Node.js และ Express`
+- โหมดปัจจุบัน: `structured restart`
+- จังหวะ: `medium-slow`
 
 ---
 
-## Chapter Status
+## กติกาการสอน
 
-| Chapter | Topic | Status |
+- หนึ่งแนวคิดใหม่ต่อหนึ่งตัวอย่าง
+- ทุกแนวคิดใหม่ต้องมี:
+  - มันคืออะไร
+  - ทำไมสำคัญ
+  - ตัวอย่างโค้ด (code) สั้น ๆ
+  - ผลลัพธ์
+- โจทย์ไล่จากแบบมีคนนำ ไปกึ่งนำ ไปจนเปิดอิสระ
+- ตอนติด:
+  - ถามครั้งแรก: คำใบ้ (hint)
+  - ถามครั้งที่สอง: คำตอบบางส่วน
+  - ถามครั้งที่สาม: คำตอบเต็ม
+- ข้อเสนอแนะ (feedback) ตอนทบทวนไม่เกิน 3 ประเด็นหลัก
+
+---
+
+## สถานะบท
+
+| บท | หัวข้อ | สถานะ |
 |---|---|---|
-| Ch1 | Setup & First Code | Completed |
-| Ch2 | Variables & Data Types | Completed |
-| Ch3 | Operators & Expressions | Completed |
-| Ch4 | Control Flow | Completed |
-| Ch5 | Functions | Completed |
-| Ch6 | Arrays | Completed |
-| Ch7 | Array Higher-Order Methods | Completed |
-| Ch8 | Objects | Completed |
-| Ch9 | Functions & Closures | Completed |
-| Ch10 | Strings & Dates | Completed |
-| Ch11 | Error Handling | Completed |
-| Ch12 | Async JavaScript | Completed |
-| Ch13 | TypeScript Setup & Basics | Completed |
-| Ch14 | TypeScript Types Deep Dive | Completed |
-| Ch15 | TypeScript Functions & Generics | Completed |
-| Ch16 | TypeScript Advanced Patterns | Completed |
-| Ch17 | Node.js & Express Basics | Active |
-| Ch18 | REST API Design & CRUD | Not started |
-| Ch19 | Middleware, Validation & Error Handling | Not started |
-| Ch20 | Project Structure & Mini Project | Not started |
+| Ch1 | ติดตั้งและโค้ดแรก | เสร็จแล้ว |
+| Ch2 | ตัวแปรและชนิดข้อมูล | เสร็จแล้ว |
+| Ch3 | ตัวดำเนินการและนิพจน์ | เสร็จแล้ว |
+| Ch4 | การควบคุมทิศทาง | เสร็จแล้ว |
+| Ch5 | ฟังก์ชัน | เสร็จแล้ว |
+| Ch6 | array | เสร็จแล้ว |
+| Ch7 | เมธอดขั้นสูงของ array | เสร็จแล้ว |
+| Ch8 | ออบเจ็กต์ (object) | เสร็จแล้ว |
+| Ch9 | ฟังก์ชันและคลอเชอร์ (closure) | เสร็จแล้ว |
+| Ch10 | ข้อความ (string) และวันที่ | เสร็จแล้ว |
+| Ch11 | การจัดการข้อผิดพลาด (error) | เสร็จแล้ว |
+| Ch12 | อะซิงค์ (async) ใน JavaScript | เสร็จแล้ว |
+| Ch13 | โมดูล (module) และการแยกไฟล์ | เสร็จแล้ว |
+| Ch14 | การแยกค่าออกจากโครงสร้าง (destructuring), การกระจายค่า (spread) และข้อมูลซ้อนกัน | เสร็จแล้ว |
+| Ch15 | โมดูลที่ Node.js มีมาให้ | เสร็จแล้ว |
+| Ch16 | JSON และการตรวจข้อมูล | เสร็จแล้ว |
+| Ch17 | พื้นฐาน Node.js และ Express | กำลังเรียน |
+| Ch18 | ออกแบบ REST API และ CRUD | ยังไม่เริ่ม |
+| Ch19 | ตัวกลาง (middleware), การตรวจสอบ (validation) และการจัดการข้อผิดพลาด | ยังไม่เริ่ม |
+| Ch20 | โครงสร้างโปรเจกต์และงานขนาดเล็ก | ยังไม่เริ่ม |
+| Ch21 | เก็บข้อมูลด้วยไฟล์ JSON | ยังไม่เริ่ม |
+| Ch22 | ทดสอบ API ด้วย `node:test` | ยังไม่เริ่ม |
+| Ch23 | งานท้าย: Task API ที่ใช้งานได้จริง | ยังไม่เริ่ม |
+
+### ช่วงเชื่อม
+
+| ช่วงเชื่อม | หัวข้อ | สถานะ |
+|---|---|---|
+| Test Bridge 01 | พื้นฐานการตรวจสอบ (assert) | ยังไม่เริ่ม |
+| Test Bridge 02 | ทดสอบสถานะของ API | ยังไม่เริ่ม |
 
 ---
 
-## Rule
+## กติกา
 
-Before creating a new lesson, check:
+ก่อนสร้างบทใหม่ ให้ตรวจสอบว่า:
 
-1. Does this chapter use any concept from a later chapter?
-2. If yes, teach the prerequisite first.
-3. If no, create the lesson.
+1. บทนี้ใช้แนวคิดจากบทหลังหรือไม่
+2. ถ้าใช่ ให้สอนพื้นฐานที่ต้องมีก่อน (prerequisite)
+3. ถ้าไม่ ให้สร้างบทได้เลย

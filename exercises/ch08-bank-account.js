@@ -1,5 +1,5 @@
 const bankAccount = {
-  owner: "Knuxy92",
+  owner: "Student",
   balance: 1000,
   currency: "THB",
 };

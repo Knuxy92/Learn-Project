@@ -1,19 +1,19 @@
-# Chapter 10: Working with Strings & Dates
+# บทที่ 10: การใช้งาน string และวันที่
 
-## Recap
+## ทบทวน
 
-บทที่แล้วเราเรียน callback, closure, rest, และ spread ใน function calls
+บทที่แล้วเราเรียนฟังก์ชันตอบกลับ (callback), คลอเชอร์ (closure), พารามิเตอร์ที่เก็บค่าที่เหลือ (rest) และการกระจายค่า (spread) ในตอนเรียกฟังก์ชัน
 
 บทนี้เราจะใช้สิ่งที่พบเจอบ่อยมากในโปรแกรมจริง:
 
-- string methods
-- template literals
-- regex basics
-- Date basics
+- เมธอดของข้อความ (string method)
+- การใช้แม่แบบข้อความ (template literal)
+- พื้นฐานนิพจน์ปกติ (regex)
+- พื้นฐานวันที่ (Date)
 
 ## 1. String Methods
 
-String methods คือเครื่องมือที่ใช้จัดการข้อความ
+เมธอดของข้อความ คือเครื่องมือที่ใช้จัดการข้อความ
 
 เราต้องใช้มันเพราะข้อมูลจากผู้ใช้มักมาเป็นข้อความ เช่น ชื่อ อีเมล รหัสผ่าน หรือคำค้นหา
 
@@ -24,7 +24,7 @@ console.log(userName.trim());
 console.log(userName.toUpperCase());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 knuxy92
@@ -33,28 +33,28 @@ knuxy92
 
 ## 2. Template Literals
 
-Template literal คือการใส่ตัวแปรลงในข้อความด้วย backticks
+แม่แบบข้อความ คือการใส่ตัวแปรลงในข้อความด้วยเครื่องหมายแบ็กทิก (backtick)
 
-เราต้องใช้มันเพราะมันอ่านง่ายกว่าการต่อ string ยาว ๆ
+เราต้องใช้มันเพราะมันอ่านง่ายกว่าการต่อข้อความยาว ๆ
 
 ```js
-const firstName = 'Knuxy';
+const firstName = 'Student';
 const lastName = 'Dev';
 
 console.log(`${firstName} ${lastName}`);
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
-Knuxy Dev
+Student Dev
 ```
 
 ## 3. Regex Basics
 
-Regex คือ pattern สำหรับเช็กว่าข้อความตรงรูปแบบที่ต้องการไหม
+นิพจน์ปกติ คือรูปแบบสำหรับเช็กว่าข้อความตรงตามที่ต้องการไหม
 
-เราต้องใช้มันเพราะการ validate ข้อความ เช่น อีเมลหรือรหัสผ่าน มักต้องใช้ pattern
+เราต้องใช้มันเพราะการตรวจสอบข้อความ เช่น อีเมลหรือรหัสผ่าน มักต้องใช้รูปแบบ
 
 ```js
 const email = 'test@example.com';
@@ -63,7 +63,7 @@ const emailPattern = /@/;
 console.log(emailPattern.test(email));
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 true
@@ -71,7 +71,7 @@ true
 
 ## 4. Date Basics
 
-`Date` คือ object ที่ใช้เก็บวันและเวลา
+`Date` คือออบเจ็กต์ (object) ที่ใช้เก็บวันและเวลา
 
 เราต้องใช้มันเพราะข้อมูลจริงมักมีวันที่ เช่น createdAt หรือ updatedAt
 
@@ -81,13 +81,13 @@ const today = new Date();
 console.log(today.toISOString());
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 2026-04-26T...
 ```
 
-## 5. Guided Exercise
+## 5. โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -95,36 +95,36 @@ Output:
 exercises/ch10-string-validator.js
 ```
 
-ให้ทำ function ต่อไปนี้:
+ให้ทำฟังก์ชันต่อไปนี้:
 
 1. `formatUserName(userName)`
    - ใช้ `.trim()`
    - ใช้ `.toUpperCase()`
 
 2. `isValidEmail(email)`
-   - ใช้ regex แบบง่าย
+   - ใช้นิพจน์ปกติแบบง่าย
    - แค่เช็กว่ามี `@` และ `.`
 
 3. `getPasswordStrength(password)`
-   - ถ้า length < 8 ให้คืน `'weak'`
-   - ถ้า length >= 8 ให้คืน `'strong'`
+   - ถ้าความยาวน้อยกว่า 8 ให้คืน `'weak'`
+   - ถ้าความยาวตั้งแต่ 8 ขึ้นไป ให้คืน `'strong'`
 
 4. `formatWelcomeMessage(firstName, lastName)`
-   - ใช้ template literal
-   - คืนข้อความ `Welcome Knuxy Dev`
+   - ใช้แม่แบบข้อความ
+   - คืนข้อความ `Welcome Student Dev`
 
 5. `formatToday()`
    - สร้าง `new Date()`
    - คืนค่าจาก `.toLocaleDateString()`
 
-Expected output ไม่ต้องตรงวันที่เป๊ะ
+ผลลัพธ์ที่คาดหวัง ไม่ต้องตรงวันที่เป๊ะ
 แต่ต้องมีครบว่า:
 
-- format username ได้
-- email ผ่าน/ไม่ผ่านได้
-- password strength ทำงานได้
-- welcome message ถูก
-- date ถูกแสดงออกมา
+- จัดรูปแบบชื่อผู้ใช้ได้
+- อีเมลผ่านหรือไม่ผ่านได้
+- ความแข็งแรงของรหัสผ่านทำงานได้
+- ข้อความต้อนรับถูกต้อง
+- วันที่ถูกแสดงออกมา
 
 เมื่อเสร็จแล้วพิมพ์:
 

@@ -1,37 +1,37 @@
-# Chapter 19: Middleware, Validation & Error Handling
+# บทที่ 19: ตัวกลาง การตรวจสอบ และการจัดการข้อผิดพลาด
 
-## Recap
+## ทบทวน
 
 บทที่แล้วเราใช้ Express ทำ CRUD API กับข้อมูลใน array ได้แล้ว
 
-ตอนนี้ปัญหาคือ API ของเรายัง "เชื่อ" request มากเกินไป
+ตอนนี้ปัญหาคือ API ของเรายัง "เชื่อ" คำขอ (request) มากเกินไป
 
 ตัวอย่างเช่น:
 
-- client อาจไม่ส่ง `title`
-- client อาจส่ง `title` เป็นเลข
-- client อาจส่ง `done` เป็น string แทน boolean
+- ฝั่งผู้เรียก (client) อาจไม่ส่ง `title`
+- ฝั่งผู้เรียกอาจส่ง `title` เป็นเลข
+- ฝั่งผู้เรียกอาจส่ง `done` เป็นข้อความ (string) แทนค่าจริงเท็จ (boolean)
 
 ดังนั้นบทนี้จะเพิ่ม 3 อย่าง:
 
-- middleware
-- validation เบื้องต้น
-- error handling ที่สม่ำเสมอขึ้น
+- ตัวกลาง (middleware)
+- การตรวจสอบ (validation) เบื้องต้น
+- การจัดการข้อผิดพลาด (error handling) ที่สม่ำเสมอขึ้น
 
-## 1. Middleware คืออะไร
+## 1. ตัวกลางคืออะไร
 
-middleware คือ function ที่รัน "ก่อน" หรือ "ระหว่าง" route handler
+ตัวกลางคือฟังก์ชัน (function) ที่รัน "ก่อน" หรือ "ระหว่าง" ตัวจัดการเส้นทาง (route handler)
 
 มันมักใช้ทำงานแบบนี้:
 
-- parse body
-- log request
-- ตรวจ auth
-- validate input
+- แปลงเนื้อหาคำขอ (body)
+- บันทึกเหตุการณ์ (log) ของคำขอ
+- ตรวจการยืนยันตัวตน (auth)
+- ตรวจสอบข้อมูลที่รับเข้ามา (input)
 
 รูปแบบพื้นฐาน:
 
-```ts
+```js
 const middleware = (req, res, next) => {
   console.log('Before route');
   next();
@@ -40,44 +40,44 @@ const middleware = (req, res, next) => {
 
 ถ้าเรียก `next()`:
 
-- request จะไหลต่อไป middleware/route ถัดไป
+- คำขอจะไหลต่อไปยังตัวกลางหรือเส้นทางถัดไป
 
 ถ้าไม่เรียก `next()`:
 
-- request จะหยุดตรงนั้น
+- คำขอจะหยุดตรงนั้น
 
-## 2. Route-Level Middleware
+## 2. ตัวกลางระดับเส้นทาง
 
-เราไม่จำเป็นต้องใช้ middleware ทั้งแอปเสมอไป
+เราไม่จำเป็นต้องใช้ตัวกลางกับทั้งแอปเสมอไป
 
-เราสามารถใช้เฉพาะ route บางตัวได้:
+เราใช้เฉพาะเส้นทางบางตัวได้:
 
-```ts
-app.post('/tasks', validateTaskBody, (req, res) => {
+```js
+app.post('/tasks', validateCreateTask, (req, res) => {
   res.json({ ok: true });
 });
 ```
 
 ลำดับคือ:
 
-1. request เข้า `validateTaskBody`
-2. ถ้าผ่าน ค่อยไป route handler
-3. ถ้าไม่ผ่าน middleware สามารถตอบ error ได้เลย
+1. คำขอเข้า `validateCreateTask`
+2. ถ้าผ่าน ค่อยไปตัวจัดการเส้นทาง
+3. ถ้าไม่ผ่าน ตัวกลางตอบข้อผิดพลาดได้เลย
 
-## 3. Validation เบื้องต้น
+## 3. การตรวจสอบเบื้องต้น
 
-ในบทนี้เราจะยังไม่ใช้ library ภายนอก
+ในบทนี้เราจะยังไม่ใช้ไลบรารีภายนอก
 
-เราจะเช็กแบบง่ายก่อนว่า:
+เราจะตรวจแบบง่ายก่อนว่า:
 
-- `title` ต้องเป็น string
+- `title` ต้องเป็นข้อความ
 - `title` ต้องไม่ว่าง
-- `done` ถ้ามี ต้องเป็น boolean
+- `done` ถ้ามี ต้องเป็นค่าจริงเท็จ
 
 ตัวอย่าง:
 
-```ts
-const validateTaskBody = (req, res, next) => {
+```js
+const validateCreateTask = (req, res, next) => {
   const { title, done } = req.body;
 
   if (typeof title !== 'string' || title.trim() === '') {
@@ -94,19 +94,19 @@ const validateTaskBody = (req, res, next) => {
 };
 ```
 
-## 4. Why This Matters
+## 4. ทำไมเรื่องนี้สำคัญ
 
-ถ้าไม่ validate:
+ถ้าไม่ตรวจสอบ:
 
-- data ใน array จะ shape เพี้ยน
-- route อื่นจะเริ่มพังตาม
-- bug จะย้ายจาก "รับ input" ไป "logic ส่วนอื่น"
+- ข้อมูลใน array จะมีรูปร่างเพี้ยน
+- เส้นทางอื่นจะเริ่มพังตาม
+- ข้อบกพร่อง (bug) จะย้ายจาก "การรับข้อมูล" ไป "ตรรกะส่วนอื่น"
 
-validation ที่ดีคือกันปัญหาตั้งแต่หน้าประตู
+การตรวจสอบที่ดีคือการกันปัญหาตั้งแต่หน้าประตู
 
-## 5. Error Response Shape
+## 5. รูปร่างคำตอบข้อผิดพลาด
 
-API ควรตอบ error shape ให้สม่ำเสมอ
+API ควรตอบข้อผิดพลาดด้วยรูปร่างที่สม่ำเสมอ
 
 เช่น:
 
@@ -122,27 +122,21 @@ API ควรตอบ error shape ให้สม่ำเสมอ
 
 ข้อดีคือ:
 
-- ฝั่ง frontend เดาได้ง่าย
-- debug ง่าย
-- API อ่านพฤติกรรมได้ชัด
+- ฝั่งหน้าจอ (frontend) เดาได้ง่าย
+- หาสาเหตุข้อผิดพลาดได้ง่าย
+- อ่านพฤติกรรม (behavior) ของ API ได้ชัด
 
-## 6. Example
+## 6. ตัวอย่าง
 
-```ts
+```js
 import express from 'express';
-
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-};
 
 const app = express();
 app.use(express.json());
 
-const tasks: Task[] = [];
+const tasks = [];
 
-const validateTaskBody = (req, res, next) => {
+const validateCreateTask = (req, res, next) => {
   const { title, done } = req.body;
 
   if (typeof title !== 'string' || title.trim() === '') {
@@ -158,79 +152,82 @@ const validateTaskBody = (req, res, next) => {
   next();
 };
 
-app.post('/tasks', validateTaskBody, (req, res) => {
-  const newTask: Task = {
+app.post('/tasks', validateCreateTask, (req, res) => {
+  const newTask = {
     id: 1,
     title: req.body.title.trim(),
     done: req.body.done ?? false,
   };
 
   tasks.push(newTask);
-  res.json(newTask);
+  res.status(201).json(newTask);
 });
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
 ```txt
-exercises/ch19-task-validation.ts
+exercises/ch19-task-validation.js
 ```
 
 ให้ทำตามนี้:
 
 1. คัดลอก API จาก Ch18 มาเป็นฐาน
 
-2. สร้าง middleware `validateCreateTask`
+2. สร้างตัวกลาง `validateCreateTask`
    - ใช้กับ `POST /tasks`
-   - ถ้า `title` ไม่เป็น string หรือเป็น string ว่าง
+   - ถ้า `title` ไม่เป็นข้อความ หรือเป็นข้อความว่าง
      - คืน `400`
      - คืน `{ message: 'Title is required' }`
 
-3. สร้าง middleware `validateUpdateTask`
+3. สร้างตัวกลาง `validateUpdateTask`
    - ใช้กับ `PUT /tasks/:id`
-   - ถ้ามี `title` มาแล้วไม่เป็น string หรือว่าง
+   - ถ้ามี `title` มาแล้วไม่เป็นข้อความ หรือว่าง
      - คืน `400`
      - คืน `{ message: 'Title must be a non-empty string' }`
-   - ถ้ามี `done` มาแล้วไม่เป็น boolean
+   - ถ้ามี `done` มาแล้วไม่เป็นค่าจริงเท็จ
      - คืน `400`
      - คืน `{ message: 'Done must be a boolean' }`
 
-4. เอา `validateCreateTask` ไปใช้กับ route `POST /tasks`
+4. เอา `validateCreateTask` ไปใช้กับเส้นทาง `POST /tasks`
 
-5. เอา `validateUpdateTask` ไปใช้กับ route `PUT /tasks/:id`
+5. เอา `validateUpdateTask` ไปใช้กับเส้นทาง `PUT /tasks/:id`
 
 6. ใน `POST /tasks`
    - ใช้ `req.body.title.trim()`
    - ให้ `done` เป็น `false`
+   - คืนรหัสสถานะ (status code) `201` พร้อมงานที่สร้างใหม่
+
+   หมายเหตุ: `POST` ต้องคืน `201` (ไม่ใช่ `200`) เพื่อให้รหัสสถานะตรงกับส่วนอื่นของโปรเจกต์ที่ใช้ `201` ตอนสร้างข้อมูลใหม่
 
 7. ใน `PUT /tasks/:id`
-   - ถ้ามี `title` ให้ update ด้วย `req.body.title.trim()`
-   - ถ้ามี `done` ให้ update ได้ทั้ง `true` และ `false`
+   - ถ้ามี `title` ให้อัปเดตด้วย `req.body.title.trim()`
+   - ถ้ามี `done` ให้อัปเดตได้ทั้ง `true` และ `false`
 
-8. ให้ `GET`, `DELETE`, และ `404` behavior เดิมยังทำงานเหมือน Ch18
+8. ให้พฤติกรรมของ `GET`, `DELETE` และ `404` ยังทำงานเหมือน Ch18
 
-## Expected Test Cases
+## กรณีทดสอบที่คาดหวัง
 
 ตอนทดสอบ ให้ลองกรณีพวกนี้:
 
-- `POST /tasks` พร้อม body ถูก
+- `POST /tasks` พร้อมเนื้อหาคำขอที่ถูกต้อง
 - `POST /tasks` โดยไม่มี `title`
 - `POST /tasks` โดย `title` เป็น `123`
 - `PUT /tasks/1` พร้อม `{ "done": false }`
 - `PUT /tasks/1` พร้อม `{ "done": "yes" }`
 - `PUT /tasks/1` พร้อม `{ "title": "   " }`
 
-## Important Note
+## ข้อควรระวัง
 
-บทนี้ยังเป็น validation แบบ manual
+บทนี้ยังเป็นการตรวจสอบแบบทำเองทีละขั้น
 
 จุดประสงค์คือให้เข้าใจ:
 
-- middleware แทรกตรงไหน
-- request ถูกกันก่อนถึง route ยังไง
-- error response ควร shape ยังไง
+- ตัวกลางแทรกตรงไหน
+- คำขอถูกกันก่อนถึงเส้นทางอย่างไร
+- คำตอบ (response) เมื่อเกิดข้อผิดพลาดควรมีรูปร่างอย่างไร
 
 เมื่อเสร็จแล้วพิมพ์:
 

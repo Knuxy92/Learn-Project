@@ -22,8 +22,8 @@ const parseWithFinally = (jsonText) => {
   }
 };
 
-const validJson = '{"name":"Knuxy92","age":17}';
-const invalidJson = '{name:"Knuxy92"}';
+const validJson = '{"name":"Student","age":17}';
+const invalidJson = '{name:"Student"}';
 
 console.log("Safe parse valid:", safeJsonParse(validJson));
 console.log("Safe parse invalid:", safeJsonParse(invalidJson));

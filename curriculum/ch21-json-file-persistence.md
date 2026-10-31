@@ -1,91 +1,91 @@
-# Chapter 21: JSON File Persistence
+# บทที่ 21: เก็บข้อมูลด้วยไฟล์ JSON
 
-## Recap
+## ทบทวน
 
-ตอนนี้ API ของนายมี:
+ตอนนี้ API ของเรามี:
 
 - โครงสร้างหลายไฟล์
 - CRUD
-- middleware
-- validation
+- ตัวกลาง (middleware)
+- การตรวจสอบ (validation)
 
 ครบแล้ว
 
-ปัญหาที่ยังเหลือคือข้อมูลยังอยู่แค่ใน memory
+ปัญหาที่ยังเหลือคือข้อมูลยังอยู่แค่ในหน่วยความจำ (memory)
 
 ผลคือ:
 
-- สร้าง task ใหม่ได้
-- ลบ task ได้
-- แก้ task ได้
-- แต่พอปิด server แล้วข้อมูลหายหมด
+- สร้างงาน (task) ใหม่ได้
+- ลบงานได้
+- แก้งานได้
+- แต่พอปิดเซิร์ฟเวอร์ (server) แล้วข้อมูลหายหมด
 
-บทนี้จะเพิ่ม persistence แบบง่ายที่สุดก่อน:
+บทนี้จะเพิ่มความคงอยู่ของข้อมูล (persistence) แบบง่ายที่สุดก่อน:
 
 - อ่านข้อมูลจากไฟล์ JSON
 - เขียนข้อมูลกลับลงไฟล์ JSON
 
-## 1. Why JSON Persistence
+## 1. ทำไมต้องเก็บข้อมูลลงไฟล์ JSON
 
-ก่อนจะไป database จริง เราควรเห็นปัญหานี้ก่อน:
+ก่อนจะไปฐานข้อมูล (database) จริง เราควรเห็นปัญหานี้ก่อน:
 
-- state ใน array ใช้ง่าย
+- สถานะ (state) ใน array ใช้ง่าย
 - แต่ไม่ถาวร
 
-JSON file เป็น step กลางที่ดี เพราะ:
+ไฟล์ JSON เป็นขั้นกลางที่ดี เพราะ:
 
-- ไม่ต้องลง database
-- เห็น flow ของ read/write ชัด
-- เข้าใจคำว่า persistence แบบจับต้องได้
+- ไม่ต้องลงฐานข้อมูล
+- เห็นลำดับการอ่าน/เขียนชัด
+- เข้าใจคำว่าความคงอยู่ของข้อมูลแบบจับต้องได้
 
 ## 2. `fs/promises`
 
-ใน Node.js เราใช้ `fs/promises` เพื่ออ่านและเขียนไฟล์แบบ async ได้
+ใน Node.js เราใช้ `fs/promises` เพื่ออ่านและเขียนไฟล์แบบอะซิงค์ (async) ได้
 
-```ts
+```js
 import { readFile, writeFile } from 'node:fs/promises';
 ```
 
 ตัวอย่าง:
 
-```ts
+```js
 const raw = await readFile('tasks.json', 'utf-8');
 const tasks = JSON.parse(raw);
 
 await writeFile('tasks.json', JSON.stringify(tasks, null, 2));
 ```
 
-## 3. Read and Parse
+## 3. อ่านและแปลงข้อความ
 
-ไฟล์ JSON เป็น text
+ไฟล์ JSON เป็นข้อความ (text)
 
-ดังนั้น flow คือ:
+ดังนั้นลำดับการทำงานคือ:
 
-1. อ่าน text จากไฟล์
-2. parse ด้วย `JSON.parse(...)`
-3. ได้ array/object กลับมา
+1. อ่านข้อความจากไฟล์
+2. แปลงข้อความ (parse) ด้วย `JSON.parse(...)`
+3. ได้ array หรือออบเจ็กต์ (object) กลับมา
 
-```ts
+```js
 const raw = await readFile(filePath, 'utf-8');
 const tasks = JSON.parse(raw);
 ```
 
-## 4. Save Back to File
+## 4. เขียนกลับลงไฟล์
 
 ตอนเขียนกลับ:
 
-1. แปลง object/array เป็น text ด้วย `JSON.stringify(...)`
+1. แปลงออบเจ็กต์/array เป็นข้อความด้วย `JSON.stringify(...)`
 2. เขียนทับลงไฟล์
 
-```ts
+```js
 await writeFile(filePath, JSON.stringify(tasks, null, 2));
 ```
 
 `null, 2` ทำให้ไฟล์อ่านง่ายขึ้น
 
-## 5. A Small Storage Layer
+## 5. ชั้นที่เก็บข้อมูลขนาดเล็ก
 
-แทนที่จะให้ route ไปแตะไฟล์ตรง ๆ เราควรมี layer กลาง
+แทนที่จะให้เส้นทาง (route) ไปแตะไฟล์ตรง ๆ เราควรมีชั้นกลาง
 
 เช่น:
 
@@ -98,41 +98,52 @@ await writeFile(filePath, JSON.stringify(tasks, null, 2));
 
 ข้อดีคือ:
 
-- route สั้นลง
-- logic เรื่องไฟล์ถูกรวมไว้ที่เดียว
-- วันหลังย้ายไป database ง่ายขึ้น
+- เส้นทางสั้นลง
+- ตรรกะ (logic) เรื่องไฟล์ถูกรวมไว้ที่เดียว
+- วันหลังย้ายไปฐานข้อมูลง่ายขึ้น
 
-## 6. Example
+## 6. ตัวอย่าง
 
-```ts
-import { readFile, writeFile } from 'node:fs/promises';
+```js
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
-const filePath = './storage/tasks.json';
+const filePath =
+  process.env.TASKS_FILE_PATH ??
+  path.join(import.meta.dirname, '..', 'storage', 'tasks.json');
 
 const readTasks = async () => {
-  const raw = await readFile(filePath, 'utf-8');
-  return JSON.parse(raw);
+  try {
+    const raw = await readFile(filePath, 'utf-8');
+
+    return JSON.parse(raw);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+
+    throw error;
+  }
 };
 
-const writeTasks = async (tasks: unknown) => {
+const writeTasks = async (tasks) => {
+  await mkdir(path.dirname(filePath), { recursive: true });
   await writeFile(filePath, JSON.stringify(tasks, null, 2));
 };
 ```
 
-## 7. Important Constraint
+## 7. ข้อจำกัดที่สำคัญ
 
 บทนี้ยังไม่เน้นเรื่อง:
 
-- concurrent writes
-- file locking
-- race condition
-- database transactions
+- การเขียนพร้อมกัน
+- การล็อกไฟล์
+- สภาวะแข่งกัน (race condition)
+- ทรานแซกชัน (transaction) ของฐานข้อมูล
 
-เราจะสมมุติว่า request มาไม่ซ้อนกันหนัก
+เราจะสมมุติว่าคำขอ (request) มาไม่ซ้อนกันหนัก
 
-เป้าหมายคือเข้าใจ persistence flow ก่อน
+เป้าหมายคือเข้าใจลำดับการทำงานของความคงอยู่ของข้อมูลก่อน
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -142,14 +153,11 @@ exercises/ch21-persistent-task-api/
 
 ให้ทำตามนี้:
 
-1. ใน `types/task.ts`
-   - สร้าง `type Task`
+1. ใน `storage/tasks.json`
+   - ให้มีงานเริ่มต้นอย่างน้อย 2 ตัว
 
-2. ใน `storage/tasks.json`
-   - ให้มี task เริ่มต้นอย่างน้อย 2 ตัว
-
-3. ใน `data/task-store.ts`
-   - สร้างและ export functions:
+2. ใน `data/task-store.js`
+   - สร้างและส่งออก (export) ฟังก์ชัน (function):
      - `readTasks()`
      - `writeTasks(tasks)`
      - `findTaskById(id)`
@@ -157,35 +165,35 @@ exercises/ch21-persistent-task-api/
      - `updateTask(id, updates)`
      - `deleteTask(id)`
 
-4. ใน `middleware/validate-task.ts`
-   - ย้าย validation จาก Ch20 มาใช้ต่อ
+3. ใน `middleware/validate-task.js`
+   - ย้ายการตรวจสอบจากบทที่ 20 มาใช้ต่อ
 
-5. ใน `routes/task-routes.ts`
-   - เปลี่ยน CRUD routes ให้เรียกผ่าน storage functions แทนการแตะ array ตรง ๆ
+4. ใน `routes/task-routes.js`
+   - เปลี่ยนเส้นทาง CRUD ให้เรียกผ่านฟังก์ชันของที่เก็บข้อมูล แทนการแตะ array ตรง ๆ
 
-6. ใน `app.ts`
+5. ใน `app.js`
    - ใช้ `express.json()`
-   - mount `taskRouter` ที่ `/tasks`
+   - ผูก `taskRouter` ที่ `/tasks`
 
-7. ใน `server.ts`
-   - เปิด server ที่ port `3000`
+6. ใน `server.js`
+   - เปิดเซิร์ฟเวอร์ที่พอร์ต (port) `3000`
 
-## Expected Behavior
+## พฤติกรรมที่คาดหวัง
 
 หลังทำเสร็จ:
 
 - `POST /tasks` แล้วข้อมูลควรถูกเขียนลง `tasks.json`
 - `PUT /tasks/:id` แล้วไฟล์ควรถูกอัปเดต
 - `DELETE /tasks/:id` แล้วไฟล์ควรถูกอัปเดต
-- ปิดแล้วเปิด server ใหม่ ข้อมูลล่าสุดยังอยู่
+- ปิดแล้วเปิดเซิร์ฟเวอร์ใหม่ ข้อมูลล่าสุดยังอยู่
 
-## Important Note
+## ข้อควรระวัง
 
-ถ้า route เปลี่ยนเป็น async แล้ว ต้องระวังเรื่อง `await`
+ถ้าเส้นทางเปลี่ยนเป็นอะซิงค์แล้ว ต้องระวังเรื่อง `await`
 
 เช่น:
 
-```ts
+```js
 taskRouter.get('/', async (req, res) => {
   const tasks = await readTasks();
   res.json(tasks);

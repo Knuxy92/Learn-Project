@@ -1,16 +1,16 @@
-# Test Bridge Plan
+# แผนช่วงเชื่อมการทดสอบ
 
-ช่วงนี้เป็นช่วงคั่นก่อนกลับไปต่อ SQL/backend หลัก เป้าหมายคือฝึกเขียน test แบบใช้งานจริง แต่ไม่ยัดเนื้อหาใหม่เยอะเกินไป
+ช่วงนี้เป็นช่วงคั่นก่อนทำงานท้าย เป้าหมายคือฝึกเขียนการทดสอบ (test) แบบใช้งานจริง แต่ไม่ยัดเนื้อหาใหม่เยอะเกินไป
 
-## Rule
+## กติกา
 
 - ใช้แค่ `node:test` และ `node:assert/strict`
-- ยังไม่ใช้ Jest, Vitest หรือ library ใหม่
+- ไม่ใช้ Jest, Vitest หรือไลบรารี (library) ใหม่
 - แต่ละบทต้องมีโจทย์ชัดเจนและรันได้จริง
-- ถ้ามี server ใน test ต้องปิดด้วย `after()`
-- ถ้ามี database/file test ต้องแยก data ออกจากของจริง
+- ถ้ามีเซิร์ฟเวอร์ในการทดสอบ ต้องปิดด้วย `after()`
+- ถ้าการทดสอบเขียนไฟล์ ต้องชี้ไปที่ไฟล์ทดสอบและล้างก่อนรัน
 
-## Test Bridge 01 - Assert Basics
+## Test Bridge 01 - พื้นฐานการตรวจสอบ (assert)
 
 เป้าหมาย:
 
@@ -21,63 +21,29 @@
 
 โจทย์:
 
-- test ค่าพื้นฐาน
-- test array
-- test object
-- test function ง่ายๆ
+- ทดสอบค่าพื้นฐาน
+- ทดสอบ array
+- ทดสอบออบเจ็กต์ (object)
+- ทดสอบฟังก์ชันง่าย ๆ
 
-## Test Bridge 02 - SQLite Result Tests
-
-เป้าหมาย:
-
-- test ผลลัพธ์ของ `.all()`
-- test ผลลัพธ์ของ `.get()`
-- test `lastInsertRowid`
-- test `changes`
-
-โจทย์:
-
-- สร้าง test database
-- seed data
-- assert ผลลัพธ์ของ query
-- reset database ก่อน test
-
-## Test Bridge 03 - Storage Function Tests
+## Test Bridge 02 - ทดสอบสถานะของ API
 
 เป้าหมาย:
 
-- test function ชั้น data แบบไม่เปิด server
-- ฝึกแยก setup/query/assert
-- ฝึก not found case
-
-โจทย์:
-
-- สร้าง function เช่น `createTask`, `findTaskById`, `deleteTask`
-- test success case
-- test not found case
-- test `changes === 0`
-
-## Test Bridge 04 - API Status Tests
-
-เป้าหมาย:
-
-- test HTTP API แบบเปิด server ชั่วคราว
-- assert status code
-- assert response body
-- ปิด server ด้วย `after()`
+- ทดสอบ HTTP API แบบเปิดเซิร์ฟเวอร์ชั่วคราว
+- ตรวจสอบรหัสสถานะ (status code)
+- ตรวจสอบเนื้อหาคำตอบ (response body)
+- ปิดเซิร์ฟเวอร์ด้วย `after()`
 
 โจทย์:
 
 - `GET /tasks` ได้ `200`
-- `GET /tasks/:id` not found ได้ `404`
-- bad body ได้ `400`
-- broken/internal case ค่อยเรียนหลังจากเข้า error flow ชัดขึ้น
+- `GET /tasks/:id` ที่ไม่พบ ได้ `404`
+- เนื้อหาคำขอ (body) ผิดรูป ได้ `400`
+- `DELETE /tasks/:id` ที่ไม่พบ ได้ `404`
 
-## After This
+## หลังจากนี้
 
-หลังผ่าน 3-4 test bridges แล้วค่อยกลับไปต่อเส้นหลักที่วางไว้:
+หลังผ่าน 2 ช่วงเชื่อมนี้แล้ว ให้ไปทำงานท้ายที่:
 
-- Input validation before database queries
-- HTTP response mapping
-- Ch24 SQLite revision
-
+- `Ch23` - Task API ที่ใช้งานได้จริง

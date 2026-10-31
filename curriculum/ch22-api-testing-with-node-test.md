@@ -1,52 +1,52 @@
-# Chapter 22: API Testing with `node:test`
+# บทที่ 22: ทดสอบ API ด้วย `node:test`
 
-## Recap
+## ทบทวน
 
-ตอนนี้นายมี API ที่:
+ตอนนี้เรามี API ที่:
 
 - แยกไฟล์เป็นระบบ
-- มี validation
+- มีการตรวจสอบ (validation)
 - เขียนข้อมูลลงไฟล์ได้
-- restart แล้วข้อมูลยังอยู่
+- รีสตาร์ต (restart) แล้วข้อมูลยังอยู่
 
 ปัญหาถัดไปคือทุกครั้งที่แก้โค้ด เราต้องคอย:
 
-- เปิด server
-- ยิง request เอง
-- เช็ก response เอง
+- เปิดเซิร์ฟเวอร์ (server)
+- ยิงคำขอ (request) เอง
+- เช็กคำตอบ (response) เอง
 
 ซึ่งช้าและพลาดง่าย
 
 บทนี้จะเพิ่ม "การทดสอบอัตโนมัติ" ให้ API
 
-## 1. Why Testing Matters
+## 1. ทำไมการทดสอบจึงสำคัญ
 
-test ช่วยตอบคำถาม 3 อย่าง:
+การทดสอบ (test) ช่วยตอบคำถาม 3 อย่าง:
 
 - โค้ดยังทำงานเหมือนเดิมไหม
-- ตอน refactor พังตรงไหนหรือเปล่า
-- requirement ที่สำคัญถูกล็อกไว้หรือยัง
+- ตอนปรับโครงสร้าง (refactor) พังตรงไหนหรือเปล่า
+- ข้อกำหนด (requirement) ที่สำคัญถูกล็อกไว้หรือยัง
 
-กับ API สิ่งที่เรามักอยาก test คือ:
+กับ API สิ่งที่เรามักอยากทดสอบคือ:
 
-- status code
-- response body
-- behavior ตอน success
-- behavior ตอน error
+- รหัสสถานะ (status code)
+- เนื้อหาคำตอบ
+- พฤติกรรม (behavior) ตอนสำเร็จ
+- พฤติกรรมตอนเกิดข้อผิดพลาด (error)
 
 ## 2. `node:test`
 
-Node.js มี test runner ในตัวชื่อ `node:test`
+Node.js มีตัวรันการทดสอบในตัวชื่อ `node:test`
 
-เราไม่ต้องลง Jest ก่อนก็เริ่มเขียน test ได้
+เราไม่ต้องลง Jest ก่อนก็เริ่มเขียนการทดสอบได้
 
 ตัวอย่าง:
 
-```ts
-import test from "node:test";
-import assert from "node:assert/strict";
+```js
+import test from 'node:test';
+import assert from 'node:assert/strict';
 
-test("1 + 1 should equal 2", () => {
+test('1 + 1 should equal 2', () => {
   assert.equal(1 + 1, 2);
 });
 ```
@@ -57,80 +57,113 @@ test("1 + 1 should equal 2", () => {
 node --test
 ```
 
-## 3. Testing HTTP APIs
+## 3. ทดสอบ HTTP API
 
 แนวคิดคือ:
 
-1. เปิด app บน port ชั่วคราว
-2. ใช้ `fetch(...)` ยิง request
-3. เช็ก status และ body
-4. ปิด server หลังจบ test
+1. เปิดแอปบนพอร์ต (port) ชั่วคราว
+2. ใช้ `fetch(...)` ยิงคำขอ
+3. เช็กรหัสสถานะและเนื้อหา
+4. ปิดเซิร์ฟเวอร์หลังจบการทดสอบ
 
 ตัวอย่าง:
 
-```ts
-const response = await fetch("http://localhost:3002/tasks");
+```js
+const server = app.listen(3001);
+const baseUrl = 'http://localhost:3001';
+
+const response = await fetch(`${baseUrl}/tasks`);
 const data = await response.json();
 ```
 
-แล้วค่อย assert:
+แล้วค่อยตรวจสอบ (assert):
 
-```ts
+```js
 assert.equal(response.status, 200);
 assert.ok(Array.isArray(data));
 ```
 
-## 4. Isolate Test Data
+## 4. แยกข้อมูลสำหรับการทดสอบ
 
-เวลา test API ที่เขียนลงไฟล์จริง ต้องระวัง:
+เวลาทดสอบ API ที่เขียนลงไฟล์จริง ต้องระวัง:
 
-- test ไปลบข้อมูลจริง
-- test ไปรบกวนงานรอบอื่น
+- การทดสอบไปลบข้อมูลจริง
+- การทดสอบไปรบกวนงานรอบอื่น
 
-ดังนั้นบทนี้จะให้แยก `storage/test-tasks.json` สำหรับ test
+ดังนั้นบทนี้จะให้แยก `storage/test-tasks.json` สำหรับการทดสอบ
 
-และใช้ environment variable เพื่อบอก app ว่าจะอ่านไฟล์ไหน
+และใช้ตัวแปรสภาพแวดล้อม (environment variable) เพื่อบอกแอปว่าจะอ่านไฟล์ไหน
 
-## 5. Environment-Based Storage Path
+## 5. เส้นทางไฟล์ที่เก็บข้อมูลตามสภาพแวดล้อม
 
-แทนที่จะ hardcode path เดียว:
+แทนที่จะเขียนเส้นทางไฟล์ (path) ตายตัวเดียว:
 
-```ts
-const filePath = "...";
+```js
+const filePath = '...';
 ```
 
 เราจะเปิดทางให้ใช้:
 
-```ts
+```js
+import path from 'node:path';
+
 const filePath =
   process.env.TASKS_FILE_PATH ??
-  path.join(__dirname, "../storage/tasks.json");
+  path.join(import.meta.dirname, '..', 'storage', 'tasks.json');
 ```
+
+`import.meta.dirname` คือโฟลเดอร์ของไฟล์ที่กำลังรันอยู่ ซึ่งใน ESM ใช้แทนตัวแปรส่วนกลางแบบเก่าได้เลย
 
 ข้อดีคือ:
 
 - ตอนใช้งานจริงอ่านไฟล์เดิม
-- ตอน test ชี้ไปไฟล์ทดสอบได้
+- ตอนทดสอบชี้ไปไฟล์ทดสอบได้
 
-## 6. Test Lifecycle
+## 6. วงจรชีวิตของการทดสอบ
 
-test ที่ดีควร:
+การทดสอบที่ดีควร:
 
-- เตรียมข้อมูลก่อนรัน
-- เปิด server
-- ยิง request
-- assert
-- ปิด server
-- restore ไฟล์ทดสอบกลับ
+- ตั้ง `process.env.TASKS_FILE_PATH` ก่อนนำเข้า (import) แอป
+- นำเข้าแอปแบบไดนามิก
+- เปิดเซิร์ฟเวอร์
+- ลบไฟล์ทดสอบก่อนทุกการทดสอบ
+- ยิงคำขอ
+- ตรวจสอบผลลัพธ์
+- ปิดเซิร์ฟเวอร์ใน `after`
 
-## 7. Example
+## 7. ตัวอย่าง
 
-```ts
-import test from "node:test";
-import assert from "node:assert/strict";
+```js
+import { after, beforeEach, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { rm } from 'node:fs/promises';
+import path from 'node:path';
 
-test("GET /tasks should return an array", async () => {
-  const response = await fetch("http://localhost:3002/tasks");
+const storagePath = path.join(import.meta.dirname, 'storage', 'test-tasks.json');
+process.env.TASKS_FILE_PATH = storagePath;
+
+const { app } = await import('../ch21-persistent-task-api/app.js');
+
+const server = app.listen(3001);
+const baseUrl = 'http://localhost:3001';
+
+beforeEach(async () => {
+  await rm(storagePath, { force: true });
+});
+
+after(async () => {
+  await rm(storagePath, { force: true });
+
+  await new Promise((resolve, reject) => {
+    server.close((error) => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+});
+
+test('GET /tasks should return 200 and an array', async () => {
+  const response = await fetch(`${baseUrl}/tasks`);
   const data = await response.json();
 
   assert.equal(response.status, 200);
@@ -138,7 +171,21 @@ test("GET /tasks should return an array", async () => {
 });
 ```
 
-## Guided Exercise
+ทำไมต้องใช้การนำเข้าแบบไดนามิก:
+
+`import` แบบคงที่ถูกยกขึ้นไปทำงานก่อนคำสั่งอื่นทั้งหมดในไฟล์
+
+ถ้าเราเขียน `import { app } ...` ไว้บนสุด แล้วค่อยตั้ง `process.env.TASKS_FILE_PATH` ข้างล่าง แอปจะถูกโหลดก่อนที่ตัวแปรสภาพแวดล้อมจะถูกตั้ง
+
+ผลคือ `task-store.js` อ่านเส้นทางไฟล์ตอนนำเข้า และได้ค่าเริ่มต้น (default) ไปแล้ว
+
+`await import(...)` เป็นนิพจน์ (expression) ที่ทำงานตามลำดับ จึงต้องวางไว้หลังบรรทัดที่ตั้งตัวแปรสภาพแวดล้อม
+
+ส่วน `beforeEach` ที่ลบไฟล์ด้วย `rm(path, { force: true })` ทำให้ทุกการทดสอบเริ่มจากข้อมูลว่าง
+
+`force: true` หมายความว่าถ้าไฟล์ยังไม่มีก็ไม่ต้องเกิดข้อผิดพลาด
+
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์ในโฟลเดอร์:
 
@@ -148,41 +195,43 @@ exercises/ch22-api-tests/
 
 ให้ทำตามนี้:
 
-1. ใน `fixtures/test-tasks.json`
-   - ใส่ task เริ่มต้นอย่างน้อย 2 ตัว
-
-2. ปรับ `exercises/ch21-persistent-task-api/data/task-store.ts`
+1. ปรับ `exercises/ch21-persistent-task-api/data/task-store.js`
    - ให้รองรับ `process.env.TASKS_FILE_PATH`
-   - ถ้าไม่มี env นี้ ให้ fallback ไปไฟล์เดิม
+   - ถ้าไม่มีตัวแปรสภาพแวดล้อมนี้ ให้ถอยไปใช้ (fallback) ไฟล์เดิม
+   - สร้างเส้นทางไฟล์ด้วย `import.meta.dirname`
 
-3. ใน `api.test.ts`
+2. ใน `exercises/ch22-api-tests/api.test.js`
    - ใช้ `node:test`
    - ใช้ `node:assert/strict`
-   - import `app` จาก Ch21
+   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `storage/test-tasks.json` ก่อนนำเข้า
+   - นำเข้า `app` จากบทที่ 21 ด้วย `const { app } = await import('../ch21-persistent-task-api/app.js');`
 
-4. ก่อนรัน test
-   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `fixtures/test-tasks.json`
-   - backup ข้อมูลเดิมในไฟล์ test
+3. ใช้ `beforeEach` ลบไฟล์ `storage/test-tasks.json` ด้วย `rm(storagePath, { force: true })`
+   - เพื่อให้ทุกการทดสอบเริ่มจากข้อมูลว่าง
 
-5. เขียน test อย่างน้อย 4 ตัว:
+4. เขียนการทดสอบอย่างน้อย 4 ตัว:
    - `GET /tasks` ควรได้ `200` และเป็น array
-   - `POST /tasks` ควรสร้าง task ใหม่ได้
+   - `POST /tasks` ควรสร้างงาน (task) ใหม่ได้
    - `PUT /tasks/999` ควรได้ `404`
    - `DELETE /tasks/999` ควรได้ `404`
 
-6. หลังจบ test
-   - restore ไฟล์ `fixtures/test-tasks.json` กลับค่าเดิม
-   - ปิด server ที่เปิดใน test
+5. ใช้ `after` ปิดเซิร์ฟเวอร์ที่เปิดในการทดสอบ
 
-## Important Note
+รันด้วย:
 
-บทนี้ไม่ได้วัดว่า test ต้องสวยที่สุด
+```bash
+node --test exercises/ch22-api-tests/api.test.js
+```
+
+## ข้อควรระวัง
+
+บทนี้ไม่ได้วัดว่าการทดสอบต้องสวยที่สุด
 
 แต่วัดว่า:
 
-- รัน test ได้
-- ไม่ใช้ข้อมูลจริงปนกับ test
-- assert behavior สำคัญของ API ได้
+- รันการทดสอบได้
+- ไม่ใช้ข้อมูลจริงปนกับการทดสอบ
+- ตรวจสอบพฤติกรรมสำคัญของ API ได้
 
 เมื่อเสร็จแล้วพิมพ์:
 

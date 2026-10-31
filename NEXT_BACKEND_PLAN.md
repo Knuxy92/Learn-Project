@@ -1,79 +1,63 @@
-# Next Backend Plan
+# แผนการเรียนรู้ระยะต่อไป
 
-## Current Position
+## ตำแหน่งปัจจุบัน
 
-ตอนนี้ผ่านแล้ว:
+ตอนนี้เรียนครบแล้ว:
 
-- `Ch17` Express basics
-- `Ch18` CRUD API
-- `Ch19` validation middleware
-- `Ch20` project structure
-- `Ch21` JSON file persistence
-- `Ch22` API testing with `node:test`
+- `Ch1-Ch12` JavaScript พื้นฐานถึงอะซิงค์ (async)
+- `Ch13-Ch16` JavaScript ขั้นกลางสำหรับงานฝั่งเซิร์ฟเวอร์ (backend)
+- `Ch17` พื้นฐาน Express
+- `Ch18` API แบบ CRUD
+- `Ch19` การตรวจสอบด้วยตัวกลาง
+- `Ch20` โครงสร้างโปรเจกต์
+- `Ch21` เก็บข้อมูลลงไฟล์ JSON
+- `Ch22` ทดสอบ API ด้วย `node:test`
 
-## Why There Is a Bridge Now
+## เป้าหมายของหลักสูตรนี้
 
-ช่วง `Ch21-Ch22` มีคำถามจริงที่โผล่มาซ้ำ:
+หลักสูตรนี้ตั้งใจให้จบที่ "ทำงานฝั่งเซิร์ฟเวอร์ด้วย Express ได้จริง" ไม่ใช่ลงลึกทุกเรื่อง
 
-- Promise คืออะไร
-- `await` รออะไรอยู่
-- ทำไม callback ต้อง wrap ก่อน
-- ทำไม `after()` ต้องรอ `server.close()`
+เป้าหมายมีสามข้อ:
 
-ดังนั้นเราไม่ควรกระโดดเข้า database ทันที
+1. เขียน JavaScript ได้คล่องพออ่านโค้ดคนอื่นรู้เรื่อง
+2. เข้าใจว่าคำขอ (request) วิ่งจากฝั่งผู้เรียก (client) ไปถึงข้อมูลอย่างไร
+3. ส่งงานชิ้นหนึ่งที่รันได้จริงและมีการทดสอบ (test)
 
-## Short-Term Plan
+## ขั้นสุดท้าย
 
-1. `Bridge 01 - Promises and Async Flow`
-   - เข้าเพราะ async เริ่มเป็นแกนหลักแล้ว
-   - ออกเมื่อเข้าใจ promise/callback wrapping/cleanup flow
+`Ch23` - งานท้าย Task API
 
-2. `Ch23 - SQLite Basics`
-   - เรียน schema, table, row, SQL พื้นฐาน
+เป็นงานที่ประกอบทุกอย่างที่เรียนมา:
 
-3. `Ch24 - Task API with SQLite`
-   - ย้าย task API จาก JSON file ไป SQLite
+- แยกโครงสร้างไฟล์
+- เก็บข้อมูลลง JSON
+- ตรวจข้อมูลที่รับเข้ามา (input)
+- จัดการข้อผิดพลาด (error)
+- เขียนการทดสอบ
 
-4. `Ch25 - Query Layer and DB Refactor`
-   - แยก query/data access ให้สะอาดเหมือน storage layer เดิม
+ทำเสร็จแล้วถือว่าจบหลักสูตรนี้
 
-5. `Ch26 - API Testing with Database`
-   - ปรับ test ให้ใช้ DB test data แบบแยกจากของจริง
+## หลังจบหลักสูตรนี้แล้วไปต่ออะไรได้
 
-## Entry / Exit Summary
+ถ้าอยากไปไกลกว่านี้ ลำดับที่แนะนำ:
 
-### Enter Bridge 01
+1. **ฐานข้อมูล (database) จริง** - เริ่มจาก SQLite หรือ PostgreSQL แทนไฟล์ JSON
+   - เรียนโครงสร้างข้อมูล (schema), ลำดับที่ (index), การย้ายข้อมูล (migration)
+   - เปลี่ยน `task-store.js` ให้คุยกับฐานข้อมูลแทนไฟล์
 
-เข้าเมื่อ:
+2. **การยืนยันตัวตน (authentication)** - การเข้าสู่ระบบ (login), โทเค็น (token), เซสชัน (session)
+   - ต้องเข้าใจตัวกลางและการจัดการข้อผิดพลาดให้แน่นก่อน
 
-- เริ่มใช้ async จริงกับ file, fetch, server, test cleanup
-- ยังมีคำถามเรื่อง Promise ซ้ำอยู่
+3. **การนำขึ้นเซิร์ฟเวอร์ (deploy)** - เอา API ขึ้นเซิร์ฟเวอร์จริง
+   - เรียนตัวแปรสภาพแวดล้อม (environment variable), บันทึกการทำงาน (log), ตัวจัดการโปรเซส (process manager)
 
-### Exit Bridge 01
+4. **TypeScript** - กลับมาเรียนเมื่อ JavaScript แน่นแล้ว
+   - จะเข้าใจชนิด (type) เร็วขึ้นมาก เพราะพื้นฐาน JavaScript ครบ
 
-ออกเมื่อ:
+## ทำไมไม่เรียน SQL หรือ TypeScript ในหลักสูตรนี้
 
-- แยก `Promise<T>` กับ `T` ได้
-- อธิบาย `await` ได้
-- wrap callback API เป็น Promise ได้
-- อ่าน cleanup flow ได้
+เพราะสองเรื่องนี้ทำให้หลักสูตรยาวขึ้นเกือบเท่าตัว และไม่จำเป็นต่อเป้าหมาย "ทำ Express API ได้"
 
-### Return to Main Line
+ถ้าใส่ทั้งสองอย่างตอนนี้ จะได้อย่างละนิดแต่ไม่แน่นสักอย่าง
 
-กลับเข้าสายหลักที่:
-
-- `Ch23 - SQLite Basics`
-
-## Why This Order
-
-ถ้าข้าม Promise bridge แล้วไป DB เลย:
-
-- async query flow จะงง
-- cleanup ของ DB tests จะงง
-- debugging จะช้ากว่าเดิม
-
-ถ้าเก็บ Promise ให้แน่นก่อน:
-
-- database จะง่ายขึ้น
-- testing จะนิ่งขึ้น
-- code review จะคุยกันด้วยหลักที่ชัดขึ้น
+เรียน JavaScript ให้แน่นก่อน แล้วค่อยเพิ่มทีละชั้น จะไปได้ไกลกว่า

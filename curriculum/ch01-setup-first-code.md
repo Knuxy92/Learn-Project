@@ -1,44 +1,44 @@
-# Chapter 1: Setup & First Code
+# บทที่ 1: ติดตั้งและโค้ดแรก
 
-## What JavaScript Is
+## JavaScript คืออะไร
 
-JavaScript is a programming language that lets us tell a computer what to do.
+JavaScript คือภาษาโปรแกรมที่ใช้บอกคอมพิวเตอร์ว่าต้องทำอะไร
 
-We need it because backend tools like Node.js can run JavaScript outside the browser.
+เราต้องใช้มันเพราะเครื่องมือฝั่งเซิร์ฟเวอร์ (backend) อย่าง Node.js รัน JavaScript นอกเบราว์เซอร์ (browser) ได้
 
-## First Concept: `console.log`
+## แนวคิดแรก: `console.log`
 
-`console.log` prints something to the terminal.
+`console.log` ใช้พิมพ์อะไรบางอย่างออกมาที่เทอร์มินัล (terminal)
 
-We need it because it lets us see what our code is doing.
+เราต้องใช้มันเพราะมันทำให้เราเห็นว่าโค้ดของเรากำลังทำอะไรอยู่
 
 ```js
 console.log('Hello World');
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Hello World
 ```
 
-## Running A File
+## การรันไฟล์
 
-A `.js` file is a JavaScript file.
+ไฟล์ `.js` คือไฟล์ JavaScript
 
-We run it with Node.js like this:
+เรารันมันด้วย Node.js แบบนี้:
 
 ```bash
 node curriculum/ch01/hello-world.js
 ```
 
-Output:
+ผลลัพธ์:
 
 ```txt
 Hello World
 ```
 
-## Which File To Edit
+## ไฟล์ที่ต้องแก้
 
 ไฟล์ใน `curriculum/` เป็นไฟล์ตัวอย่างสำหรับอ่านและรันดู
 
@@ -50,25 +50,25 @@ Hello World
 exercises/ch01-first-code.js
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
-Open `exercises/ch01-first-code.js`
+เปิด `exercises/ch01-first-code.js`
 
-Change the values so the file prints:
+เปลี่ยนค่าในไฟล์ให้พิมพ์ออกมาเป็น:
 
-1. your name
-2. your age
-3. one sentence combining both
+1. ชื่อของเรา
+2. อายุของเรา
+3. หนึ่งประโยคที่รวมทั้งสองอย่างเข้าด้วยกัน
 
-Example output:
+ตัวอย่างผลลัพธ์:
 
 ```txt
-My name is Knuxy92
+My name is Student
 I am 17 years old
-My name is Knuxy92 and I am 17 years old.
+My name is Student and I am 17 years old.
 ```
 
-When done, say:
+เมื่อเสร็จแล้วพิมพ์:
 
 ```txt
 ตรวจ Ch1

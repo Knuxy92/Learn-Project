@@ -14,5 +14,5 @@ console.log(`Formatted user name: ${formatUserName("  knuxy92  ")}`);
 console.log(`Valid email (yes): ${isValidEmail("test@example.com")}`);
 console.log(`Valid email (no): ${isValidEmail("testexample")}`);
 console.log(`Password strength: ${getPasswordStrength("secret123")}`);
-console.log(`Welcome: ${formatWelcomeMessage("Knuxy", "Dev")}`);
+console.log(`Welcome: ${formatWelcomeMessage("Student", "Dev")}`);
 console.log(`Today: ${formatToday()}`);

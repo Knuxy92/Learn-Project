@@ -1,8 +1,8 @@
-# Chapter 4: Control Flow
+# บทที่ 4: การควบคุมทิศทาง
 
-## Recap
+## ทบทวน
 
-บทที่แล้วเราใช้ operators เพื่อคำนวณและเปรียบเทียบค่า
+บทที่แล้วเราใช้ตัวดำเนินการ (operator) เพื่อคำนวณและเปรียบเทียบค่า
 
 บทนี้เราจะให้โปรแกรม "ตัดสินใจ" จากเงื่อนไข
 
@@ -20,8 +20,7 @@ if (score >= 50) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 pass
 ```
@@ -42,8 +41,7 @@ if (score >= 50) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 fail
 ```
@@ -66,17 +64,16 @@ if (score >= 80) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 B
 ```
 
 ## 4. `switch`
 
-`switch` ใช้เลือกทางจากค่าหนึ่งค่าที่มีหลาย case
+`switch` ใช้เลือกทางจากค่าหนึ่งค่าที่มีหลายกรณี (case)
 
-เราจะใช้มันเมื่อเทียบค่าเดียวกับหลายตัวเลือก เช่น role หรือ status
+เราจะใช้มันเมื่อเทียบค่าเดียวกับหลายตัวเลือก เช่น บทบาท (role) หรือสถานะ
 
 ```js
 const role = 'admin';
@@ -90,19 +87,18 @@ switch (role) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 full access
 ```
 
-## 5. Truthy และ Falsy
+## 5. ค่าจริง (truthy) และค่าเท็จ (falsy)
 
-Truthy/falsy คือวิธีที่ JavaScript มองค่าต่าง ๆ เป็นเหมือน `true` หรือ `false`
+ค่าจริง/ค่าเท็จคือวิธีที่ JavaScript มองค่าต่าง ๆ เป็นเหมือน `true` หรือ `false`
 
-เราต้องรู้มันเพราะ `if` ไม่ได้ใช้แค่ boolean ตรง ๆ เท่านั้น
+เราต้องรู้มันเพราะ `if` ไม่ได้ใช้แค่ค่าจริงเท็จ (boolean) ตรง ๆ เท่านั้น
 
-Falsy มี 6 ตัวที่ควรจำ:
+ค่าเท็จมี 6 ตัวที่ควรจำ:
 
 - `false`
 - `0`
@@ -121,17 +117,16 @@ if (userName) {
 }
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 missing name
 ```
 
-## 6. Short-Circuit แบบง่าย
+## 6. การลัดวงจร (short-circuit) แบบง่าย
 
-Short-circuit คือการใช้ `&&` หรือ `||` เพื่อเลือกค่าหรือหยุดเช็กเร็วขึ้น
+การลัดวงจรคือการใช้ `&&` หรือ `||` เพื่อเลือกค่าหรือหยุดเช็กเร็วขึ้น
 
-เราต้องรู้มันเพราะโค้ด JS จริงใช้บ่อยมาก
+เราต้องรู้มันเพราะโค้ด JavaScript จริงใช้บ่อยมาก
 
 ```js
 const nickname = '';
@@ -140,13 +135,12 @@ const displayName = nickname || 'Anonymous';
 console.log(displayName);
 ```
 
-Output:
-
+ผลลัพธ์:
 ```txt
 Anonymous
 ```
 
-## Guided Exercise
+## โจทย์ที่ต้องทำ
 
 ให้แก้ไฟล์:
 
@@ -156,16 +150,16 @@ exercises/ch04-grade-calculator.js
 
 เป้าหมาย:
 
-1. ใช้ `if / else if / else` เพื่อคำนวณ grade ตามตารางด้านล่าง
-2. ใช้ `switch` เพื่อสร้างข้อความตาม grade ตามตารางด้านล่าง
-3. ใช้ truthy/falsy เพื่อตรวจว่ามี `studentName` ไหม
-4. ใช้ short-circuit ตั้ง display name ถ้าชื่อว่าง
+1. ใช้ `if / else if / else` เพื่อคำนวณเกรด (grade) ตามตารางด้านล่าง
+2. ใช้ `switch` เพื่อสร้างข้อความตามเกรดตามตารางด้านล่าง
+3. ใช้ค่าจริง/ค่าเท็จเพื่อตรวจว่ามี `studentName` ไหม
+4. ใช้การลัดวงจรตั้งชื่อที่แสดง (display name) ถ้าชื่อว่าง
 
-## Grade Rules
+## กติกาการให้เกรด
 
 ให้ใช้กฎนี้:
 
-| Score | Grade |
+| คะแนน | เกรด |
 |---|---|
 | `score >= 90` | `A` |
 | `score >= 80` | `B` |
@@ -173,11 +167,11 @@ exercises/ch04-grade-calculator.js
 | `score >= 60` | `D` |
 | ต่ำกว่า `60` | `F` |
 
-## Message Rules
+## กติกาข้อความ
 
 ให้ใช้ข้อความนี้:
 
-| Grade | Message |
+| เกรด | ข้อความ |
 |---|---|
 | `A` | `Excellent work` |
 | `B` | `Great job` |
@@ -185,19 +179,19 @@ exercises/ch04-grade-calculator.js
 | `D` | `Needs improvement` |
 | `F` | `Keep practicing` |
 
-## Required Test Values
+## ค่าการทดสอบที่ต้องใช้
 
-ให้ใช้ค่า test นี้ตอนส่งตรวจ:
+ให้ใช้ค่าทดสอบนี้ตอนส่งตรวจ:
 
 ```js
-const studentName = 'Knuxy92';
+const studentName = 'Student';
 const score = 85;
 ```
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```txt
-Student: Knuxy92
+Student: Student
 Score: 85
 Grade: B
 Message: Great job
