@@ -5,11 +5,11 @@
 ตอนนี้เรามีครบทุกชิ้นส่วนแล้ว:
 
 - JavaScript พื้นฐานถึงขั้นกลาง
-- Express server และ router
+- เซิร์ฟเวอร์ (server) และตัวจัดการเส้นทาง (router) ของ Express
 - CRUD API
-- middleware ตรวจข้อมูล
+- ตัวกลาง (middleware) ตรวจข้อมูล
 - เก็บข้อมูลลงไฟล์ JSON
-- เขียน test ด้วย `node:test`
+- เขียนการทดสอบ (test) ด้วย `node:test`
 
 บทนี้คือการประกอบทุกอย่างเข้าด้วยกันเป็นงานชิ้นเดียวที่เอาไปใช้ต่อได้
 
@@ -18,12 +18,12 @@
 ทำ Task API ที่:
 
 - รันได้จริงด้วย `node src/server.js`
-- ข้อมูลไม่หายเมื่อปิด server
-- ตรวจ input ก่อนบันทึกทุกครั้ง
-- มี test ครอบคลุมเส้นทางหลัก
+- ข้อมูลไม่หายเมื่อปิดเซิร์ฟเวอร์
+- ตรวจข้อมูลที่รับเข้ามา (input) ก่อนบันทึกทุกครั้ง
+- มีการทดสอบครอบคลุมเส้นทางหลัก
 - อ่านโค้ดแล้วรู้ว่าแต่ละไฟล์ทำอะไร
 
-นี่คือระดับที่เอาไปใส่ portfolio ได้ เพราะไม่ใช่แค่ตัวอย่าง แต่เป็นของที่รันได้
+นี่คือระดับที่เอาไปใส่พอร์ตโฟลิโอได้ เพราะไม่ใช่แค่ตัวอย่าง แต่เป็นของที่รันได้
 
 ## 2. โครงสร้างที่ต้องได้
 
@@ -48,17 +48,17 @@ exercises/final-task-api/
 
 เหตุผลที่แยกแบบนี้:
 
-- `server.js` ทำหน้าที่เดียว คือเปิด port
-- `src/app.js` ประกอบ app แต่ไม่เปิด port (เพื่อให้ test import ไปใช้ได้)
-- `src/config.js` รวมค่าที่มาจาก environment ไว้ที่เดียว
+- `server.js` ทำหน้าที่เดียว คือเปิดพอร์ต (port)
+- `src/app.js` ประกอบแอป แต่ไม่เปิดพอร์ต (เพื่อให้การทดสอบนำเข้าไปใช้ได้)
+- `src/config.js` รวมค่าที่มาจากสภาพแวดล้อม (environment) ไว้ที่เดียว
 - `data/task-store.js` เป็นที่เดียวที่แตะไฟล์
-- `middleware/` เก็บตัวตรวจและตัวจัดการ error
-- `routes/` เก็บ route ของ resource
+- `middleware/` เก็บตัวตรวจและตัวจัดการข้อผิดพลาด (error)
+- `routes/` เก็บเส้นทาง (route) ของทรัพยากร (resource)
 - `test/` แยกจากโค้ดหลัก
 
 ## 3. `config.js`
 
-ค่า environment ควรอ่านที่เดียว ไม่กระจายทั้งโปรเจกต์
+ค่าจากสภาพแวดล้อมควรอ่านที่เดียว ไม่กระจายทั้งโปรเจกต์
 
 ```js
 import path from 'node:path';
@@ -72,7 +72,7 @@ export { storagePath };
 
 ## 4. `task-store.js`
 
-ชั้นนี้เป็นเจ้าของไฟล์ JSON ทั้งไฟล์ ออกแบบให้ทุกฟังก์ชันเป็น async
+ชั้นนี้เป็นเจ้าของไฟล์ JSON ทั้งไฟล์ ออกแบบให้ทุกฟังก์ชัน (function) เป็นอะซิงค์ (async)
 
 ```js
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -97,11 +97,11 @@ const writeTasks = async (tasks) => {
 };
 ```
 
-จุดสำคัญ: `ENOENT` คือกรณี "ไฟล์ยังไม่มี" ซึ่งไม่ใช่ error จริงสำหรับเรา
+จุดสำคัญ: `ENOENT` คือกรณี "ไฟล์ยังไม่มี" ซึ่งไม่ใช่ข้อผิดพลาดจริงสำหรับเรา
 
 ## 5. `error-handler.js`
 
-middleware จัดการ error ต้องมี signature สี่พารามิเตอร์ Express ถึงจะรู้ว่านี่คือ error handler
+ตัวกลางจัดการข้อผิดพลาดต้องมีลายเซ็น (signature) สี่พารามิเตอร์ Express ถึงจะรู้ว่านี่คือตัวจัดการข้อผิดพลาด
 
 ```js
 const errorHandler = (error, req, res, next) => {
@@ -113,33 +113,33 @@ const errorHandler = (error, req, res, next) => {
 export { errorHandler };
 ```
 
-## 6. route ที่ต้องมี
+## 6. เส้นทางที่ต้องมี
 
-| Method | Path | ผลลัพธ์ |
+| เมธอด | เส้นทาง | ผลลัพธ์ |
 |---|---|---|
 | `GET` | `/tasks` | `200` + array |
-| `GET` | `/tasks/:id` | `200` + task หรือ `404` |
-| `POST` | `/tasks` | `201` + task ที่สร้าง |
-| `PUT` | `/tasks/:id` | `200` + task ที่แก้ หรือ `404` |
+| `GET` | `/tasks/:id` | `200` + งาน หรือ `404` |
+| `POST` | `/tasks` | `201` + งานที่สร้าง |
+| `PUT` | `/tasks/:id` | `200` + งานที่แก้ หรือ `404` |
 | `DELETE` | `/tasks/:id` | `200` + ข้อความ หรือ `404` |
 
-status code ต้องตรงตามนี้ เพราะ test จะเช็กค่านี้
+รหัสสถานะ (status code) ต้องตรงตามนี้ เพราะการทดสอบจะเช็กค่านี้
 
 ## 7. เรื่องที่ต้องระวัง
 
-- route ที่เป็น async ต้องมี `try/catch` หรือส่งต่อ error ให้ `errorHandler`
-- อย่าเปิด port ใน `app.js` เพราะ test จะ import ไปใช้
-- อย่าเขียนไฟล์จริงตอน test ให้ชี้ `TASKS_FILE_PATH` ไปที่ไฟล์ test
-- `express.json()` ต้องมาก่อน route ที่อ่าน `req.body`
+- เส้นทางที่เป็นอะซิงค์ต้องมี `try/catch` หรือส่งต่อข้อผิดพลาดให้ `errorHandler`
+- อย่าเปิดพอร์ตใน `app.js` เพราะการทดสอบจะนำเข้าไปใช้
+- อย่าเขียนไฟล์จริงตอนทดสอบ ให้ชี้ `TASKS_FILE_PATH` ไปที่ไฟล์ทดสอบ
+- `express.json()` ต้องมาก่อนเส้นทางที่อ่าน `req.body`
 
 ## 8. เกณฑ์ผ่าน
 
 งานนี้ถือว่าผ่านเมื่อ:
 
-1. `node src/server.js` แล้วยิงด้วย `curl` ได้ครบทั้ง 5 route
-2. ปิด server แล้วเปิดใหม่ ข้อมูลยังอยู่
+1. `node src/server.js` แล้วยิงด้วย `curl` ได้ครบทั้ง 5 เส้นทาง
+2. ปิดเซิร์ฟเวอร์แล้วเปิดใหม่ ข้อมูลยังอยู่
 3. `node --test test/api.test.js` ผ่านทุกตัว
-4. `pnpm lint` ไม่มี error
+4. `pnpm lint` ไม่มีข้อผิดพลาด
 5. อ่านโครงสร้างแล้วบอกได้ว่าแต่ละไฟล์มีหน้าที่อะไร
 
 ## โจทย์ที่ต้องทำ
@@ -170,22 +170,22 @@ exercises/final-task-api/
 
 5. เขียน `src/middleware/error-handler.js`
 
-6. เขียน `src/routes/task-routes.js` ให้ครบ 5 route ตามตาราง
+6. เขียน `src/routes/task-routes.js` ให้ครบ 5 เส้นทางตามตาราง
 
 7. เขียน `src/app.js` ที่ประกอบทุกอย่างและ `export { app }`
 
-8. เขียน `server.js` ที่ import `app` แล้ว `listen` ที่ port `3000`
+8. เขียน `server.js` ที่นำเข้า (import) `app` แล้ว `listen` ที่พอร์ต `3000`
 
 9. เขียน `test/api.test.js` ที่:
-   - ตั้ง `process.env.TASKS_FILE_PATH` ไปที่ไฟล์ test
+   - ตั้ง `process.env.TASKS_FILE_PATH` ไปที่ไฟล์ทดสอบ
    - `await import('../src/app.js')`
-   - ลบไฟล์ test ก่อนทุก test
-   - ปิด server ใน `after`
-   - test อย่างน้อย 5 เคส ตามตาราง route
+   - ลบไฟล์ทดสอบก่อนทุกการทดสอบ
+   - ปิดเซิร์ฟเวอร์ใน `after`
+   - ทดสอบอย่างน้อย 5 เคส ตามตารางเส้นทาง
 
 ## วิธีรัน
 
-รัน server:
+รันเซิร์ฟเวอร์:
 
 ```bash
 node exercises/final-task-api/server.js
@@ -198,7 +198,7 @@ curl http://localhost:3000/tasks
 curl -X POST http://localhost:3000/tasks -H "Content-Type: application/json" -d '{"title":"งานแรก"}'
 ```
 
-รัน test:
+รันการทดสอบ:
 
 ```bash
 node --test exercises/final-task-api/test/api.test.js

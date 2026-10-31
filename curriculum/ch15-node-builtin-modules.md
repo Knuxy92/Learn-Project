@@ -2,25 +2,25 @@
 
 ## ทบทวน
 
-บทที่แล้วเราเรียน destructuring, spread และ rest
+บทที่แล้วเราเรียนการแยกค่าออกจากโครงสร้าง การกระจายค่า และการเก็บค่าที่เหลือ
 
-บทนี้เราจะรู้จัก module ที่ Node.js ให้มาใช้เลยโดยไม่ต้องติดตั้งอะไรเพิ่ม
+บทนี้เราจะรู้จักโมดูล (module) ที่ Node.js ให้มาใช้เลยโดยไม่ต้องติดตั้งอะไรเพิ่ม
 
 ## 1. Node.js ให้อะไรมาบ้าง
 
-Node.js มี built-in module หลายตัวที่ backend ใช้เป็นประจำ:
+Node.js มีโมดูลที่มีมาให้ (built-in module) หลายตัวที่ฝั่งเซิร์ฟเวอร์ (backend) ใช้เป็นประจำ:
 
 - `node:fs/promises` อ่านเขียนไฟล์
-- `node:path` จัดการ path
-- `node:http` สร้าง server ดิบ
+- `node:path` จัดการเส้นทางไฟล์ (path)
+- `node:http` สร้างเซิร์ฟเวอร์ (server) ดิบ
 - `node:url` จัดการ URL
-- `node:crypto` สร้าง id หรือ hash
+- `node:crypto` สร้างรหัส (id) หรือค่าแฮช (hash)
 
 เราไม่ต้อง `npm install` เพราะมันมากับ Node เอง
 
 ## 2. `node:path`
 
-`path` ช่วยต่อ path ให้ถูกต้องในทุก OS เราไม่ควรต่อ string เอง
+`path` ช่วยต่อเส้นทางไฟล์ให้ถูกต้องในทุกระบบปฏิบัติการ เราไม่ควรต่อข้อความ (string) เอง
 
 ```js
 import path from 'node:path';
@@ -42,7 +42,7 @@ data
 
 ## 3. `node:fs/promises`
 
-`fs/promises` ใช้ทำงานกับไฟล์แบบ async
+`fs/promises` ใช้ทำงานกับไฟล์แบบอะซิงค์ (async)
 
 ```js
 import { writeFile, readFile } from 'node:fs/promises';
@@ -63,7 +63,7 @@ run();
 hello
 ```
 
-ต้องใส่ `'utf-8'` ตอนอ่าน ไม่อย่างนั้นจะได้ `Buffer` ไม่ใช่ string
+ต้องใส่ `'utf-8'` ตอนอ่าน ไม่อย่างนั้นจะได้ `Buffer` ไม่ใช่ข้อความ
 
 ## 4. ตรวจว่าไฟล์มีอยู่จริง
 
@@ -80,13 +80,13 @@ const exists = async (filePath) => {
 };
 ```
 
-เราใช้ `try/catch` เพราะ `access` throw error เมื่อไฟล์ไม่มี
+เราใช้ `try/catch` เพราะ `access` โยนข้อผิดพลาด (throw error) เมื่อไฟล์ไม่มี
 
 ## 5. `import.meta.dirname`
 
-เวลาเปิดไฟล์ด้วย path สัมพัทธ์ มันอ้างจากโฟลเดอร์ที่เรารันคำสั่ง ไม่ใช่ที่อยู่ไฟล์
+เวลาเปิดไฟล์ด้วยเส้นทางไฟล์แบบสัมพัทธ์ มันอ้างจากโฟลเดอร์ที่เรารันคำสั่ง ไม่ใช่ที่อยู่ไฟล์
 
-ถ้าอยากได้ path ของไฟล์ที่กำลังรันอยู่ ให้ใช้ `import.meta.dirname`
+ถ้าอยากได้เส้นทางไฟล์ของไฟล์ที่กำลังรันอยู่ ให้ใช้ `import.meta.dirname`
 
 ```js
 import path from 'node:path';
@@ -148,19 +148,19 @@ exercises/ch15-node-modules.js
 
 ให้ทำตามนี้:
 
-1. import `readFile`, `writeFile` จาก `node:fs/promises` และ `path` จาก `node:path`
+1. นำเข้า (import) `readFile`, `writeFile` จาก `node:fs/promises` และ `path` จาก `node:path`
 
-2. สร้าง path ของไฟล์ `exercises/ch15-data/note.json` โดยใช้ `import.meta.dirname` และ `path.join`
+2. สร้างเส้นทางไฟล์ของไฟล์ `exercises/ch15-data/note.json` โดยใช้ `import.meta.dirname` และ `path.join`
 
-3. เขียน function `saveNote(text)`
-   - สร้าง object `{ text, savedAt }` โดย `savedAt` เป็น `new Date().toISOString()`
+3. เขียนฟังก์ชัน (function) `saveNote(text)`
+   - สร้างออบเจ็กต์ (object) `{ text, savedAt }` โดย `savedAt` เป็น `new Date().toISOString()`
    - เขียนลงไฟล์เป็น JSON
 
-4. เขียน function `loadNote()`
+4. เขียนฟังก์ชัน `loadNote()`
    - อ่านไฟล์และ `JSON.parse`
-   - คืน object ที่ได้
+   - คืนออบเจ็กต์ที่ได้
 
-5. เขียน function `noteExists()`
+5. เขียนฟังก์ชัน `noteExists()`
    - ใช้ `access` ตรวจว่าไฟล์มีอยู่
    - คืน `true` หรือ `false`
 

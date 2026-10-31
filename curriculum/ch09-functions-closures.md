@@ -2,15 +2,15 @@
 
 ## ทบทวน
 
-บทที่แล้วเราเรียน object, methods, destructuring, และ spread
+บทที่แล้วเราเรียนออบเจ็กต์ (object), เมธอด (method), การแยกค่าออกจากโครงสร้าง (destructuring) และการกระจายค่า (spread)
 
-บทนี้เราจะอยู่กับ function ต่อ แต่จะลึกขึ้นอีกนิด โดยเฉพาะเรื่อง callback และ closure
+บทนี้เราจะอยู่กับฟังก์ชัน (function) ต่อ แต่จะลึกขึ้นอีกนิด โดยเฉพาะเรื่องฟังก์ชันตอบกลับ (callback) และคลอเชอร์ (closure)
 
 ## 1. Callback คืออะไร
 
-Callback คือ function ที่ถูกส่งเข้าไปให้ function อื่นเรียกใช้อีกที
+ฟังก์ชันตอบกลับ คือฟังก์ชันที่ถูกส่งเข้าไปให้ฟังก์ชันอื่นเรียกใช้อีกที
 
-เราต้องรู้ callback เพราะ JavaScript ใช้มันบ่อยมาก โดยเฉพาะกับ array methods และ async code
+เราต้องรู้เรื่องฟังก์ชันตอบกลับ เพราะ JavaScript ใช้มันบ่อยมาก โดยเฉพาะกับเมธอดของ array และโค้ดอะซิงค์ (async)
 
 ```js
 const numbers = [1, 2, 3];
@@ -30,9 +30,9 @@ numbers.forEach((number) => {
 
 ## 2. Higher-Order Function คืออะไร
 
-Higher-order function คือ function ที่รับ function อื่นเข้ามา หรือคืน function ออกไป
+ฟังก์ชันระดับสูง (higher-order function) คือฟังก์ชันที่รับฟังก์ชันอื่นเข้ามา หรือคืนฟังก์ชันออกไป
 
-เราต้องรู้มันเพราะ callback และ closures มักเกิดในรูปแบบนี้
+เราต้องรู้มันเพราะฟังก์ชันตอบกลับและคลอเชอร์มักเกิดในรูปแบบนี้
 
 ```js
 const runTask = (task) => {
@@ -52,9 +52,9 @@ Task finished
 
 ## 3. Closure คืออะไร
 
-Closure คือ function ที่ยังจำค่าจากข้างนอกตัวมันได้ แม้ function ด้านนอกจะทำงานจบไปแล้ว
+คลอเชอร์ คือฟังก์ชันที่ยังจำค่าจากข้างนอกตัวมันได้ แม้ฟังก์ชันด้านนอกจะทำงานจบไปแล้ว
 
-เราต้องรู้มันเพราะมันช่วยให้เราเก็บ state แบบเป็นส่วนตัวได้
+เราต้องรู้มันเพราะมันช่วยให้เราเก็บค่าไว้ใช้เป็นการส่วนตัวได้
 
 ```js
 const createCounter = () => {
@@ -81,7 +81,7 @@ console.log(counter());
 
 ## 4. Rest Parameters
 
-Rest parameter ใช้รับ argument หลายตัวแล้วรวมเป็น array
+พารามิเตอร์ที่เก็บค่าที่เหลือ (rest parameter) ใช้รับอาร์กิวเมนต์ (argument) หลายตัวแล้วรวมเป็น array
 
 เราต้องใช้มันเมื่อไม่รู้ล่วงหน้าว่าจะมีค่าถูกส่งมากี่ตัว
 
@@ -101,9 +101,9 @@ console.log(addAll(10, 20, 30));
 
 ## 5. Spread in Function Calls
 
-Spread ใน function call ใช้กระจายค่าจาก array ออกมาเป็น argument หลายตัว
+การกระจายค่าในตอนเรียกฟังก์ชัน ใช้ดึงค่าจาก array ออกมาเป็นอาร์กิวเมนต์หลายตัว
 
-เราต้องใช้มันเมื่อมีข้อมูลอยู่ใน array แต่ function ต้องการ argument แยกกัน
+เราต้องใช้มันเมื่อมีข้อมูลอยู่ใน array แต่ฟังก์ชันต้องการอาร์กิวเมนต์แยกกัน
 
 ```js
 const add = (firstNumber, secondNumber) => {
@@ -131,20 +131,20 @@ exercises/ch09-create-counter.js
 
 ให้ทำตามนี้:
 
-1. สร้าง function `createCounter()`
-   มันต้องคืน object ที่มี:
+1. สร้างฟังก์ชัน `createCounter()`
+   มันต้องคืนออบเจ็กต์ที่มี:
    - `increment()`
    - `decrement()`
    - `getCount()`
 
-2. ใช้ closure ให้ `count` ถูกเก็บไว้ภายใน `createCounter`
+2. ใช้คลอเชอร์ให้ `count` ถูกเก็บไว้ภายใน `createCounter`
 
-3. สร้าง function `sumAll(...numbers)`
-   ใช้ rest parameter รับเลขหลายตัว
+3. สร้างฟังก์ชัน `sumAll(...numbers)`
+   ใช้พารามิเตอร์ที่เก็บค่าที่เหลือรับเลขหลายตัว
    และคืนผลรวม
 
 4. สร้าง array `values = [10, 20, 30]`
-   แล้วใช้ spread ส่งเข้า `sumAll`
+   แล้วใช้การกระจายค่าส่งเข้า `sumAll`
 
 ผลลัพธ์ที่คาดหวัง:
 

@@ -2,13 +2,13 @@
 
 ## ทบทวน
 
-บทที่แล้วเราแยกโค้ดเป็น module ด้วย `export` / `import`
+บทที่แล้วเราแยกโค้ดเป็นโมดูล (module) ด้วย `export` / `import`
 
-บทนี้เราจะเรียน syntax ที่เจอบ่อยมากในโค้ด backend สมัยใหม่
+บทนี้เราจะเรียนไวยากรณ์ที่เจอบ่อยมากในโค้ดฝั่งเซิร์ฟเวอร์ (backend) สมัยใหม่
 
 ## 1. Object destructuring
 
-Destructuring คือการดึงค่าออกจาก object หรือ array มาใส่ตัวแปรทีเดียว
+การแยกค่าออกจากโครงสร้าง (destructuring) คือการดึงค่าออกจากออบเจ็กต์ (object) หรือ array มาใส่ตัวแปรทีเดียว
 
 ```js
 const task = { id: 1, title: 'Learn JS', done: false };
@@ -26,7 +26,7 @@ console.log(title);
 Learn JS
 ```
 
-เราใช้มันเพราะโค้ด backend มักได้ object กลับมา แล้วต้องการแค่บาง field
+เราใช้มันเพราะโค้ดฝั่งเซิร์ฟเวอร์มักได้ออบเจ็กต์กลับมา แล้วต้องการแค่บางฟิลด์ (field)
 
 ## 2. เปลี่ยนชื่อตอน destructuring
 
@@ -46,7 +46,7 @@ Learn JS
 
 ## 3. ค่า default
 
-ถ้า field ไม่มีอยู่ จะได้ `undefined` แต่เราใส่ค่า default ได้
+ถ้าฟิลด์ไม่มีอยู่ จะได้ `undefined` แต่เราใส่ค่าเริ่มต้น (default) ได้
 
 ```js
 const { done = false, owner = 'Student' } = { id: 1 };
@@ -82,7 +82,7 @@ console.log(second);
 
 ## 5. Spread
 
-Spread (`...`) ใช้กระจายค่าออกมา ใช้บ่อยตอน copy object หรือรวม array
+การกระจายค่า (spread) ใช้ `...` กระจายค่าออกมา ใช้บ่อยตอนคัดลอกออบเจ็กต์หรือรวม array
 
 ```js
 const task = { id: 1, title: 'Learn JS', done: false };
@@ -98,11 +98,11 @@ console.log(updated);
 { id: 1, title: 'Learn JS', done: true }
 ```
 
-สังเกตว่า `task` เดิมไม่เปลี่ยน เพราะ spread สร้าง object ใหม่
+สังเกตว่า `task` เดิมไม่เปลี่ยน เพราะการกระจายค่าสร้างออบเจ็กต์ใหม่
 
 ## 6. Rest
 
-Rest (`...`) เก็บค่าที่เหลือไว้ในตัวแปรเดียว
+การเก็บค่าที่เหลือ (rest) ใช้ `...` เก็บค่าที่เหลือไว้ในตัวแปรเดียว
 
 ```js
 const { id, ...rest } = { id: 1, title: 'Learn JS', done: false };
@@ -139,7 +139,7 @@ Bangkok
 undefined
 ```
 
-`?.` (optional chaining) คืน `undefined` แทนการ throw error เมื่อ field ก่อนหน้าไม่มี
+`?.` (optional chaining) คืน `undefined` แทนการโยนข้อผิดพลาด (throw error) เมื่อฟิลด์ก่อนหน้าไม่มี
 
 ## 8. ตัวอย่าง: merge ค่าที่อัปเดต
 
@@ -173,20 +173,20 @@ exercises/ch14-destructuring.js
 
 1. สร้าง `task` ที่มี `id`, `title`, `done`, และ `meta: { priority, tags }`
 
-2. เขียน function `describeTask(task)`
-   - destructure `title` และ `done`
-   - destructure `priority` จาก `meta` พร้อมค่า default `'normal'`
-   - คืน string รูปแบบ `title - done|pending - priority`
+2. เขียนฟังก์ชัน (function) `describeTask(task)`
+   - แยกค่า `title` และ `done`
+   - แยกค่า `priority` จาก `meta` พร้อมค่าเริ่มต้น `'normal'`
+   - คืนข้อความรูปแบบ `title - done|pending - priority`
 
-3. เขียน function `updateTask(task, updates)`
-   - ใช้ spread คืน object ใหม่ที่รวม `updates`
+3. เขียนฟังก์ชัน `updateTask(task, updates)`
+   - ใช้การกระจายค่า คืนออบเจ็กต์ใหม่ที่รวม `updates`
    - ต้องไม่แก้ `task` เดิม
 
-4. เขียน function `splitTask(task)`
-   - ใช้ rest แยก `id` ออกมา
-   - คืน object `{ id, rest }`
+4. เขียนฟังก์ชัน `splitTask(task)`
+   - ใช้การเก็บค่าที่เหลือ แยก `id` ออกมา
+   - คืนออบเจ็กต์ `{ id, rest }`
 
-5. พิมพ์ผลลัพธ์ของทั้งสาม function
+5. พิมพ์ผลลัพธ์ของทั้งสามฟังก์ชัน
 
 ตัวอย่างผลลัพธ์:
 

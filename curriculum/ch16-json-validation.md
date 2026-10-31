@@ -2,7 +2,7 @@
 
 ## ทบทวน
 
-บทที่แล้วเราเรียน built-in module ของ Node.js และเขียนไฟล์ JSON แล้ว
+บทที่แล้วเราเรียนโมดูลที่มีมาให้ของ Node.js และเขียนไฟล์ JSON แล้ว
 
 บทนี้เราจะโฟกัสเรื่อง JSON และการตรวจข้อมูลก่อนใช้งานจริง
 
@@ -10,16 +10,16 @@
 
 JSON (JavaScript Object Notation) คือรูปแบบข้อความสำหรับแลกเปลี่ยนข้อมูล
 
-backend ใช้ JSON สองทางหลัก:
+ฝั่งเซิร์ฟเวอร์ (backend) ใช้ JSON สองทางหลัก:
 
-- รับข้อมูลจาก client เข้ามาเป็น request body
-- ส่งข้อมูลกลับไปเป็น response body
+- รับข้อมูลจากฝั่งผู้เรียก (client) เข้ามาเป็นเนื้อหาคำขอ (request body)
+- ส่งข้อมูลกลับไปเป็นเนื้อหาคำตอบ (response body)
 
 ข้อจำกัดที่ต้องรู้:
 
-- key ต้องเป็น string อยู่ในเครื่องหมายคำพูดคู่
-- ไม่มี `undefined`, function หรือ comment
-- ค่าได้แค่ string, number, boolean, null, array, object
+- ชื่อฟิลด์ต้องเป็นข้อความ (string) อยู่ในเครื่องหมายคำพูดคู่
+- ไม่มี `undefined`, ฟังก์ชัน (function) หรือคอมเมนต์
+- ค่าได้แค่ข้อความ, number, ค่าจริงเท็จ (boolean), null, array, ออบเจ็กต์ (object)
 
 ## 2. `JSON.stringify` และ `JSON.parse`
 
@@ -42,7 +42,7 @@ console.log(back);
 
 ## 3. `JSON.parse` พังได้
 
-ถ้าข้อความไม่ใช่ JSON ที่ถูกต้อง `JSON.parse` จะ throw error
+ถ้าข้อความไม่ใช่ JSON ที่ถูกต้อง `JSON.parse` จะโยนข้อผิดพลาด (throw error)
 
 ```js
 try {
@@ -60,11 +60,11 @@ parse failed
 SyntaxError
 ```
 
-ดังนั้นทุกครั้งที่ parse ข้อมูลจากภายนอก ต้องเตรียมรับ error
+ดังนั้นทุกครั้งที่แปลงข้อความ (parse) ข้อมูลจากภายนอก ต้องเตรียมรับข้อผิดพลาด
 
 ## 4. ตรวจชนิดข้อมูล
 
-JavaScript เป็นภาษา dynamic เราจึงต้องตรวจเองว่า field ที่ได้มาถูกชนิด
+JavaScript เป็นภาษาไดนามิก เราจึงต้องตรวจเองว่าฟิลด์ (field) ที่ได้มาถูกชนิด (type)
 
 ```js
 const isValidTask = (value) => {
@@ -104,7 +104,7 @@ const isValidTaskList = (value) => {
 
 ## 6. แปลงค่าที่มาจาก URL
 
-ค่าใน `req.params` และ query string เป็น string เสมอ ต้องแปลงเอง
+ค่าใน `req.params` และส่วนคำค้นของ URL เป็นข้อความเสมอ ต้องแปลงเอง
 
 ```js
 const toId = (value) => {
@@ -126,7 +126,7 @@ null
 null
 ```
 
-## 7. ตัวอย่าง: ตรวจ payload ก่อนสร้าง task
+## 7. ตัวอย่าง: ตรวจเนื้อหาคำขอก่อนสร้างงาน
 
 ```js
 const parseCreateTaskBody = (body) => {
@@ -170,23 +170,23 @@ exercises/ch16-json-validation.js
 
 ให้ทำตามนี้:
 
-1. เขียน function `safeParse(text)`
-   - คืน `{ ok: true, value }` เมื่อ parse สำเร็จ
-   - คืน `{ ok: false, error: 'Invalid JSON' }` เมื่อ parse ไม่สำเร็จ
+1. เขียนฟังก์ชัน `safeParse(text)`
+   - คืน `{ ok: true, value }` เมื่อแปลงข้อความสำเร็จ
+   - คืน `{ ok: false, error: 'Invalid JSON' }` เมื่อแปลงข้อความไม่สำเร็จ
 
-2. เขียน function `isValidTask(value)`
-   - `value` ต้องเป็น object ที่ไม่ใช่ `null`
-   - `title` ต้องเป็น string ที่ไม่ว่างหลัง `trim()`
-   - `done` ถ้ามี ต้องเป็น boolean
+2. เขียนฟังก์ชัน `isValidTask(value)`
+   - `value` ต้องเป็นออบเจ็กต์ที่ไม่ใช่ `null`
+   - `title` ต้องเป็นข้อความที่ไม่ว่างหลัง `trim()`
+   - `done` ถ้ามี ต้องเป็นค่าจริงเท็จ
 
-3. เขียน function `parseTaskList(text)`
+3. เขียนฟังก์ชัน `parseTaskList(text)`
    - ใช้ `safeParse`
-   - ถ้า parse ไม่ผ่าน คืน `{ ok: false, error }`
-   - ถ้าข้อมูลไม่ใช่ array หรือมี item ที่ไม่ผ่าน `isValidTask` คืน `{ ok: false, error: 'Invalid task list' }`
+   - ถ้าแปลงข้อความไม่ผ่าน คืน `{ ok: false, error }`
+   - ถ้าข้อมูลไม่ใช่ array หรือมีรายการ (item) ที่ไม่ผ่าน `isValidTask` คืน `{ ok: false, error: 'Invalid task list' }`
    - ถ้าผ่าน คืน `{ ok: true, value }`
 
-4. เขียน function `toId(value)`
-   - คืน integer ที่มากกว่า 0
+4. เขียนฟังก์ชัน `toId(value)`
+   - คืนจำนวนเต็มที่มากกว่า 0
    - ถ้าไม่ใช่ คืน `null`
 
 5. ทดสอบด้วยข้อมูลดีและข้อมูลเสีย อย่างละ 2 เคส แล้วพิมพ์ผลลัพธ์
@@ -209,7 +209,7 @@ node exercises/ch16-json-validation.js
 
 ## ผลลัพธ์ที่คาดหวัง
 
-รันแล้วไม่ throw error และเห็นผลลัพธ์ทั้งกรณีผ่านและไม่ผ่าน
+รันแล้วไม่โยนข้อผิดพลาด และเห็นผลลัพธ์ทั้งกรณีผ่านและไม่ผ่าน
 
 เสร็จแล้วพิมพ์:
 

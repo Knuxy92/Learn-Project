@@ -2,43 +2,43 @@
 
 ## ทบทวน
 
-ตอนนี้นายมี API ที่:
+ตอนนี้เรามี API ที่:
 
 - แยกไฟล์เป็นระบบ
-- มี validation
+- มีการตรวจสอบ (validation)
 - เขียนข้อมูลลงไฟล์ได้
-- restart แล้วข้อมูลยังอยู่
+- รีสตาร์ต (restart) แล้วข้อมูลยังอยู่
 
 ปัญหาถัดไปคือทุกครั้งที่แก้โค้ด เราต้องคอย:
 
-- เปิด server
-- ยิง request เอง
-- เช็ก response เอง
+- เปิดเซิร์ฟเวอร์ (server)
+- ยิงคำขอ (request) เอง
+- เช็กคำตอบ (response) เอง
 
 ซึ่งช้าและพลาดง่าย
 
 บทนี้จะเพิ่ม "การทดสอบอัตโนมัติ" ให้ API
 
-## 1. Why Testing Matters
+## 1. ทำไมการทดสอบจึงสำคัญ
 
-test ช่วยตอบคำถาม 3 อย่าง:
+การทดสอบ (test) ช่วยตอบคำถาม 3 อย่าง:
 
 - โค้ดยังทำงานเหมือนเดิมไหม
-- ตอน refactor พังตรงไหนหรือเปล่า
-- requirement ที่สำคัญถูกล็อกไว้หรือยัง
+- ตอนปรับโครงสร้าง (refactor) พังตรงไหนหรือเปล่า
+- ข้อกำหนด (requirement) ที่สำคัญถูกล็อกไว้หรือยัง
 
-กับ API สิ่งที่เรามักอยาก test คือ:
+กับ API สิ่งที่เรามักอยากทดสอบคือ:
 
-- status code
-- body ของ response
-- behavior ตอน success
-- behavior ตอน error
+- รหัสสถานะ (status code)
+- เนื้อหาคำตอบ
+- พฤติกรรม (behavior) ตอนสำเร็จ
+- พฤติกรรมตอนเกิดข้อผิดพลาด (error)
 
 ## 2. `node:test`
 
-Node.js มี test runner ในตัวชื่อ `node:test`
+Node.js มีตัวรันการทดสอบในตัวชื่อ `node:test`
 
-เราไม่ต้องลง Jest ก่อนก็เริ่มเขียน test ได้
+เราไม่ต้องลง Jest ก่อนก็เริ่มเขียนการทดสอบได้
 
 ตัวอย่าง:
 
@@ -57,14 +57,14 @@ test('1 + 1 should equal 2', () => {
 node --test
 ```
 
-## 3. Testing HTTP APIs
+## 3. ทดสอบ HTTP API
 
 แนวคิดคือ:
 
-1. เปิด app บน port ชั่วคราว
-2. ใช้ `fetch(...)` ยิง request
-3. เช็ก status และ body
-4. ปิด server หลังจบ test
+1. เปิดแอปบนพอร์ต (port) ชั่วคราว
+2. ใช้ `fetch(...)` ยิงคำขอ
+3. เช็กรหัสสถานะและเนื้อหา
+4. ปิดเซิร์ฟเวอร์หลังจบการทดสอบ
 
 ตัวอย่าง:
 
@@ -76,27 +76,27 @@ const response = await fetch(`${baseUrl}/tasks`);
 const data = await response.json();
 ```
 
-แล้วค่อย assert:
+แล้วค่อยตรวจสอบ (assert):
 
 ```js
 assert.equal(response.status, 200);
 assert.ok(Array.isArray(data));
 ```
 
-## 4. Isolate Test Data
+## 4. แยกข้อมูลสำหรับการทดสอบ
 
-เวลา test API ที่เขียนลงไฟล์จริง ต้องระวัง:
+เวลาทดสอบ API ที่เขียนลงไฟล์จริง ต้องระวัง:
 
-- test ไปลบข้อมูลจริง
-- test ไปรบกวนงานรอบอื่น
+- การทดสอบไปลบข้อมูลจริง
+- การทดสอบไปรบกวนงานรอบอื่น
 
-ดังนั้นบทนี้จะให้แยก `storage/test-tasks.json` สำหรับ test
+ดังนั้นบทนี้จะให้แยก `storage/test-tasks.json` สำหรับการทดสอบ
 
-และใช้ environment variable เพื่อบอก app ว่าจะอ่านไฟล์ไหน
+และใช้ตัวแปรสภาพแวดล้อม (environment variable) เพื่อบอกแอปว่าจะอ่านไฟล์ไหน
 
-## 5. Environment-Based Storage Path
+## 5. เส้นทางไฟล์ที่เก็บข้อมูลตามสภาพแวดล้อม
 
-แทนที่จะ hardcode path เดียว:
+แทนที่จะเขียนเส้นทางไฟล์ (path) ตายตัวเดียว:
 
 ```js
 const filePath = '...';
@@ -112,24 +112,24 @@ const filePath =
   path.join(import.meta.dirname, '..', 'storage', 'tasks.json');
 ```
 
-`import.meta.dirname` คือโฟลเดอร์ของไฟล์ที่กำลังรันอยู่ ซึ่งใน ESM ใช้แทนตัวแปร global แบบเก่าได้เลย
+`import.meta.dirname` คือโฟลเดอร์ของไฟล์ที่กำลังรันอยู่ ซึ่งใน ESM ใช้แทนตัวแปรส่วนกลางแบบเก่าได้เลย
 
 ข้อดีคือ:
 
 - ตอนใช้งานจริงอ่านไฟล์เดิม
-- ตอน test ชี้ไปไฟล์ทดสอบได้
+- ตอนทดสอบชี้ไปไฟล์ทดสอบได้
 
-## 6. Test Lifecycle
+## 6. วงจรชีวิตของการทดสอบ
 
-test ที่ดีควร:
+การทดสอบที่ดีควร:
 
-- ตั้ง `process.env.TASKS_FILE_PATH` ก่อน import app
-- import app ด้วย dynamic import
-- เปิด server
-- ลบไฟล์ทดสอบก่อนทุก test
-- ยิง request
-- ตรวจสอบผลด้วย assert
-- ปิด server ใน `after`
+- ตั้ง `process.env.TASKS_FILE_PATH` ก่อนนำเข้า (import) แอป
+- นำเข้าแอปแบบไดนามิก
+- เปิดเซิร์ฟเวอร์
+- ลบไฟล์ทดสอบก่อนทุกการทดสอบ
+- ยิงคำขอ
+- ตรวจสอบผลลัพธ์
+- ปิดเซิร์ฟเวอร์ใน `after`
 
 ## 7. ตัวอย่าง
 
@@ -171,19 +171,19 @@ test('GET /tasks should return 200 and an array', async () => {
 });
 ```
 
-ทำไมต้องใช้ dynamic import:
+ทำไมต้องใช้การนำเข้าแบบไดนามิก:
 
-static `import` ถูก hoist ขึ้นไปทำงานก่อน statement อื่นทั้งหมดในไฟล์
+`import` แบบคงที่ถูกยกขึ้นไปทำงานก่อนคำสั่งอื่นทั้งหมดในไฟล์
 
-ถ้าเราเขียน `import { app } ...` ไว้บนสุด แล้วค่อยตั้ง `process.env.TASKS_FILE_PATH` ข้างล่าง app จะถูกโหลดก่อนที่ env จะถูกตั้ง
+ถ้าเราเขียน `import { app } ...` ไว้บนสุด แล้วค่อยตั้ง `process.env.TASKS_FILE_PATH` ข้างล่าง แอปจะถูกโหลดก่อนที่ตัวแปรสภาพแวดล้อมจะถูกตั้ง
 
-ผลคือ `task-store.js` อ่าน path ตอน import และได้ค่า default ไปแล้ว
+ผลคือ `task-store.js` อ่านเส้นทางไฟล์ตอนนำเข้า และได้ค่าเริ่มต้น (default) ไปแล้ว
 
-`await import(...)` เป็น expression ที่ทำงานตามลำดับ จึงต้องวางไว้หลังบรรทัดที่ตั้ง env
+`await import(...)` เป็นนิพจน์ (expression) ที่ทำงานตามลำดับ จึงต้องวางไว้หลังบรรทัดที่ตั้งตัวแปรสภาพแวดล้อม
 
-ส่วน `beforeEach` ที่ลบไฟล์ด้วย `rm(path, { force: true })` ทำให้ทุก test เริ่มจากข้อมูลว่าง
+ส่วน `beforeEach` ที่ลบไฟล์ด้วย `rm(path, { force: true })` ทำให้ทุกการทดสอบเริ่มจากข้อมูลว่าง
 
-`force: true` หมายความว่าถ้าไฟล์ยังไม่มีก็ไม่ต้อง error
+`force: true` หมายความว่าถ้าไฟล์ยังไม่มีก็ไม่ต้องเกิดข้อผิดพลาด
 
 ## โจทย์ที่ต้องทำ
 
@@ -197,25 +197,25 @@ exercises/ch22-api-tests/
 
 1. ปรับ `exercises/ch21-persistent-task-api/data/task-store.js`
    - ให้รองรับ `process.env.TASKS_FILE_PATH`
-   - ถ้าไม่มี env นี้ ให้ fallback ไปไฟล์เดิม
-   - สร้าง path ด้วย `import.meta.dirname`
+   - ถ้าไม่มีตัวแปรสภาพแวดล้อมนี้ ให้ถอยไปใช้ (fallback) ไฟล์เดิม
+   - สร้างเส้นทางไฟล์ด้วย `import.meta.dirname`
 
 2. ใน `exercises/ch22-api-tests/api.test.js`
    - ใช้ `node:test`
    - ใช้ `node:assert/strict`
-   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `storage/test-tasks.json` ก่อน import
-   - import `app` จาก Ch21 ด้วย `const { app } = await import('../ch21-persistent-task-api/app.js');`
+   - ตั้ง `process.env.TASKS_FILE_PATH` ให้ชี้ไป `storage/test-tasks.json` ก่อนนำเข้า
+   - นำเข้า `app` จากบทที่ 21 ด้วย `const { app } = await import('../ch21-persistent-task-api/app.js');`
 
 3. ใช้ `beforeEach` ลบไฟล์ `storage/test-tasks.json` ด้วย `rm(storagePath, { force: true })`
-   - เพื่อให้ทุก test เริ่มจากข้อมูลว่าง
+   - เพื่อให้ทุกการทดสอบเริ่มจากข้อมูลว่าง
 
-4. เขียน test อย่างน้อย 4 ตัว:
+4. เขียนการทดสอบอย่างน้อย 4 ตัว:
    - `GET /tasks` ควรได้ `200` และเป็น array
-   - `POST /tasks` ควรสร้าง task ใหม่ได้
+   - `POST /tasks` ควรสร้างงาน (task) ใหม่ได้
    - `PUT /tasks/999` ควรได้ `404`
    - `DELETE /tasks/999` ควรได้ `404`
 
-5. ใช้ `after` ปิด server ที่เปิดใน test
+5. ใช้ `after` ปิดเซิร์ฟเวอร์ที่เปิดในการทดสอบ
 
 รันด้วย:
 
@@ -225,13 +225,13 @@ node --test exercises/ch22-api-tests/api.test.js
 
 ## ข้อควรระวัง
 
-บทนี้ไม่ได้วัดว่า test ต้องสวยที่สุด
+บทนี้ไม่ได้วัดว่าการทดสอบต้องสวยที่สุด
 
 แต่วัดว่า:
 
-- รัน test ได้
-- ไม่ใช้ข้อมูลจริงปนกับ test
-- assert behavior สำคัญของ API ได้
+- รันการทดสอบได้
+- ไม่ใช้ข้อมูลจริงปนกับการทดสอบ
+- ตรวจสอบพฤติกรรมสำคัญของ API ได้
 
 เมื่อเสร็จแล้วพิมพ์:
 

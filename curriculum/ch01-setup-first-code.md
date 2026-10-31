@@ -1,14 +1,14 @@
 # บทที่ 1: ติดตั้งและโค้ดแรก
 
-## What JavaScript Is
+## JavaScript คืออะไร
 
 JavaScript คือภาษาโปรแกรมที่ใช้บอกคอมพิวเตอร์ว่าต้องทำอะไร
 
-เราต้องใช้มันเพราะเครื่องมือ backend อย่าง Node.js สามารถรัน JavaScript นอก browser ได้
+เราต้องใช้มันเพราะเครื่องมือฝั่งเซิร์ฟเวอร์ (backend) อย่าง Node.js รัน JavaScript นอกเบราว์เซอร์ (browser) ได้
 
-## First Concept: `console.log`
+## แนวคิดแรก: `console.log`
 
-`console.log` ใช้พิมพ์อะไรบางอย่างออกมาที่ terminal
+`console.log` ใช้พิมพ์อะไรบางอย่างออกมาที่เทอร์มินัล (terminal)
 
 เราต้องใช้มันเพราะมันทำให้เราเห็นว่าโค้ดของเรากำลังทำอะไรอยู่
 
@@ -22,7 +22,7 @@ console.log('Hello World');
 Hello World
 ```
 
-## Running A File
+## การรันไฟล์
 
 ไฟล์ `.js` คือไฟล์ JavaScript
 
@@ -38,7 +38,7 @@ node curriculum/ch01/hello-world.js
 Hello World
 ```
 
-## Which File To Edit
+## ไฟล์ที่ต้องแก้
 
 ไฟล์ใน `curriculum/` เป็นไฟล์ตัวอย่างสำหรับอ่านและรันดู
 
