@@ -1,0 +1,9 @@
+product_id,product_name,category,list_price
+P001, Keyboard ,Accessory,450
+P002,Mouse,accessory,300
+P003,Notebook,Stationery,60
+P004, Monitor ,display,4200
+P005,USB HUB,Accessory,890
+P006,Desk Lamp,furniture,1150
+P007, Webcam ,Display,1590
+P008,Pen,stationery,25

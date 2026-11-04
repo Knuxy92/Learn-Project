@@ -1,0 +1,15 @@
+customer_id,name,email,phone,country,signup_date,loyalty_tier
+C001,  Nattapong Sri  ,customer1@example.com,+66801002003,Thailand,2024-11-22,GOLD
+C002,Malee Wongsakul,customer2@example.com,(66) 802003004,LA,2024/04/25,gold
+C003,Kanya P.,customer3@example.com,080-300-4005,Thailand,2024/08/20,silver
+C004,Anan Chaiyaporn,CUSTOMER4@EXAMPLE.COM,0804005006,thailand ,2024/05/25,silver 
+C005,Suda Meesuk,customer5@example.com,080-500-6007,LA,2024-04-23,silver 
+C006,Prasit Kaew,customer6@example.com,+66806007008,thailand ,2024-02-21,Gold
+C007,Wilai Thongchai,,+66807008009,Laos,14/05/2024,Gold
+C008,Chatchai Boonmee,CUSTOMER8@EXAMPLE.COM,0808009010,thailand ,2024-05-19,silver 
+C009,Ratana Srisuk,customer9@example.com,080-901-0011,LA,2024/12/26,silver 
+C010,Somchai Jaidee,customer10@example.com,081-001-1012,TH,2024-03-05,silver
+C011,  Nattapong Sri  ,customer11@example.com,+66811012013,LA,2024/02/19,
+C012,Malee Wongsakul,CUSTOMER12@EXAMPLE.COM,+66812013014,thailand ,26/07/2024,silver
+C003,Kanya P.,customer3@example.com,080-300-4005,Thailand,2024/08/20,silver
+C003,Malee Wongsakul ,malee@example.com,,Thailand,2024-03-15,Gold
