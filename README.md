@@ -1,47 +1,48 @@
-# โปรเจกต์เรียน JavaScript สู่ฝั่งเซิร์ฟเวอร์ (backend)
+# เรียน Python สู่การทำความสะอาดข้อมูล
 
-โปรเจกต์นี้เป็นพื้นที่เรียน JavaScript ตั้งแต่พื้นฐานไปจนทำ API ฝั่งเซิร์ฟเวอร์ด้วย Express ได้จริง
+โปรเจกต์นี้เป็นพื้นที่เรียน Python ตั้งแต่พื้นฐานไปจนทำความสะอาดข้อมูลจริงด้วย NumPy และ Pandas
+
+หลักสูตรหยุดที่ระดับ "ข้อมูลพร้อมใช้" ไม่ลงลึกถึงโมเดล (model) หรือแมชชีนเลิร์นนิง
 
 ## เส้นทางการเรียน
 
-1. JavaScript พื้นฐาน (Ch1-Ch12)
-2. JavaScript ขั้นกลางสำหรับงานฝั่งเซิร์ฟเวอร์ (Ch13-Ch16)
-3. ฝั่งเซิร์ฟเวอร์ด้วย Express (Ch17-Ch22)
-4. งานท้าย: Task API ที่ใช้งานได้จริง (Ch23)
+1. Python พื้นฐาน (Ch1 ถึง Ch8)
+2. NumPy สำหรับคำนวณบนข้อมูล (Ch9 ถึง Ch11)
+3. Pandas สำหรับจัดการตาราง (Ch12 ถึง Ch19)
+4. ประกอบเป็นไปป์ไลน์และงานท้าย (Ch20 ถึง Ch21)
 
 ไฟล์หลัก:
 
-- `CURRICULUM_TRACK.md` - เส้นทางและสถานะบททั้งหมด
-- `CHAPTER_STATUS.md` - เช็กลิสต์และสรุปรายบท
-- `NEXT_BACKEND_PLAN.md` - แผนหลังจบหลักสูตรนี้
+- `CURRICULUM_TRACK.md` เส้นทาง กติกาการสอน และสถานะทุกบท
+- `PLAN.md` แผนเนื้อหาแต่ละบทโดยละเอียด
 
 ## เริ่มตรงนี้
 
-อ่านบทแรก:
+อ่านบทแรก
 
 ```bash
 cat curriculum/ch01-setup-first-code.md
 ```
 
-รันตัวอย่าง:
+รันตัวอย่าง
 
 ```bash
-node curriculum/ch01/hello-world.js
+uv run python curriculum/ch01/hello-world.py
 ```
 
-เปิดโจทย์:
+เปิดโจทย์
 
 ```bash
-cat exercises/ch01-first-code.js
+cat exercises/ch01-first-code.py
 ```
 
-รันโจทย์:
+รันโจทย์
 
 ```bash
-node exercises/ch01-first-code.js
+uv run python exercises/ch01-first-code.py
 ```
 
-เสร็จแล้วพิมพ์:
+เสร็จแล้วพิมพ์
 
 ```txt
 ตรวจ Ch1
@@ -49,41 +50,76 @@ node exercises/ch01-first-code.js
 
 ## สิ่งที่ต้องมี
 
-- Node.js 20 ขึ้นไป
-- pnpm สำหรับติดตั้งแพ็กเกจที่ต้องใช้
+- Python 3.11 ขึ้นไป
+- ไลบรารี `numpy` และ `pandas`
+- `pytest` กับ `ruff` สำหรับตรวจงาน
+
+ติดตั้งทั้งหมดด้วย `uv`
 
 ```bash
-pnpm install
+uv sync
+```
+
+ถ้าไม่มี `uv` ใช้ `pip` แทนได้
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install numpy pandas pytest ruff
 ```
 
 ## คำสั่งที่ใช้บ่อย
 
-รันการทดสอบ (test) ทั้งหมด:
+รันการทดสอบคำตอบอ้างอิงทั้งหมด
 
 ```bash
-pnpm test
+uv run pytest
 ```
 
-รันการทดสอบเฉพาะไฟล์:
+รันการทดสอบเฉพาะบท
 
 ```bash
-node --test exercises/test-bridge-01-assert-basics.test.js
+uv run pytest tests/test_ch05.py
 ```
 
-ตรวจ lint:
+ตรวจสไตล์โค้ด
 
 ```bash
-pnpm lint
+uv run ruff check .
+```
+
+สร้างข้อมูลดิบใหม่
+
+```bash
+uv run python data/make_dataset.py
 ```
 
 ## โครงสร้างโฟลเดอร์
 
 ```txt
-curriculum/   บทเรียนและตัวอย่างโค้ด
-exercises/    โจทย์และ mini project
+curriculum/   บทเรียนและตัวอย่างที่รันได้
+exercises/    โจทย์ที่ผู้เรียนแก้
+solutions/    คำตอบอ้างอิงของทุกโจทย์
+tests/        การทดสอบที่รันกับ solutions/
+data/raw/     ชุดข้อมูลดิบที่ใช้ทั้งหลักสูตร
+data/processed/  ผลลัพธ์ที่สร้างตอนรัน ไม่ติด git
 ```
 
-โปรเจกต์นี้เป็น ESM ทั้งหมด (`"type": "module"`) จึงใช้ `import` / `export`
-และต้องใส่นามสกุล `.js` ในเส้นทางไฟล์ (path) ทุกครั้งที่นำเข้า (import) ไฟล์เอง
+## ข้อมูลที่ใช้เรียน
 
-โฟลเดอร์ `storage/` ใช้เก็บไฟล์ JSON ที่สร้างตอนรัน และไม่ถูกติดตามใน git
+ทุกบทใช้ชุดข้อมูลเดียวกันใน `data/raw/` ซึ่งตั้งใจให้เลอะ เพื่อให้มีอะไรให้ทำความสะอาดจริง
+
+- `customers.csv` มีรหัสซ้ำ ชื่อมีช่องว่าง อีเมลตัวพิมพ์ปน ประเทศสะกดหลายแบบ วันที่สามรูปแบบ
+- `products.csv` ชื่อสินค้ากับหมวดตัวพิมพ์ไม่สม่ำเสมอ
+- `orders.csv` มีแถวซ้ำ มีค่าว่าง มีราคาติดลบ และอ้างรหัสลูกค้าที่ไม่มีอยู่จริง
+- `customers_th.csv` ไฟล์ภาษาไทยที่บันทึกพร้อม BOM
+
+รายละเอียดปัญหาของแต่ละคอลัมน์อยู่ใน `CURRICULUM_TRACK.md`
+
+## ข้อตกลงของโปรเจกต์
+
+- โค้ดเป็น Python 3.11 ขึ้นไป ใช้ `pathlib` ไม่ใช้ `os.path`
+- ตั้งชื่อตัวแปรและฟังก์ชันเป็นภาษาอังกฤษ ข้อความที่ผู้ใช้เห็นเป็นภาษาไทย
+- ฟังก์ชันคืนค่า ไม่พิมพ์ข้างใน ยกเว้นบล็อกตัวอย่างใต้ `if __name__ == "__main__":`
+- เปิดไฟล์ด้วย `encoding="utf-8"` ทุกครั้ง
+- ตัวอย่างทุกไฟล์รันจบได้เอง ไม่ค้างรอ input
