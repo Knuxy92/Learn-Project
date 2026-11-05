@@ -1,0 +1,49 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  pill: "index" | "chapter";
+  prevId?: string | null;
+  nextId?: string | null;
+}
+const { pill, prevId = null, nextId = null } = Astro.props;
+---
+
+{
+  pill === "index" ? (
+    <nav class="pill" aria-label="เมนูหลัก">
+      <span class="brand">
+        <span class="brand-dot" aria-hidden="true" />
+        สมุดบทเรียน
+      </span>
+      <a class="primary" href="/chapters/ch01/">
+        เริ่มจากบทที่ 01
+        <Icon name="arrow-right" />
+      </a>
+    </nav>
+  ) : (
+    <nav class="pill" aria-label="เมนูบทเรียน">
+      <a href="/">
+        <Icon name="arrow-left" />
+        สารบัญ
+      </a>
+      <button id="teach" type="button" aria-pressed="false" title="ซ่อนผลลัพธ์ไว้ก่อน แล้วแตะเพื่อเฉลย">
+        <span class="ic-wrap ic-off">
+          <Icon name="eye" />
+        </span>
+        <span class="ic-wrap ic-on">
+          <Icon name="eye-off" />
+        </span>
+        <span>โหมดสอน</span>
+      </button>
+      {nextId ? (
+        <a class="primary" href={`/chapters/${nextId}/`}>
+          ถัดไป
+          <Icon name="arrow-right" />
+        </a>
+      ) : (
+        <span class="pill-end">จบหลักสูตรแล้ว</span>
+      )}
+    </nav>
+  )
+}

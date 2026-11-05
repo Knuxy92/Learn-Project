@@ -22,3 +22,9 @@ data/processed/
 Thumbs.db
 .idea/
 .vscode/
+
+# Web (Astro + pnpm)
+web/node_modules/
+web/dist/
+web/.astro/
+

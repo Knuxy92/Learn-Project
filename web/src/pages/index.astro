@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PillNav from "../components/PillNav.astro";
+import { getCollection } from "astro:content";
+import { GROUPS, chNo, shortId, countFences, parseTitle, pad2 } from "../data/chapters";
+
+const entries = await getCollection("chapters");
+const chapters = entries
+  .map((e) => {
+    const { no, title } = parseTitle(e.body ?? "");
+    return { id: shortId(e.id), no, title, count: countFences(e.body ?? "") };
+  })
+  .sort((a, b) => a.no - b.no);
+
+const totalCodes = chapters.reduce((sum, c) => sum + c.count, 0);
+const chapterMap = JSON.stringify(
+  Object.fromEntries(chapters.map((c) => [c.id, { no: c.no, title: c.title }]))
+);
+
+const groupRows = GROUPS.map((g) => {
+  const rows = chapters.filter((c) => c.no >= g.from && c.no <= g.to);
+  return { group: g, rows, subtotal: rows.reduce((s, c) => s + c.count, 0) };
+});
+---
+
+<Layout title="สมุดบทเรียน — Python สำหรับทำความสะอาดข้อมูล">
+  <main class="index">
+    <p class="kicker" data-reveal>หลักสูตร Python สำหรับทำความสะอาดข้อมูล</p>
+    <h1 class="title" data-reveal>สมุดบทเรียน</h1>
+    <p class="lede" data-reveal>เริ่มจากผู้เรียนที่ไม่เคยเขียนโค้ด จนทำความสะอาดข้อมูลจริงด้วย NumPy และ Pandas ทุกบทมีคำอธิบาย ตัวอย่างที่รันได้ โจทย์ที่ต้องทำ และคำตอบอ้างอิง</p>
+    <p class="meta-line" data-reveal><b>{chapters.length}</b> บท · <b>{totalCodes}</b> ชุดโค้ด · Markdown คือต้นฉบับเดียว</p>
+
+    <p id="resume-line" class="resume" hidden data-chapters={chapterMap}></p>
+
+    <div class="groups">
+      {
+        groupRows.map(({ group, rows, subtotal }) => (
+          <section class="group" data-reveal>
+            <p class="group-label">
+              <span>{group.name}</span>
+              <span>
+                บท {pad2(group.from)}–{pad2(group.to)} · {subtotal} โค้ด
+              </span>
+            </p>
+            <div class="group-card">
+              {rows.map((c) => (
+                <a class="row" data-reveal href={`/chapters/${c.id}/`}>
+                  <span class="no">{pad2(c.no)}</span>
+                  <span class="t">{c.title}</span>
+                  <span class="c">{c.count} โค้ด</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </main>
+
+  <PillNav pill="index" />
+</Layout>

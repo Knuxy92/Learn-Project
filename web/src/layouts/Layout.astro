@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  dataCh?: string;
+}
+const { title, dataCh } = Astro.props;
+
+import "@fontsource/ibm-plex-sans-thai/400.css";
+import "@fontsource/ibm-plex-sans-thai/500.css";
+import "@fontsource/ibm-plex-sans-thai/600.css";
+import "@fontsource/ibm-plex-sans-thai/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "../styles/app.css";
+---
+
+<html lang="th" data-ch={dataCh}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <slot />
+    <footer class="site-foot">
+      <p class="statement" data-reveal>เริ่มจากศูนย์ จนข้อมูลพร้อมใช้<span class="accent">.</span></p>
+    </footer>
+    <script>
+      import "../scripts/site.ts";
+    </script>
+  </body>
+</html>

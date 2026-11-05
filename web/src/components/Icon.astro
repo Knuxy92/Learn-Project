@@ -1,0 +1,23 @@
+---
+/* ไอคอน Lucide แบบ inline — self-host ไม่พึ่ง CDN
+   เอาเฉพาะชุดที่เว็บใช้ */
+import arrowLeft from "lucide-static/icons/arrow-left.svg?raw";
+import arrowRight from "lucide-static/icons/arrow-right.svg?raw";
+import eye from "lucide-static/icons/eye.svg?raw";
+import eyeOff from "lucide-static/icons/eye-off.svg?raw";
+
+const ICONS: Record<string, string> = {
+  "arrow-left": arrowLeft,
+  "arrow-right": arrowRight,
+  eye,
+  "eye-off": eyeOff,
+};
+
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+const svg = ICONS[name];
+---
+
+<span class="lucide-icon" aria-hidden="true" set:html={svg} />

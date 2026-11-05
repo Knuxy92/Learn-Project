@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PillNav from "../../components/PillNav.astro";
+import Toc from "../../components/Toc.astro";
+import { getCollection, render } from "astro:content";
+import { chNo, shortId, countFences, parseTitle, pad2 } from "../../data/chapters";
+
+export async function getStaticPaths() {
+  const entries = (await getCollection("chapters")).sort(
+    (a, b) => chNo(a.id) - chNo(b.id)
+  );
+  const metas = entries.map((e) => {
+    const { no, title } = parseTitle(e.body ?? "");
+    return { id: shortId(e.id), no, title, count: countFences(e.body ?? "") };
+  });
+  return entries.map((entry, i) => ({
+    params: { id: metas[i].id },
+    props: {
+      entry,
+      meta: metas[i],
+      prev: metas[i - 1] ?? null,
+      next: metas[i + 1] ?? null,
+      total: metas.length,
+    },
+  }));
+}
+
+const { entry, meta, prev, next, total } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<Layout title={`บทที่ ${meta.no} · ${meta.title} — สมุดบทเรียน`} dataCh={meta.id}>
+  <div id="readbar" aria-hidden="true"><span></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-dot" aria-hidden="true"></span>สมุดบทเรียน</a>
+    <span class="where">บทที่ {pad2(meta.no)} / {pad2(total)}</span>
+  </header>
+
+  <div class="chapter">
+    <Toc headings={headings} />
+
+    <main class="doc">
+      <article>
+        <header data-reveal>
+          <p class="ch-kicker"><b>บทที่ {pad2(meta.no)}</b> / {pad2(total)} · {meta.count} ชุดโค้ด</p>
+          <h1 class="ch-title">{meta.title}</h1>
+        </header>
+        <Content />
+      </article>
+    </main>
+  </div>
+
+  <PillNav pill="chapter" prevId={prev?.id ?? null} nextId={next?.id ?? null} />
+</Layout>
