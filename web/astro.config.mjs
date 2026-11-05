@@ -11,7 +11,7 @@ const midnightAccent = {
   type: "dark",
   colorReplacements: {},
   colors: {
-    "editor.background": "#00000000",
+    "editor.background": "transparent",
     "editor.foreground": "var(--color-ink)",
   },
   settings: [

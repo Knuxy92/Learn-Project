@@ -2,8 +2,11 @@
    Hallmark · macrostructure: Index-First + Long Document ·
    theme: custom-Midnight (ยึด Design.md เป็นระบบหลัก) ·
    genre: atmospheric · nav: N5 floating pill · footer: Ft5 statement ·
-   contrast: pass 40–41 (ink-3/paper 5.1 · ink-3/paper-2 4.84 ·
-   result-label ใช้ ink-2) · glow ปุ่มหลัก: เก็บไว้ตามการตัดสินใจของเจ้าของ
+   contrast: pass 40–41 (ink-3/paper 5.10 · ink-3/paper-2 4.84 ·
+   result-label ใช้ ink-2 · row-hover .c ใช้ ink-2) · glow ปุ่มหลัก: เก็บไว้ตามการตัดสินใจของเจ้าของ ·
+   pre-emit: P4 H5 E4 S5 R4 V5 · honest 46 · chrome 47 · tokens 48 ·
+   responsive 49 · mobile 34,49,50–57: pass ·
+   override ที่เจ้าของยอมรับ: glow-tell, animate-on-scroll ทุก section, mono-label voice
    ============================================================
    สมุดบทเรียน — พอร์ตจาก prototype/assets/app.css
    กติกาสี/Motion ยึดจาก Design.md เป็นต้นฉบับ
@@ -39,6 +42,7 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 180ms; --dur-base: 240ms; --dur-slow: 320ms;
 
+  --space-4xs: 2px;
   --space-3xs: 4px;  --space-2xs: 8px;  --space-xs: 12px;
   --space-sm: 16px;  --space-md: 24px;  --space-lg: 32px;
   --space-xl: 48px;  --space-2xl: 64px; --space-3xl: 96px;
@@ -92,7 +96,7 @@ hr {
 code { font-family: var(--font-mono); font-size: 0.9em; }
 p code, li code, td code, h2 code {
   background: var(--color-paper-2);
-  padding: 2px var(--space-2xs);
+  padding: var(--space-4xs) var(--space-2xs);
   border-radius: var(--radius-chip);
   color: var(--color-ink);
   overflow-wrap: anywhere;
@@ -267,7 +271,7 @@ h1.title {
   color: var(--color-accent);
   font-weight: 500;
 }
-.resume a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.resume a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
 .groups { margin-top: var(--space-2xl); display: grid; gap: var(--space-xl); }
 .group-label {
@@ -293,6 +297,8 @@ h1.title {
 }
 .row:hover { background: var(--color-paper-3); }
 .row:active { background: var(--color-paper-3); transform: translateY(1px); }
+/* ตัวเลขโค้ดบนพื้น hover (paper-3) ต้องสว่างพอ — ink-3 บน paper-3 = 4.39 ไม่ผ่าน */
+.row:hover .c, .row:active .c { color: var(--color-ink-2); }
 .row .no {
   min-width: 2.2ch;
   font-family: var(--font-mono);
@@ -361,7 +367,7 @@ h1.ch-title {
 }
 
 /* ส่วนเนื้อหา — แบ่งโดย plugin เป็น section.doc-section */
-.doc-section { margin-top: var(--space-xl); scroll-margin-top: 90px; }
+.doc-section { margin-top: var(--space-xl); scroll-margin-top: 88px; }
 .doc-section > h2 {
   margin-bottom: var(--space-sm);
   font-size: var(--text-lg);
@@ -535,12 +541,14 @@ ul.tasks input {
   font-weight: 600;
   line-height: 1.5;
   color: var(--color-ink-2);
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 .site-foot .statement .accent { color: var(--color-accent); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
-  .chapter { grid-template-columns: 1fr; gap: var(--space-xl); padding-inline: var(--space-md); }
+  .chapter { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); padding-inline: var(--space-md); }
   .toc { display: none; }
 }
 @media (max-width: 640px) {
@@ -551,6 +559,13 @@ ul.tasks input {
   .pill a, .pill button { padding: var(--space-2xs) var(--space-xs); font-size: var(--text-md); }
   .doc-section.card { padding: var(--space-md) var(--space-sm); }
   .doc table { min-width: 420px; }
+}
+/* จอแคบมาก: หด pill ให้ปุ่มหลักไม่โดนตัด */
+@media (max-width: 400px) {
+  .pill { gap: var(--space-4xs); padding: var(--space-3xs); }
+  .pill a, .pill button { gap: var(--space-3xs); padding: var(--space-2xs); font-size: var(--text-sm); }
+  .pill .brand { padding: var(--space-2xs) var(--space-xs); }
+  .lucide-icon svg { width: 14px; height: 14px; }
 }
 
 /* ---------- prefers-reduced-motion: เหลือแค่จางเข้า 150 ms ---------- */
