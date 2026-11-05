@@ -32,19 +32,17 @@ const writeDone = (ch: string, list: string[]): void => {
 export function initTasks(): void {
   const ch = document.documentElement.dataset.ch;
   if (!ch) return;
-  const done = new Set(readDone(ch));
-  const boxes = document.querySelectorAll<HTMLInputElement>("input[data-task]");
-  boxes.forEach((box) => {
-    if (box.dataset.task) box.checked = done.has(box.dataset.task);
+  // หมายเลขโจทย์ผูกกับลำดับใน DOM (นิ่งตามเนื้อหา) ไม่พึ่งค่าจาก build
+  const boxes = [...document.querySelectorAll<HTMLInputElement>("input[data-task]")];
+  boxes.forEach((box, idx) => {
+    box.dataset.task = String(idx + 1);
+    if (readDone(ch).includes(String(idx + 1))) box.checked = true;
   });
   document.addEventListener("change", (e) => {
     const input = e.target as HTMLElement | null;
     if (!input || !(input instanceof HTMLInputElement) || !input.dataset.task) return;
-    const now = new Set<string>();
-    boxes.forEach((box) => {
-      if (box.dataset.task && box.checked) now.add(box.dataset.task);
-    });
-    writeDone(ch, [...now]);
+    const now = boxes.filter((box) => box.checked).map((box) => box.dataset.task!);
+    writeDone(ch, now);
   });
 }
 

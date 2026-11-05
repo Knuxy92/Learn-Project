@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:fresh": "node scripts/clear-cache.mjs && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

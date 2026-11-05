@@ -20,7 +20,7 @@ const headingText = (node) => {
 
 const wrapTasks = (list) => {
   if (list.type !== "element" || (list.tagName !== "ul" && list.tagName !== "ol")) return list;
-  const items = list.children.map((li, i) => {
+  const items = list.children.map((li) => {
     if (!Array.isArray(li.children) || li.children.length === 0) return li;
     return {
       type: "element",
@@ -35,7 +35,7 @@ const wrapTasks = (list) => {
             {
               type: "element",
               tagName: "input",
-              properties: { type: "checkbox", "data-task": String(i + 1) },
+              properties: { type: "checkbox", "data-task": "" },
               children: [],
             },
             ...li.children,
