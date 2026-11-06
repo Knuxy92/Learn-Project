@@ -1,24 +1,22 @@
-def clean_text(value: str | None) -> str:
-    """ตัดช่องว่างหัวท้ายและยุบช่องว่างที่ติดกันให้เหลือช่องเดียว ค่า None ให้เป็นข้อความว่าง"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+def order_total(price, quantity):
+    """รับราคาต่อชิ้นและจำนวนสินค้า แล้วคืนยอดรวม"""
+    # TODO: คูณ price กับ quantity แล้ว return ผลลัพธ์
+    return 0
 
 
-def parse_price(value: str | None) -> float | None:
-    """แปลงข้อความราคาที่มีสัญลักษณ์บาทกับจุลภาคเป็นจำนวนจริง ค่าที่แปลงไม่ได้ให้คืน None"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+def apply_discount(total, percent):
+    """รับยอดรวมและเปอร์เซ็นต์ส่วนลด แล้วคืนยอดหลังหักส่วนลด"""
+    # TODO: คำนวณส่วนลดและ return ยอดคงเหลือ
+    return 0
 
 
-def safe_int(value: str | int | None, default: int = 0) -> int:
-    """แปลงค่าเป็นจำนวนเต็ม ถ้าแปลงไม่ได้ให้คืนค่า default"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+def shipping_fee(total):
+    """คืน 0 เมื่อยอดตั้งแต่ 1000 บาทขึ้นไป มิฉะนั้นคืน 50"""
+    # TODO: ใช้ if ตรวจ total แล้ว return ค่าส่ง
+    return 0
 
 
-if __name__ == "__main__":
-    print(f"ชื่อที่ทำความสะอาดแล้วคือ {clean_text('  Somchai   Jaidee ')!r}")
-    print(f"ชื่อจากค่า None คือ {clean_text(None)!r}")
-    print(f"ราคาจาก ฿1,150 คือ {parse_price('฿1,150')}")
-    print(f"ราคาจาก 300.00 คือ {parse_price('300.00')}")
-    print(f"ราคาที่แปลงไม่ได้คือ {parse_price('abc')}")
-    print(f"จำนวนเต็มจาก 12 คือ {safe_int('12')}")
-    print(f"ค่า default เมื่อแปลงไม่ได้คือ {safe_int('x', -1)}")
-    print(f"จำนวนเต็มจาก None คือ {safe_int(None)}")
+print(f"ยอดรวมรายการแรก: {order_total(450, 3)}")
+print(f"ยอดหลังหักส่วนลด: {apply_discount(1000, 10)}")
+print(f"ค่าส่งของยอด 450: {shipping_fee(450)}")
+print(f"ค่าส่งของยอด 1200: {shipping_fee(1200)}")

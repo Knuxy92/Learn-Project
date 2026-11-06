@@ -167,16 +167,14 @@ print("ปรับให้อยู่ระหว่างศูนย์ก�
 ```python
 try:
     quantities * np.array([1.0, 2.0])
-except ValueError as error:
+except ValueError:
     print("ขนาดไม่เข้ากันจึงล้มเหลว")
-    print(str(error).strip())
 ```
 
 ผลลัพธ์
 
 ```txt
 ขนาดไม่เข้ากันจึงล้มเหลว
-operands could not be broadcast together with shapes (2,3) (2,)
 ```
 
 อ่านข้อความนี้ได้ว่า ขนาด `(2, 3)` กับ `(2,)` จับคู่กันไม่ได้ เพราะมิติขวาสุดคือ 3 กับ 2
@@ -232,7 +230,7 @@ print("วันคงค้างหลังแก้ค่าติดลบ"
 
 ## ผลลัพธ์ที่คาดหวัง
 
-เมื่อรันไฟล์โจทย์ด้วย `.venv/bin/python exercises/ch10-vectorized-math.py` ควรได้ผลแบบนี้
+เมื่อรันไฟล์โจทย์ด้วย `python exercises/ch10-vectorized-math.py` ควรได้ผลแบบนี้
 
 ```txt
 ราคาเป็นบาท [ 350.   700.  1242.5]
@@ -243,8 +241,8 @@ print("วันคงค้างหลังแก้ค่าติดลบ"
 
 ตรวจงานตัวเองด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python -m pytest tests/test_ch10.py
+```cmd
+python -m pytest tests/test_ch10.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch10

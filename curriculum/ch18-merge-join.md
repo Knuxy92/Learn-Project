@@ -375,8 +375,8 @@ customer_id  revenue
 
 รันคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch18-join-tables.py
+```cmd
+python exercises/ch18-join-tables.py
 ```
 
 ต้องได้ผลแบบนี้

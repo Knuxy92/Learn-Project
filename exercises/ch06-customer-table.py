@@ -4,7 +4,7 @@
 เติมโค้ดในแต่ละฟังก์ชันให้คืนค่าตามที่ docstring บอก
 """
 
-SAMPLE_CUSTOMERS: list[dict] = [
+SAMPLE_CUSTOMERS = [
     {"customer_id": "C001", "name": "Nattapong Sri", "country": "Thailand", "spend": 4200.0},
     {"customer_id": "C002", "name": "Malee Wongsakul", "country": "Laos", "spend": 1850.5},
     {"customer_id": "C003", "name": "Kanya P.", "country": "Thailand", "spend": 990.0},
@@ -14,24 +14,24 @@ SAMPLE_CUSTOMERS: list[dict] = [
 ]
 
 
-def names_of(rows: list[dict]) -> list[str]:
+def names_of(rows):
     """รับลิสต์ของแถว คืนลิสต์ชื่อจากคีย์ name ตามลำดับเดิม"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return []
 
 
-def filter_by_country(rows: list[dict], country: str) -> list[dict]:
+def filter_by_country(rows, country):
     """รับลิสต์ของแถวกับชื่อประเทศ คืนเฉพาะแถวที่คอลัมน์ country ตรงกัน"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return []
 
 
-def count_by(rows: list[dict], key: str) -> dict[str, int]:
+def count_by(rows, key):
     """รับลิสต์ของแถวกับชื่อคอลัมน์ คืนจำนวนแถวแยกตามค่าของคอลัมน์นั้น"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return {}
 
 
-def sort_by_spend(rows: list[dict], descending: bool = True) -> list[dict]:
+def sort_by_spend(rows, descending=True):
     """รับลิสต์ของแถวที่ทุกแถวมีคีย์ spend คืนลิสต์ใหม่ที่เรียงตามยอดใช้จ่าย"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return rows
 
 
 def main() -> None:

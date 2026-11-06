@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>บทที่ 1 · ติดตั้ง Python และรันโค้ดแรก — สมุดบทเรียน</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+  <div id="readbar" aria-hidden="true"><span></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span>สมุดบทเรียน</a>
+    <span class="where">บทที่ 01 / 21</span>
+  </header>
+
+  <div class="chapter">
+
+    <aside class="toc" aria-label="สารบัญในบทนี้">
+      <p class="toc-label">ในบทนี้</p>
+      <a href="#s1">1. Python คืออะไร</a>
+      <a href="#s2">2. เตรียมโปรแกรมที่ต้องใช้</a>
+      <a href="#s3">3. เปิด CMD</a>
+      <a href="#s4">4. เขียนคำสั่งแรกด้วย print</a>
+      <a href="#s5">5. รู้จักตัวแปร</a>
+      <a href="#s6">6. แสดงข้อความร่วมกับตัวแปร</a>
+      <a href="#tasks">โจทย์ที่ต้องทำ</a>
+      <a href="#trouble">ถ้าเจอปัญหา</a>
+      <a href="#summary">สรุป</a>
+    </aside>
+
+    <main class="doc">
+      <article>
+
+        <header data-reveal>
+          <p class="ch-kicker"><b>บทที่ 01</b> / 21 · 17 ชุดโค้ด</p>
+          <h1 class="ch-title">ติดตั้ง Python และรันโค้ดแรก</h1>
+          <p class="ch-lede">บทนี้เริ่มจากศูนย์ เป้าหมายไม่ใช่เขียนโปรแกรมเก่งทันที แต่คือทำให้เปิด CMD เข้าโฟลเดอร์โปรเจกต์ เปิดไฟล์ Python และสั่งให้คอมพิวเตอร์ทำงานได้ด้วยตัวเอง</p>
+        </header>
+
+        <section id="s1" data-reveal>
+          <h2>1. Python คืออะไร</h2>
+          <p>Python คือภาษาโปรแกรม เราเขียนคำสั่งด้วยภาษาที่คนอ่านได้ แล้วให้โปรแกรม Python แปลคำสั่งเหล่านั้นเป็นการทำงานของคอมพิวเตอร์</p>
+          <p>หลักสูตรนี้ใช้ Python เพราะมีเครื่องมือสำหรับจัดการข้อมูล เช่น NumPy และ Pandas</p>
+        </section>
+
+        <section id="s2" data-reveal>
+          <h2>2. เตรียมโปรแกรมที่ต้องใช้</h2>
+          <p>หลักสูตรนี้ใช้ Windows 10/11 และ Command Prompt (CMD) ติดตั้งโปรแกรมต่อไปนี้ก่อนเริ่ม</p>
+          <ol>
+            <li><strong>Python 3.11 ขึ้นไป</strong> ตอนติดตั้งให้เลือก <strong>Add python.exe to PATH</strong></li>
+            <li><strong>Git for Windows</strong></li>
+            <li><strong>Visual Studio Code</strong> หรือโปรแกรมแก้ไขโค้ดที่ถนัด</li>
+          </ol>
+          <p>PATH คือรายการตำแหน่งที่ Windows ใช้ค้นหาโปรแกรม เมื่อเลือกตัวเลือกนี้ CMD จะหาคำสั่ง Python เจอโดยไม่ต้องพิมพ์ตำแหน่งไฟล์เต็ม</p>
+        </section>
+
+        <section id="s3" data-reveal>
+          <h2>3. เปิด CMD</h2>
+          <p>กดปุ่ม Windows พิมพ์ cmd แล้วกด Enter หน้าต่างที่เปิดขึ้นมาคือ Command Prompt ตรวจสอบว่า Python พร้อมใช้งานหรือยัง</p>
+          <div class="pair tight">
+            <figure class="code">
+              <figcaption class="code-head">
+                <span class="lang">cmd</span>
+                <button class="copy-btn" type="button" data-copy="code-ver"><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-done"></i><span>คัดลอก</span></button>
+              </figcaption>
+              <pre><code id="code-ver">py --version</code></pre>
+            </figure>
+            <figure class="result">
+              <figcaption class="result-head"><span class="lang">ผลลัพธ์</span></figcaption>
+              <span class="cover" aria-hidden="true">แตะเพื่อเฉลย</span>
+              <pre><code>Python 3.13.0</code></pre>
+            </figure>
+          </div>
+          <p>ตัวเลขเวอร์ชันอาจต่างกันได้ ขอให้เป็น 3.11 หรือใหม่กว่า ถ้าขึ้นว่าไม่รู้จักคำสั่ง <code>py</code> ให้ตรวจว่าติดตั้ง Python Launcher แล้วหรือยัง</p>
+        </section>
+
+        <section id="s4" data-reveal>
+          <h2>4. เขียนคำสั่งแรกด้วย print</h2>
+          <p>เปิด Visual Studio Code เลือก File &gt; Open Folder แล้วสร้างไฟล์ใหม่ชื่อ <code>hello.py</code> ตรวจให้แน่ใจว่านามสกุลเป็น .py ไม่ใช่ .txt พิมพ์โค้ดนี้แล้วกด Ctrl+S เพื่อบันทึก</p>
+          <div class="pair tight">
+            <figure class="code">
+              <figcaption class="code-head">
+                <span class="lang">python</span>
+                <button class="copy-btn" type="button" data-copy="code-hello"><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-done"></i><span>คัดลอก</span></button>
+              </figcaption>
+              <pre><code id="code-hello"><span class="tok-kw">print</span>(<span class="tok-str">"Hello Data"</span>)</code></pre>
+            </figure>
+            <figure class="result">
+              <figcaption class="result-head"><span class="lang">ผลลัพธ์</span></figcaption>
+              <span class="cover" aria-hidden="true">แตะเพื่อเฉลย</span>
+              <pre><code>Hello Data</code></pre>
+            </figure>
+          </div>
+          <p>กลับไปที่ CMD แล้วสั่ง <code>python hello.py</code> ถ้าเห็นข้อความนี้ แปลว่าเราเขียนไฟล์ Python และสั่งให้ Python รันไฟล์ได้แล้ว</p>
+        </section>
+
+        <section id="s5" data-reveal>
+          <h2>5. รู้จักตัวแปร</h2>
+          <p>ตัวแปร (variable) คือชื่อที่ใช้เก็บค่าไว้เรียกใช้ภายหลัง</p>
+          <div class="pair tight">
+            <figure class="code">
+              <figcaption class="code-head">
+                <span class="lang">python</span>
+                <button class="copy-btn" type="button" data-copy="code-vars"><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-done"></i><span>คัดลอก</span></button>
+              </figcaption>
+              <pre><code id="code-vars">student_name = <span class="tok-str">"Student"</span>
+student_age = <span class="tok-kw">17</span>
+
+<span class="tok-kw">print</span>(student_name)
+<span class="tok-kw">print</span>(student_age)</code></pre>
+            </figure>
+            <figure class="result">
+              <figcaption class="result-head"><span class="lang">ผลลัพธ์</span></figcaption>
+              <span class="cover" aria-hidden="true">แตะเพื่อเฉลย</span>
+              <pre><code>Student
+17</code></pre>
+            </figure>
+          </div>
+          <p>บรรทัด <code>student_name = "Student"</code> หมายถึงเก็บข้อความ Student ไว้ภายใต้ชื่อ student_name ส่วน print ใช้แสดงค่าที่เก็บไว้</p>
+        </section>
+
+        <section id="s6" data-reveal>
+          <h2>6. แสดงข้อความร่วมกับตัวแปร</h2>
+          <p>f-string ช่วยแทรกค่าของตัวแปรลงในข้อความ โดยใส่ตัวอักษร f ไว้หน้าข้อความ และใส่ชื่อตัวแปรไว้ในวงเล็บปีกกา</p>
+          <div class="pair tight">
+            <figure class="code">
+              <figcaption class="code-head">
+                <span class="lang">python</span>
+                <button class="copy-btn" type="button" data-copy="code-fstring"><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-done"></i><span>คัดลอก</span></button>
+              </figcaption>
+              <pre><code id="code-fstring">student_name = <span class="tok-str">"Student"</span>
+student_age = <span class="tok-kw">17</span>
+
+<span class="tok-kw">print</span>(f<span class="tok-str">"ชื่อ: {student_name}"</span>)
+<span class="tok-kw">print</span>(f<span class="tok-str">"อายุ: {student_age} ปี"</span>)</code></pre>
+            </figure>
+            <figure class="result">
+              <figcaption class="result-head"><span class="lang">ผลลัพธ์</span></figcaption>
+              <span class="cover" aria-hidden="true">แตะเพื่อเฉลย</span>
+              <pre><code>ชื่อ: Student
+อายุ: 17 ปี</code></pre>
+            </figure>
+          </div>
+        </section>
+
+        <p class="trunc">— หน้าตัวอย่าง ตัดเนื้อหาช่วงกลางของบทไว้ —</p>
+
+        <section id="tasks" class="card" data-reveal>
+          <h2>โจทย์ที่ต้องทำ</h2>
+          <p>เปิดไฟล์ <code>exercises/ch01-first-code.py</code> แล้วแก้ค่าต่อไปนี้</p>
+          <ul class="tasks">
+            <li><label><input type="checkbox"> เปลี่ยนชื่อให้เป็นชื่อของตัวเอง</label></li>
+            <li><label><input type="checkbox"> เปลี่ยนอายุให้ตรงกับตัวเอง</label></li>
+            <li><label><input type="checkbox"> เปลี่ยนเป้าหมายเป็นสิ่งที่อยากทำได้เมื่อเรียนจบ</label></li>
+          </ul>
+          <p>บันทึกไฟล์ แล้วรันด้วย CMD: <code>python exercises\ch01-first-code.py</code></p>
+        </section>
+
+        <section id="trouble" data-reveal>
+          <h2>ถ้าเจอปัญหา</h2>
+          <ul>
+            <li><code>py is not recognized</code> — ติดตั้ง Python Launcher หรือแก้ PATH แล้วเปิด CMD ใหม่</li>
+            <li><code>python is not recognized</code> — ตรวจการตั้งค่า PATH ของ Python หรือลองใช้ py แทนได้</li>
+            <li><code>can't open file</code> — ตรวจว่า CMD อยู่ในโฟลเดอร์ Learn-Project ด้วยคำสั่ง dir</li>
+            <li><code>No module named ...</code> — ตรวจว่าเปิดใช้งาน .venv แล้วติดตั้งไลบรารีครบ</li>
+          </ul>
+        </section>
+
+        <section id="summary" class="card" data-reveal>
+          <h2>สรุป</h2>
+          <ul>
+            <li>Python คือภาษาที่เราใช้เขียนคำสั่งให้คอมพิวเตอร์ทำงาน</li>
+            <li>CMD ใช้พิมพ์คำสั่งเพื่อเข้าโฟลเดอร์และรันไฟล์</li>
+            <li>ไฟล์ Python ลงท้ายด้วย .py</li>
+            <li>print ใช้แสดงผล ตัวแปรใช้เก็บค่า f-string ใช้แทรกค่าตัวแปรในข้อความ</li>
+          </ul>
+          <p class="note">เมื่อทำเสร็จแล้ว พิมพ์ <code>ตรวจ Ch1</code> กับผู้สอน</p>
+        </section>
+
+      </article>
+    </main>
+
+  </div>
+
+  <footer class="site-foot">
+    <p class="statement" data-reveal>เริ่มจากศูนย์ จนข้อมูลพร้อมใช้<span class="accent">.</span></p>
+  </footer>
+
+  <nav class="pill" aria-label="เมนูบทเรียน">
+    <a href="index.html"><i data-lucide="arrow-left"></i>สารบัญ</a>
+    <button id="teach" type="button" aria-pressed="false" title="ซ่อนผลลัพธ์ไว้ก่อน แล้วแตะเพื่อเฉลย"><i data-lucide="eye" class="ic-off"></i><i data-lucide="eye-off" class="ic-on"></i><span>โหมดสอน</span></button>
+    <a class="primary" href="ch01.html">ถัดไป<i data-lucide="arrow-right"></i></a>
+  </nav>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

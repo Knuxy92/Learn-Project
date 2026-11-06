@@ -67,8 +67,7 @@ orders = pd.read_csv("data/raw/orders.csv", dtype=str)
 print(f"รหัสลูกค้าซ้ำ {int(customers['customer_id'].duplicated().sum())} แถว")
 print(f"รหัสออเดอร์ซ้ำ {int(orders['order_id'].duplicated().sum())} แถว")
 
-known = set(customers["customer_id"])
-orphans = orders.loc[~orders["customer_id"].isin(known)]
+orphans = orders.loc[~orders["customer_id"].isin(customers["customer_id"])]
 print(f"ออเดอร์ที่ไม่มีลูกค้า {len(orphans)} แถว")
 print(sorted(orphans["customer_id"].unique()))
 ```
@@ -573,7 +572,8 @@ C001,Nattapong Sri,2,600.0
 - ห้ามแก้ตารางต้นฉบับ
 - ฟังก์ชันคืนค่า ไม่พิมพ์ผลข้างใน
 - `run` ต้องสร้างโฟลเดอร์ปลายทางเองถ้ายังไม่มี
-- จำนวนแถวใน `customer_summary` กับ `monthly_summary` ต้องรวมกันได้เท่ากับจำนวนแถวในตารางรวม
+- ผลรวมคอลัมน์ `orders` ของ `customer_summary` และ `monthly_summary` ต้องเท่ากับจำนวนแถวใน `master` แยกกันทั้งสองตาราง
+- ผลรวม `revenue` ของแต่ละตารางสรุปต้องเท่ากับผลรวม `revenue` ของ `master`
 
 ## ผลลัพธ์ที่คาดหวัง
 
@@ -596,7 +596,7 @@ master.csv
 monthly_summary.csv
 ```
 
-ตัวเลขทั้งหกต้องตรง ถ้า `customer_summary` ได้ 12 แปลว่าต่อตารางแล้วตัดลูกค้าที่ไม่มีข้อมูลทิ้ง ซึ่งผิดโจทย์
+จำนวนแถวของแต่ละตารางสรุปคือจำนวนกลุ่มที่ไม่ซ้ำ จึงไม่จำเป็นต้องรวมกันเท่ากับจำนวนแถวใน `master` แต่ผลรวม `orders` ของแต่ละตารางต้องเท่ากับ 40 และผลรวม `revenue` ต้องตรงกับ `master`
 
 ## เสร็จแล้วพิมพ์
 

@@ -2,7 +2,7 @@
 
 ## ทบทวน
 
-บทที่แล้วเราเขียนฟังก์ชันที่รับค่าเข้าไปแล้วคืนค่าออกมา ฟังก์ชันอย่าง `clean_text` กับ `parse_price` รับค่าทีละค่า
+บทที่แล้วเราเรียนรู้การประกาศฟังก์ชัน การส่งข้อมูลเข้าไปด้วยพารามิเตอร์ และการส่งผลลัพธ์กลับด้วย return
 
 แต่ข้อมูลจริงไม่ได้มาเป็นค่าทีละตัว ข้อมูลหนึ่งตารางมีหลายแถว แต่ละแถวมีหลายคอลัมน์ บทนี้จะสอนโครงสร้างสองตัวที่ใช้เก็บข้อมูลแบบนั้น คือลิสต์ (list) และดิกชันนารี (dictionary)
 
@@ -14,15 +14,14 @@
 
 ```python
 customers = [
-    "  Nattapong Sri  ",
+    "Nattapong Sri",
     "Malee Wongsakul",
     "Kanya P.",
     "Anan Chaiyaporn",
 ]
 
 print("จำนวนลูกค้า", len(customers))
-print("คนแรกแบบดิบ", repr(customers[0]))
-print("คนแรกหลัง strip", customers[0].strip())
+print("คนแรก", customers[0])
 print("คนสุดท้าย", customers[-1])
 print("สามคนแรก", customers[:3])
 ```
@@ -31,10 +30,9 @@ print("สามคนแรก", customers[:3])
 
 ```txt
 จำนวนลูกค้า 4
-คนแรกแบบดิบ '  Nattapong Sri  '
-คนแรกหลัง strip Nattapong Sri
+คนแรก Nattapong Sri
 คนสุดท้าย Anan Chaiyaporn
-สามคนแรก ['  Nattapong Sri  ', 'Malee Wongsakul', 'Kanya P.']
+สามคนแรก ['Nattapong Sri', 'Malee Wongsakul', 'Kanya P.']
 ```
 
 ดัชนีเริ่มที่ `0` ไม่ใช่ `1` ดัชนี `-1` หมายถึงตัวสุดท้าย และการตัดช่วง (slice) อย่าง `[:3]` เอาสามตัวแรกออกมาโดยไม่แตะของเดิม
@@ -45,17 +43,17 @@ print("สามคนแรก", customers[:3])
 
 ```python
 customers = [
-    "  Nattapong Sri  ",
+    "Nattapong Sri",
     "Malee Wongsakul",
     "Kanya P.",
 ]
 
-print("คนแรก", customers[0].strip())
-print("คนสุดท้าย", customers[-1].strip())
+print("คนแรก", customers[0])
+print("คนสุดท้าย", customers[-1])
 print("จำนวนสมาชิก", len(customers))
 
 for name in customers:
-    print("ชื่อที่ตัดแล้ว", name.strip())
+    print("ชื่อลูกค้า", name)
 ```
 
 ผลลัพธ์
@@ -64,14 +62,14 @@ for name in customers:
 คนแรก Nattapong Sri
 คนสุดท้าย Kanya P.
 จำนวนสมาชิก 3
-ชื่อที่ตัดแล้ว Nattapong Sri
-ชื่อที่ตัดแล้ว Malee Wongsakul
-ชื่อที่ตัดแล้ว Kanya P.
+ชื่อลูกค้า Nattapong Sri
+ชื่อลูกค้า Malee Wongsakul
+ชื่อลูกค้า Kanya P.
 ```
 
 ลูป `for` วิ่งผ่านสมาชิกทุกตัวตามลำดับ ไม่ต้องรู้จำนวนล่วงหน้า ตัวแปร `name` เปลี่ยนค่าใหม่ทุกรอบและไม่คงอยู่หลังลูปจบ
 
-สังเกตว่าลิสต์ต้นฉบับยังมีช่องว่างติดอยู่ เราแค่ตัดตอนอ่านค่า ข้อมูลยังเลอะเหมือนเดิม นี่คือความต่างระหว่างการอ่านกับการแก้ไข ซึ่งจะสำคัญมากตอนเขียนไปป์ไลน์
+คำสั่ง print แสดงค่าของสมาชิกเท่านั้น ไม่ได้แก้ไขข้อมูลในลิสต์
 
 ## เพิ่มสมาชิกด้วย append
 
@@ -264,6 +262,16 @@ name คือ Nattapong Sri
 country คือ Thailand
 ```
 
+## คำอธิบายชนิดข้อมูลในตัวแปร
+
+บางตัวอย่างอาจเขียนคำอธิบายชนิดข้อมูลไว้หลังชื่อตัวแปร เช่น
+
+~~~python
+tier_counts: dict[str, int] = {}
+~~~
+
+ส่วนนี้เรียกว่า type annotation เป็นคำใบ้ให้คนอ่านและเครื่องมือตรวจโค้ดรู้ว่าตัวแปรควรเก็บอะไร ในตัวอย่างนี้ dict[str, int] หมายถึงดิกชันนารีที่ใช้ข้อความเป็นกุญแจและจำนวนเต็มเป็นค่า คำอธิบายนี้ไม่ได้แปลงค่าหรือเปลี่ยนวิธีทำงานของ Python
+
 ## นับจำนวนด้วยดิกชันนารี
 
 รูปแบบที่นับค่าซ้ำคือเริ่มด้วยดิกชันนารีว่าง แล้วบวกหนึ่งให้กุญแจนั้นทุกครั้งที่เจอ
@@ -405,7 +413,7 @@ Malee Wongsakul   Laos        1,850.50
 
 รันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
+```cmd
 python exercises/ch06-customer-table.py
 ```
 
@@ -426,8 +434,8 @@ Wilai Thongchai   Laos            0.00
 
 ตรวจงานตัวเองด้วย
 
-```bash
-pytest tests/test_ch06.py
+```cmd
+python -m pytest tests/test_ch06.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch6

@@ -1,22 +1,16 @@
-def order_total(price: float, quantity: int) -> float:
-    """รับราคาต่อหน่วยกับจำนวนชิ้น คืนยอดรวมก่อนหักส่วนลด"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+# กำหนดราคาต่อชิ้นและจำนวนสินค้า
+price = 450
+quantity = 3
 
+# คำนวณยอดรวม
+total = price * quantity
+print(f"ยอดรวมรายการแรก: {total}")
 
-def apply_discount(total: float, percent: float) -> float:
-    """รับยอดรวมกับเปอร์เซ็นต์ส่วนลด คืนยอดหลังหักส่วนลด"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+# คำนวณยอดหลังหักส่วนลด 10 เปอร์เซ็นต์
+discount_percent = 10
+discounted_total = total - (total * discount_percent / 100)
+print(f"ยอดหลังหักส่วนลด: {discounted_total}")
 
-
-def is_free_shipping(total: float) -> bool:
-    """รับยอดรวม คืนค่าจริงเมื่อยอดถึงเกณฑ์ส่งฟรีหนึ่งพันบาท"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
-
-
-if __name__ == "__main__":
-    print(order_total(450, 3))
-    print(order_total(300, 0))
-    print(apply_discount(1000, 10))
-    print(apply_discount(250, 0))
-    print(is_free_shipping(1000))
-    print(is_free_shipping(999.99))
+# ตรวจว่ายอดถึงเกณฑ์ส่งฟรี 1,000 บาทหรือไม่
+print(f"ยอดถึงเกณฑ์ส่งฟรี: {total >= 1000}")
+print(f"ยอดต่ำกว่าเกณฑ์ส่งฟรี: {total < 1000}")

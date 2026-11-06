@@ -7,24 +7,24 @@
 from pathlib import Path
 
 
-def count_lines(path: str | Path) -> int:
+def count_lines(path) -> int:
     """รับเส้นทางไฟล์ คืนจำนวนบรรทัดข้อมูลโดยไม่นับบรรทัดหัวตาราง"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return 0
 
 
-def first_column(path: str | Path) -> list[str]:
+def first_column(path) -> list[str]:
     """รับเส้นทางไฟล์ CSV คืนค่าคอลัมน์แรกของทุกแถวข้อมูลโดยไม่รวมหัวตาราง"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return []
 
 
-def write_lines(path: str | Path, lines: list[str]) -> None:
+def write_lines(path, lines):
     """รับเส้นทางไฟล์กับลิสต์ข้อความ เขียนบรรทัดละรายการและปิดท้ายด้วยขึ้นบรรทัดใหม่"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    Path(path).write_text("", encoding="utf-8")
 
 
-def read_thai_csv(path: str | Path) -> list[dict[str, str]]:
+def read_thai_csv(path):
     """รับเส้นทางไฟล์ CSV ภาษาไทย คืนลิสต์ของดิกชันนารีแถวละหนึ่งตัว"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    return []
 
 
 def main() -> None:

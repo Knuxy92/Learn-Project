@@ -410,8 +410,8 @@ True
 
 รันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch13-load-csv.py
+```cmd
+python exercises/ch13-load-csv.py
 ```
 
 จะได้ผลแบบนี้
@@ -435,8 +435,8 @@ True
 
 ตรวจงานตัวเองด้วยคำสั่งนี้
 
-```bash
-.venv/bin/python -m pytest tests/test_ch13.py
+```cmd
+python -m pytest tests/test_ch13.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch13

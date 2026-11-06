@@ -1,22 +1,12 @@
-def order_total(price: float, quantity: int) -> float:
-    """คูณราคาต่อหน่วยกับจำนวนชิ้น คืนยอดรวมเป็นทศนิยม"""
-    return float(price * quantity)
+price = 450
+quantity = 3
 
+total = price * quantity
+print(f"ยอดรวมรายการแรก: {total}")
 
-def apply_discount(total: float, percent: float) -> float:
-    """หักส่วนลดตามเปอร์เซ็นต์จากยอดรวม คืนยอดหลังหัก"""
-    return float(total - total * percent / 100)
+discount_percent = 10
+discounted_total = total - (total * discount_percent / 100)
+print(f"ยอดหลังหักส่วนลด: {discounted_total}")
 
-
-def is_free_shipping(total: float) -> bool:
-    """ตรวจว่ายอดถึงเกณฑ์ส่งฟรีหนึ่งพันบาทหรือไม่"""
-    return total >= 1000.0
-
-
-if __name__ == "__main__":
-    print(order_total(450, 3))
-    print(order_total(300, 0))
-    print(apply_discount(1000, 10))
-    print(apply_discount(250, 0))
-    print(is_free_shipping(1000))
-    print(is_free_shipping(999.99))
+print(f"ยอดถึงเกณฑ์ส่งฟรี: {total >= 1000}")
+print(f"ยอดต่ำกว่าเกณฑ์ส่งฟรี: {total < 1000}")

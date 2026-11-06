@@ -207,7 +207,7 @@ print("ผลรวมที่ข้ามค่าหายไป", np.nansum(
 
 ## ผลลัพธ์ที่คาดหวัง
 
-เมื่อรันไฟล์โจทย์ด้วย `.venv/bin/python exercises/ch11-order-stats.py` ควรได้ผลแบบนี้
+เมื่อรันไฟล์โจทย์ด้วย `python exercises/ch11-order-stats.py` ควรได้ผลแบบนี้
 
 ```txt
 ยอดต่อออเดอร์ [ 900.  900. 1200.  356.]
@@ -217,8 +217,8 @@ print("ผลรวมที่ข้ามค่าหายไป", np.nansum(
 
 ตรวจงานตัวเองด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python -m pytest tests/test_ch11.py
+```cmd
+python -m pytest tests/test_ch11.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch11

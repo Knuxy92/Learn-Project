@@ -90,6 +90,7 @@ def test_customer_summary_columns_and_sorting():
     assert list(summary.columns) == ["customer_id", "name", "orders", "revenue"]
     assert summary["revenue"].is_monotonic_decreasing
     assert summary["customer_id"].is_unique
+    assert len(summary) == 13
     assert int(summary["orders"].sum()) == len(master)
 
 
@@ -112,6 +113,7 @@ def test_monthly_summary_columns_and_sorting():
 
     assert list(summary.columns) == ["month", "orders", "revenue"]
     assert summary["month"].is_monotonic_increasing
+    assert len(summary) == 11
     assert int(summary["orders"].sum()) == len(master)
     assert summary["month"].tolist()[0] == "2025-01"
     assert summary["month"].tolist()[-1] == "2025-12"
@@ -140,6 +142,8 @@ def test_run_end_to_end_writes_all_outputs(tmp_path):
     assert counts["orders"] == 40
     assert counts["products"] == 8
     assert counts["master"] == 40
+    assert counts["customer_summary"] == 13
+    assert counts["monthly_summary"] == 11
     assert len(list(tmp_path.glob("*.csv"))) == 3
 
     master = pd.read_csv(tmp_path / "master.csv")

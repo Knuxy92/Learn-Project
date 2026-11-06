@@ -428,8 +428,8 @@ order_id  revenue
 
 เมื่อเขียนครบแล้วรันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch12-build-dataframe.py
+```cmd
+python exercises/ch12-build-dataframe.py
 ```
 
 จะได้ผลแบบนี้
@@ -456,8 +456,8 @@ order_id  revenue
 
 ตรวจงานตัวเองด้วยคำสั่งนี้
 
-```bash
-.venv/bin/python -m pytest tests/test_ch12.py
+```cmd
+python -m pytest tests/test_ch12.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch12

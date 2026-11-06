@@ -43,20 +43,21 @@ print("จำนวนตัวอักษร", len(code))
 ```python
 raw_name = "  Nattapong   Sri  "
 
-print("ก่อนทำความสะอาด", repr(raw_name))
-print("หลัง strip", repr(raw_name.strip()))
-print("หลังยุบช่องว่างซ้ำ", repr(" ".join(raw_name.split())))
+print("ก่อนทำความสะอาด", f"[{raw_name}]")
+print("หลัง strip", f"[{raw_name.strip()}]")
+cleaned_name = " ".join(raw_name.split())
+print(f"หลังยุบช่องว่างซ้ำ [{cleaned_name}]")
 ```
 
 ผลลัพธ์
 
 ```txt
-ก่อนทำความสะอาด '  Nattapong   Sri  '
-หลัง strip 'Nattapong   Sri'
-หลังยุบช่องว่างซ้ำ 'Nattapong Sri'
+ก่อนทำความสะอาด [  Nattapong   Sri  ]
+หลัง strip [Nattapong   Sri]
+หลังยุบช่องว่างซ้ำ [Nattapong Sri]
 ```
 
-`strip` ไม่แตะช่องว่างที่อยู่ตรงกลาง ถ้าอยากยุบช่องว่างซ้ำให้เหลือช่องเดียว ใช้ `split()` แล้วต่อกลับด้วย `" "` ซึ่งเป็นท่าที่บทที่ 5 ใช้ใน `clean_text`
+`strip` ไม่แตะช่องว่างที่อยู่ตรงกลาง ถ้าอยากยุบช่องว่างซ้ำให้เหลือช่องเดียว ใช้ `split()` แล้วต่อกลับด้วย `" "` วิธีนี้จะนำไปใช้ซ้ำได้เมื่อเราเขียนฟังก์ชันทำความสะอาดข้อความ
 
 ## เปลี่ยนตัวพิมพ์
 
@@ -138,7 +139,7 @@ print("แทนรหัสประเทศด้วยศูนย์", plus
 
 `split` แยกข้อความเป็นลิสต์ตามตัวคั่น `join` ต่อลิสต์กลับเป็นข้อความ
 
-คู่ nàyคือหัวใจของการอ่านไฟล์ CSV ด้วยมือ เพราะหนึ่งบรรทัดในไฟล์คือข้อความที่คั่นด้วยเครื่องหมายจุลภาค
+split และ join เป็นคู่คำสั่งที่ใช้แยกข้อความและประกอบข้อความกลับเข้าด้วยกัน
 
 ```python
 line = "P001, Keyboard ,Accessory,450"
@@ -257,16 +258,16 @@ with path.open(encoding="utf-8", newline="") as handle:
     dict_rows = list(csv.DictReader(handle))
 
 print("แถวแรก", dict_rows[0])
-print("ชื่อสินค้าแถวแรก", repr(dict_rows[0]["product_name"]))
-print("หมวดของแถวแรก", repr(dict_rows[0]["category"]))
+print(f"ชื่อสินค้าแถวแรก [{dict_rows[0]["product_name"]}]")
+print(f"หมวดของแถวแรก [{dict_rows[0]["category"]}]")
 ```
 
 ผลลัพธ์
 
 ```txt
 แถวแรก {'product_id': 'P001', 'product_name': ' Keyboard ', 'category': 'Accessory', 'list_price': '450'}
-ชื่อสินค้าแถวแรก ' Keyboard '
-หมวดของแถวแรก 'Accessory'
+ชื่อสินค้าแถวแรก [ Keyboard ]
+หมวดของแถวแรก [Accessory]
 ```
 
 ทุกค่าเป็นข้อความหมด แม้คอลัมน์ `list_price` จะดูเป็นตัวเลข การแปลงชนิดเป็นเรื่องของบทที่ 17
@@ -407,7 +408,7 @@ out_path.unlink()
 
 รันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
+```cmd
 python exercises/ch07-read-raw-file.py
 ```
 
@@ -429,8 +430,8 @@ P002
 
 ตรวจงานตัวเองด้วย
 
-```bash
-pytest tests/test_ch07.py
+```cmd
+python -m pytest tests/test_ch07.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch7

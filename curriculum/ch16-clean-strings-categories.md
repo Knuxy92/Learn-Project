@@ -69,32 +69,32 @@ customers = pd.read_csv("data/raw/customers.csv", encoding="utf-8")
 names = customers["name"]
 
 for value in names.head(4):
-    print(repr(value))
+    print(f"[{value}]")
 ```
 
 ผลลัพธ์
 
 ```txt
-'  Nattapong Sri  '
-'Malee Wongsakul'
-'Kanya P.'
-'Anan Chaiyaporn'
+[  Nattapong Sri  ]
+[Malee Wongsakul]
+[Kanya P.]
+[Anan Chaiyaporn]
 ```
 
 แถวแรกมีช่องว่างสองตัวหน้าและสองตัวหลัง
 
 ```python
 for value in names.str.strip().head(4):
-    print(repr(value))
+    print(f"[{value}]")
 ```
 
 ผลลัพธ์
 
 ```txt
-'Nattapong Sri'
-'Malee Wongsakul'
-'Kanya P.'
-'Anan Chaiyaporn'
+[Nattapong Sri]
+[Malee Wongsakul]
+[Kanya P.]
+[Anan Chaiyaporn]
 ```
 
 ## ยุบช่องว่างที่ซ้อนกัน

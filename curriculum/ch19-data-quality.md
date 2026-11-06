@@ -273,9 +273,16 @@ import pandas as pd
 orders = pd.read_csv("data/raw/orders.csv", encoding="utf-8")
 products = pd.read_csv("data/raw/products.csv", encoding="utf-8")
 
-print(sorted(set(orders["product_id"]) - set(products["product_id"])))
-print(int((~orders["product_id"].isin(products["product_id"])).sum()))
-print(sorted(set(products["product_id"]) - set(orders["product_id"])))
+missing_products = orders.loc[
+    ~orders["product_id"].isin(products["product_id"]), "product_id"
+].unique()
+unused_products = products.loc[
+    ~products["product_id"].isin(orders["product_id"]), "product_id"
+].unique()
+
+print(sorted(missing_products.tolist()))
+print(len(missing_products))
+print(sorted(unused_products.tolist()))
 ```
 
 ผลลัพธ์
@@ -425,8 +432,8 @@ print(f"{joined['name'].notna().mean():.3f}")
 
 รันคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch19-quality-report.py
+```cmd
+python exercises/ch19-quality-report.py
 ```
 
 ต้องได้ผลแบบนี้

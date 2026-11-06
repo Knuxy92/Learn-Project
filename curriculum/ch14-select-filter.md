@@ -320,8 +320,8 @@ Paid
 
 เมื่อเขียนครบแล้วรันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch14-filter-orders.py
+```cmd
+python exercises/ch14-filter-orders.py
 ```
 
 จะได้ผลแบบนี้
@@ -341,8 +341,8 @@ order_id  total
 
 ตรวจงานตัวเองด้วยคำสั่งนี้
 
-```bash
-.venv/bin/python -m pytest tests/test_ch14.py
+```cmd
+python -m pytest tests/test_ch14.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch14

@@ -1,7 +1,7 @@
 """โจทย์ บทที่ 19 ตรวจคุณภาพข้อมูล
 
 เติมโค้ดในแต่ละฟังก์ชันให้ทำงานตามที่ docstring บอก
-รันไฟล์นี้ด้วย `.venv/bin/python exercises/ch19-quality-report.py` เพื่อดูผล
+รันไฟล์นี้ด้วย `python exercises/ch19-quality-report.py` เพื่อดูผล
 """
 
 from pathlib import Path

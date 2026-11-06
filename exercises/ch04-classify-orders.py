@@ -1,28 +1,31 @@
-def classify_amount(total: float) -> str:
-    """รับยอดเงิน คืนกลุ่ม small เมื่อต่ำกว่า 500, medium เมื่อต่ำกว่า 2000, ที่เหลือเป็น large"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+# 1. ใช้ if / elif / else จัดกลุ่มยอดเงิน
+amounts = [499.99, 500, 2000]
 
+for amount in amounts:
+    if amount < 500:
+        group = "small"
+    elif amount < 2000:
+        group = "medium"
+    else:
+        group = "large"
 
-def count_by_status(rows: list[dict]) -> dict[str, int]:
-    """รับรายการแถว คืนดิกชันนารีที่นับจำนวนแถวแยกตามค่าของคีย์ status"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+    print(f"{amount} อยู่ในกลุ่ม {group}")
 
+# 2. ใช้ for และตัวสะสมหายอดรวม
+totals = [4200, 1150, 450, 2600, 300]
+all_total = 0
 
-def find_first_large(rows: list[dict]) -> dict | None:
-    """รับรายการแถว คืนแถวแรกที่ total ตั้งแต่ 2000 ขึ้นไป ถ้าไม่มีให้คืน None"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+for total in totals:
+    all_total += total
 
+print(f"ยอดรวมทั้งหมด: {all_total}")
 
-if __name__ == "__main__":
-    sample = [
-        {"order_id": "O0001", "status": "paid", "total": 4200.0},
-        {"order_id": "O0002", "status": "pending", "total": 1150.0},
-        {"order_id": "O0003", "status": "paid", "total": 450.0},
-        {"order_id": "O0004", "status": "cancelled", "total": 2600.0},
-    ]
+# 3. นับจำนวนรายการที่มีสถานะ paid
+statuses = ["paid", "pending", "paid", "cancelled", "paid"]
+paid_count = 0
 
-    print(f"499.99 อยู่ในกลุ่ม {classify_amount(499.99)}")
-    print(f"500 อยู่ในกลุ่ม {classify_amount(500)}")
-    print(f"2000 อยู่ในกลุ่ม {classify_amount(2000)}")
-    print(f"นับตามสถานะได้ {count_by_status(sample)}")
-    print(f"แถวแรกที่ยอดใหญ่คือ {find_first_large(sample)}")
+for status in statuses:
+    if status == "paid":
+        paid_count += 0  # TODO: เปลี่ยน 0 เป็น 1
+
+print(f"จำนวนรายการ paid: {paid_count}")

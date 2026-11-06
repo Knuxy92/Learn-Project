@@ -1,7 +1,7 @@
 """โจทย์ บทที่ 18 รวมตาราง
 
 เติมโค้ดในแต่ละฟังก์ชันให้ทำงานตามที่ docstring บอก
-รันไฟล์นี้ด้วย `.venv/bin/python exercises/ch18-join-tables.py` เพื่อดูผล
+รันไฟล์นี้ด้วย `python exercises/ch18-join-tables.py` เพื่อดูผล
 """
 
 from pathlib import Path

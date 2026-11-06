@@ -48,22 +48,20 @@ dtype: int64
 ```python
 import pandas as pd
 
-series = pd.Series(["gold", "", None, "   "])
+series = pd.Series(["gold", "", None])
 
 print(series.isna().tolist())
-print(series.str.strip().isna().tolist())
-print(series.str.strip().replace("", pd.NA).isna().tolist())
+print(series.replace("", pd.NA).isna().tolist())
 ```
 
 ผลลัพธ์
 
 ```txt
-[False, False, True, False]
-[False, False, True, False]
-[False, True, True, True]
+[False, False, True]
+[False, True, True]
 ```
 
-บรรทัดแรกเห็นแค่ `None` บรรทัดสุดท้ายเห็นครบทั้งช่องว่างและช่องที่มีแต่เว้นวรรค
+บรรทัดแรกเห็นเฉพาะ `None` ส่วนบรรทัดที่สองนับข้อความว่างเป็นค่าที่หายไปเพิ่มด้วย ส่วนการจัดการข้อความที่มีแต่เว้นวรรคจะเรียนในบทที่ 16
 
 ถ้าอยากเห็นช่องว่างจาก CSV โดยไม่ให้ถูกแปลงตั้งแต่ตอนอ่าน ใช้ `keep_default_na=False`
 
@@ -75,7 +73,7 @@ raw_read = pd.read_csv("data/raw/orders.csv", encoding="utf-8", keep_default_na=
 
 print(default_read["status"].isna().sum())
 print(raw_read["status"].isna().sum())
-print(raw_read["status"].str.strip().eq("").sum())
+print(raw_read["status"].eq("").sum())
 ```
 
 ผลลัพธ์
@@ -99,7 +97,7 @@ import pandas as pd
 
 customers = pd.read_csv("data/raw/customers.csv", encoding="utf-8")
 
-tier = customers["loyalty_tier"].str.strip().replace("", pd.NA)
+tier = customers["loyalty_tier"].replace("", pd.NA)
 print(tier.isna().sum())
 print(tier.dtype)
 ```
@@ -241,7 +239,7 @@ import pandas as pd
 
 customers = pd.read_csv("data/raw/customers.csv", encoding="utf-8")
 
-tier = customers["loyalty_tier"].str.strip().replace("", pd.NA)
+tier = customers["loyalty_tier"].replace("", pd.NA)
 print(tier.fillna("Unknown").value_counts())
 ```
 
@@ -345,7 +343,7 @@ print(customers.dropna(how="all").shape)
 | นับค่าว่างต่อคอลัมน์ | `df.isna().sum()` |
 | นับเฉพาะคอลัมน์ที่มีปัญหา | `counts[counts > 0]` |
 | ดูเป็นเปอร์เซ็นต์ | `df.isna().mean() * 100` |
-| เปลี่ยนข้อความว่างเป็นค่าว่าง | `s.str.strip().replace("", pd.NA)` |
+| เปลี่ยนข้อความว่างเป็นค่าว่าง | s.replace("", pd.NA) |
 | เติมค่าคงที่ | `s.fillna(value)` |
 | เติมด้วยค่าข้างเคียง | `s.ffill()` หรือ `s.bfill()` |
 | ตัดแถวที่ขาดคอลัมน์สำคัญ | `df.dropna(subset=[column])` |
@@ -371,8 +369,8 @@ print(customers.dropna(how="all").shape)
 
 เมื่อเขียนครบแล้วรันด้วยคำสั่งนี้จากโฟลเดอร์โปรเจกต์
 
-```bash
-.venv/bin/python exercises/ch15-handle-missing.py
+```cmd
+python exercises/ch15-handle-missing.py
 ```
 
 จะได้ผลแบบนี้
@@ -388,8 +386,8 @@ loyalty_tier    1
 
 ตรวจงานตัวเองด้วยคำสั่งนี้
 
-```bash
-.venv/bin/python -m pytest tests/test_ch15.py
+```cmd
+python -m pytest tests/test_ch15.py
 ```
 
 ## เสร็จแล้วพิมพ์ ตรวจ Ch15

@@ -1,17 +1,15 @@
-def describe_customer(name: str, age: int, spend: float, is_member: bool) -> str:
-    """รับชื่อ อายุ ยอดใช้จ่าย และสถานะสมาชิก คืนข้อความสรุปของลูกค้าหนึ่งคน"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
+# แก้ค่าตัวแปรด้านล่างตามโจทย์
+customer_name = "Somchai"
+customer_age = 34
+customer_spend = 1250.5
+is_member = True
 
+# แสดงข้อมูลลูกค้า
+print(f"ชื่อ: {customer_name}")
+print(f"อายุ: {customer_age}")
+print(f"ยอดใช้จ่าย: {customer_spend:.2f} บาท")
+print(f"เป็นสมาชิก: {is_member}")
 
-def type_report(value: object) -> str:
-    """รับค่าอะไรก็ได้ คืนชื่อชนิดของค่านั้นเป็นข้อความ"""
-    raise NotImplementedError("เขียนโค้ดตรงนี้")
-
-
-if __name__ == "__main__":
-    print(describe_customer("Somchai", 34, 1250.5, True))
-    print(describe_customer("Malee", 28, 0.0, False))
-    print(type_report(3))
-    print(type_report(3.5))
-    print(type_report("x"))
-    print(type_report(True))
+# ตรวจชนิดของค่า
+print(f"ชนิดของอายุ: {type(customer_age)}")
+print(f"ชนิดของยอดใช้จ่าย: {type(customer_spend)}")

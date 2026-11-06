@@ -1,4 +1,4 @@
-SAMPLE_CUSTOMERS: list[dict] = [
+SAMPLE_CUSTOMERS = [
     {"customer_id": "C001", "name": "Nattapong Sri", "country": "Thailand", "spend": 4200.0},
     {"customer_id": "C002", "name": "Malee Wongsakul", "country": "Laos", "spend": 1850.5},
     {"customer_id": "C003", "name": "Kanya P.", "country": "Thailand", "spend": 990.0},
@@ -8,17 +8,17 @@ SAMPLE_CUSTOMERS: list[dict] = [
 ]
 
 
-def names_of(rows: list[dict]) -> list[str]:
+def names_of(rows):
     """รับลิสต์ของแถว คืนลิสต์ชื่อจากคีย์ name ตามลำดับเดิม"""
     return [row["name"] for row in rows]
 
 
-def filter_by_country(rows: list[dict], country: str) -> list[dict]:
+def filter_by_country(rows, country):
     """รับลิสต์ของแถวกับชื่อประเทศ คืนเฉพาะแถวที่คอลัมน์ country ตรงกัน"""
     return [row for row in rows if row["country"] == country]
 
 
-def count_by(rows: list[dict], key: str) -> dict[str, int]:
+def count_by(rows, key):
     """รับลิสต์ของแถวกับชื่อคอลัมน์ คืนจำนวนแถวแยกตามค่าของคอลัมน์นั้น"""
     counts: dict[str, int] = {}
     for row in rows:
@@ -27,7 +27,7 @@ def count_by(rows: list[dict], key: str) -> dict[str, int]:
     return counts
 
 
-def sort_by_spend(rows: list[dict], descending: bool = True) -> list[dict]:
+def sort_by_spend(rows, descending=True):
     """รับลิสต์ของแถวที่ทุกแถวมีคีย์ spend คืนลิสต์ใหม่ที่เรียงตามยอดใช้จ่าย"""
     return sorted(rows, key=lambda row: row["spend"], reverse=descending)
 
