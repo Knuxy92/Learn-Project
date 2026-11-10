@@ -1,31 +1,27 @@
-# 1. ใช้ if / elif / else จัดกลุ่มยอดเงิน
+"""แบบฝึกหัดบทที่ 4: จัดกลุ่มและสรุปรายการสั่งซื้อ
+
+โจทย์
+1. ตรวจยอดแต่ละรายการใน amounts แล้วจัดกลุ่มเป็น small, medium หรือ large
+   - น้อยกว่า 500: small
+   - ตั้งแต่ 500 แต่น้อยกว่า 2000: medium
+   - ตั้งแต่ 2000 ขึ้นไป: large
+2. วนดู totals แล้วหายอดรวมทั้งหมด
+3. วนดู statuses แล้วนับจำนวนรายการที่มีสถานะ paid
+
+แสดงผลตามตัวอย่างใน curriculum/ch04-control-flow-loops.md
+
+ข้อกำหนด
+- ใช้ if / elif / else สำหรับจัดกลุ่ม
+- ใช้ for สำหรับวนดูข้อมูล
+- ใช้ตัวแปรสะสมสำหรับยอดรวมและจำนวนรายการ
+- ยังไม่ต้องสร้างฟังก์ชันหรือใช้ดิกชันนารี
+
+เขียนโค้ดของคุณใต้เส้นคั่นนี้
+"""
+
+# ข้อมูลตัวอย่าง
 amounts = [499.99, 500, 2000]
-
-for amount in amounts:
-    if amount < 500:
-        group = "small"
-    elif amount < 2000:
-        group = "medium"
-    else:
-        group = "large"
-
-    print(f"{amount} อยู่ในกลุ่ม {group}")
-
-# 2. ใช้ for และตัวสะสมหายอดรวม
 totals = [4200, 1150, 450, 2600, 300]
-all_total = 0
-
-for total in totals:
-    all_total += total
-
-print(f"ยอดรวมทั้งหมด: {all_total}")
-
-# 3. นับจำนวนรายการที่มีสถานะ paid
 statuses = ["paid", "pending", "paid", "cancelled", "paid"]
-paid_count = 0
 
-for status in statuses:
-    if status == "paid":
-        paid_count += 0  # TODO: เปลี่ยน 0 เป็น 1
-
-print(f"จำนวนรายการ paid: {paid_count}")
+# เขียนโค้ดของคุณด้านล่างนี้

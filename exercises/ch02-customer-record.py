@@ -1,15 +1,18 @@
-# แก้ค่าตัวแปรด้านล่างตามโจทย์
+"""แบบฝึกหัดบทที่ 2: แสดงข้อมูลลูกค้า
+
+โจทย์
+ใช้ตัวแปรข้อมูลที่เตรียมไว้ให้ แล้วเขียนคำสั่ง print เพื่อแสดง
+ชื่อ อายุ ยอดใช้จ่าย และสถานะสมาชิก
+จากนั้นใช้ type() ตรวจชนิดของ customer_age และ customer_spend
+
+รูปแบบผลลัพธ์ดูได้จาก curriculum/ch02-variables-data-types.md
+เขียนคำสั่งแสดงผลใต้เส้นคั่นนี้ โดยไม่ต้องสร้างข้อมูลชุดใหม่
+"""
+
+# ข้อมูลตัวอย่าง
 customer_name = "Somchai"
 customer_age = 34
 customer_spend = 1250.5
 is_member = True
 
-# แสดงข้อมูลลูกค้า
-print(f"ชื่อ: {customer_name}")
-print(f"อายุ: {customer_age}")
-print(f"ยอดใช้จ่าย: {customer_spend:.2f} บาท")
-print(f"เป็นสมาชิก: {is_member}")
-
-# ตรวจชนิดของค่า
-print(f"ชนิดของอายุ: {type(customer_age)}")
-print(f"ชนิดของยอดใช้จ่าย: {type(customer_spend)}")
+# เขียนโค้ดของคุณด้านล่างนี้
